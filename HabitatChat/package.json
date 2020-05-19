@@ -1,6 +1,10 @@
 {
   "name": "matrix-react-sdk",
+<<<<<<< Updated upstream
   "version": "2.5.0",
+=======
+  "version": "2.6.0",
+>>>>>>> Stashed changes
   "description": "SDK for matrix.org using React",
   "author": "matrix.org",
   "repository": {
