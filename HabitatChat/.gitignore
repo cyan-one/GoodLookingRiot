@@ -1,0 +1,15 @@
+/.npmrc
+/*.log
+package-lock.json
+
+/node_modules
+/lib
+
+# version file and tarball created by `npm pack` / `yarn pack`
+/git-revision.txt
+/matrix-react-sdk-*.tgz
+
+/.idea
+/src/component-index.js
+
+.DS_Store
