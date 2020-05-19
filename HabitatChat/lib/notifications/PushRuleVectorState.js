@@ -1,0 +1,112 @@
+/*
+Copyright 2016 OpenMarket Ltd
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+'use strict';
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PushRuleVectorState = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _StandardActions = require("./StandardActions");
+
+var _NotificationUtils = require("./NotificationUtils");
+
+class PushRuleVectorState {
+  // Backwards compatibility (things should probably be using .states instead)
+
+  /**
+   * Enum for state of a push rule as defined by the Vector UI.
+   * @readonly
+   * @enum {string}
+   */
+
+  /**
+   * Convert a PushRuleVectorState to a list of actions
+   *
+   * @return [object] list of push-rule actions
+   */
+  static actionsFor(pushRuleVectorState) {
+    if (pushRuleVectorState === PushRuleVectorState.ON) {
+      return _StandardActions.StandardActions.ACTION_NOTIFY;
+    } else if (pushRuleVectorState === PushRuleVectorState.LOUD) {
+      return _StandardActions.StandardActions.ACTION_HIGHLIGHT_DEFAULT_SOUND;
+    }
+  }
+  /**
+   * Convert a pushrule's actions to a PushRuleVectorState.
+   *
+   * Determines whether a content rule is in the PushRuleVectorState.ON
+   * category or in PushRuleVectorState.LOUD, regardless of its enabled
+   * state. Returns null if it does not match these categories.
+   */
+
+
+  static contentRuleVectorStateKind(rule) {
+    const decoded = _NotificationUtils.NotificationUtils.decodeActions(rule.actions);
+
+    if (!decoded) {
+      return null;
+    } // Count tweaks to determine if it is a ON or LOUD rule
+
+
+    let tweaks = 0;
+
+    if (decoded.sound) {
+      tweaks++;
+    }
+
+    if (decoded.highlight) {
+      tweaks++;
+    }
+
+    let stateKind = null;
+
+    switch (tweaks) {
+      case 0:
+        stateKind = PushRuleVectorState.ON;
+        break;
+
+      case 2:
+        stateKind = PushRuleVectorState.LOUD;
+        break;
+    }
+
+    return stateKind;
+  }
+
+}
+
+exports.PushRuleVectorState = PushRuleVectorState;
+(0, _defineProperty2.default)(PushRuleVectorState, "OFF", "off");
+(0, _defineProperty2.default)(PushRuleVectorState, "ON", "on");
+(0, _defineProperty2.default)(PushRuleVectorState, "LOUD", "loud");
+(0, _defineProperty2.default)(PushRuleVectorState, "states", {
+  /** The push rule is disabled */
+  OFF: PushRuleVectorState.OFF,
+
+  /** The user will receive push notification for this rule */
+  ON: PushRuleVectorState.ON,
+
+  /** The user will receive push notification for this rule with sound and
+   highlight if this is legitimate */
+  LOUD: PushRuleVectorState.LOUD
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9ub3RpZmljYXRpb25zL1B1c2hSdWxlVmVjdG9yU3RhdGUuanMiXSwibmFtZXMiOlsiUHVzaFJ1bGVWZWN0b3JTdGF0ZSIsImFjdGlvbnNGb3IiLCJwdXNoUnVsZVZlY3RvclN0YXRlIiwiT04iLCJTdGFuZGFyZEFjdGlvbnMiLCJBQ1RJT05fTk9USUZZIiwiTE9VRCIsIkFDVElPTl9ISUdITElHSFRfREVGQVVMVF9TT1VORCIsImNvbnRlbnRSdWxlVmVjdG9yU3RhdGVLaW5kIiwicnVsZSIsImRlY29kZWQiLCJOb3RpZmljYXRpb25VdGlscyIsImRlY29kZUFjdGlvbnMiLCJhY3Rpb25zIiwidHdlYWtzIiwic291bmQiLCJoaWdobGlnaHQiLCJzdGF0ZUtpbmQiLCJPRkYiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7O0FBaUJBOzs7Ozs7Ozs7OztBQUVBOztBQUNBOztBQUVPLE1BQU1BLG1CQUFOLENBQTBCO0FBQzdCOztBQUtBOzs7Ozs7QUFpQkE7Ozs7O0FBS0EsU0FBT0MsVUFBUCxDQUFrQkMsbUJBQWxCLEVBQXVDO0FBQ25DLFFBQUlBLG1CQUFtQixLQUFLRixtQkFBbUIsQ0FBQ0csRUFBaEQsRUFBb0Q7QUFDaEQsYUFBT0MsaUNBQWdCQyxhQUF2QjtBQUNILEtBRkQsTUFFTyxJQUFJSCxtQkFBbUIsS0FBS0YsbUJBQW1CLENBQUNNLElBQWhELEVBQXNEO0FBQ3pELGFBQU9GLGlDQUFnQkcsOEJBQXZCO0FBQ0g7QUFDSjtBQUVEOzs7Ozs7Ozs7QUFPQSxTQUFPQywwQkFBUCxDQUFrQ0MsSUFBbEMsRUFBd0M7QUFDcEMsVUFBTUMsT0FBTyxHQUFHQyxxQ0FBa0JDLGFBQWxCLENBQWdDSCxJQUFJLENBQUNJLE9BQXJDLENBQWhCOztBQUVBLFFBQUksQ0FBQ0gsT0FBTCxFQUFjO0FBQ1YsYUFBTyxJQUFQO0FBQ0gsS0FMbUMsQ0FPcEM7OztBQUNBLFFBQUlJLE1BQU0sR0FBRyxDQUFiOztBQUNBLFFBQUlKLE9BQU8sQ0FBQ0ssS0FBWixFQUFtQjtBQUNmRCxNQUFBQSxNQUFNO0FBQ1Q7O0FBQ0QsUUFBSUosT0FBTyxDQUFDTSxTQUFaLEVBQXVCO0FBQ25CRixNQUFBQSxNQUFNO0FBQ1Q7O0FBQ0QsUUFBSUcsU0FBUyxHQUFHLElBQWhCOztBQUNBLFlBQVFILE1BQVI7QUFDSSxXQUFLLENBQUw7QUFDSUcsUUFBQUEsU0FBUyxHQUFHakIsbUJBQW1CLENBQUNHLEVBQWhDO0FBQ0E7O0FBQ0osV0FBSyxDQUFMO0FBQ0ljLFFBQUFBLFNBQVMsR0FBR2pCLG1CQUFtQixDQUFDTSxJQUFoQztBQUNBO0FBTlI7O0FBUUEsV0FBT1csU0FBUDtBQUNIOztBQXBFNEI7Ozs4QkFBcEJqQixtQixTQUVJLEs7OEJBRkpBLG1CLFFBR0csSTs4QkFISEEsbUIsVUFJSyxNOzhCQUpMQSxtQixZQVdPO0FBQ1o7QUFDQWtCLEVBQUFBLEdBQUcsRUFBRWxCLG1CQUFtQixDQUFDa0IsR0FGYjs7QUFJWjtBQUNBZixFQUFBQSxFQUFFLEVBQUVILG1CQUFtQixDQUFDRyxFQUxaOztBQU9aOztBQUVBRyxFQUFBQSxJQUFJLEVBQUVOLG1CQUFtQixDQUFDTTtBQVRkLEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTYgT3Blbk1hcmtldCBMdGRcbkNvcHlyaWdodCAyMDE5IFRoZSBNYXRyaXgub3JnIEZvdW5kYXRpb24gQy5JLkMuXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuJ3VzZSBzdHJpY3QnO1xuXG5pbXBvcnQge1N0YW5kYXJkQWN0aW9uc30gZnJvbSBcIi4vU3RhbmRhcmRBY3Rpb25zXCI7XG5pbXBvcnQge05vdGlmaWNhdGlvblV0aWxzfSBmcm9tIFwiLi9Ob3RpZmljYXRpb25VdGlsc1wiO1xuXG5leHBvcnQgY2xhc3MgUHVzaFJ1bGVWZWN0b3JTdGF0ZSB7XG4gICAgLy8gQmFja3dhcmRzIGNvbXBhdGliaWxpdHkgKHRoaW5ncyBzaG91bGQgcHJvYmFibHkgYmUgdXNpbmcgLnN0YXRlcyBpbnN0ZWFkKVxuICAgIHN0YXRpYyBPRkYgPSBcIm9mZlwiO1xuICAgIHN0YXRpYyBPTiA9IFwib25cIjtcbiAgICBzdGF0aWMgTE9VRCA9IFwibG91ZFwiO1xuXG4gICAgLyoqXG4gICAgICogRW51bSBmb3Igc3RhdGUgb2YgYSBwdXNoIHJ1bGUgYXMgZGVmaW5lZCBieSB0aGUgVmVjdG9yIFVJLlxuICAgICAqIEByZWFkb25seVxuICAgICAqIEBlbnVtIHtzdHJpbmd9XG4gICAgICovXG4gICAgc3RhdGljIHN0YXRlcyA9IHtcbiAgICAgICAgLyoqIFRoZSBwdXNoIHJ1bGUgaXMgZGlzYWJsZWQgKi9cbiAgICAgICAgT0ZGOiBQdXNoUnVsZVZlY3RvclN0YXRlLk9GRixcblxuICAgICAgICAvKiogVGhlIHVzZXIgd2lsbCByZWNlaXZlIHB1c2ggbm90aWZpY2F0aW9uIGZvciB0aGlzIHJ1bGUgKi9cbiAgICAgICAgT046IFB1c2hSdWxlVmVjdG9yU3RhdGUuT04sXG5cbiAgICAgICAgLyoqIFRoZSB1c2VyIHdpbGwgcmVjZWl2ZSBwdXNoIG5vdGlmaWNhdGlvbiBmb3IgdGhpcyBydWxlIHdpdGggc291bmQgYW5kXG4gICAgICAgICBoaWdobGlnaHQgaWYgdGhpcyBpcyBsZWdpdGltYXRlICovXG4gICAgICAgIExPVUQ6IFB1c2hSdWxlVmVjdG9yU3RhdGUuTE9VRCxcbiAgICB9O1xuXG4gICAgLyoqXG4gICAgICogQ29udmVydCBhIFB1c2hSdWxlVmVjdG9yU3RhdGUgdG8gYSBsaXN0IG9mIGFjdGlvbnNcbiAgICAgKlxuICAgICAqIEByZXR1cm4gW29iamVjdF0gbGlzdCBvZiBwdXNoLXJ1bGUgYWN0aW9uc1xuICAgICAqL1xuICAgIHN0YXRpYyBhY3Rpb25zRm9yKHB1c2hSdWxlVmVjdG9yU3RhdGUpIHtcbiAgICAgICAgaWYgKHB1c2hSdWxlVmVjdG9yU3RhdGUgPT09IFB1c2hSdWxlVmVjdG9yU3RhdGUuT04pIHtcbiAgICAgICAgICAgIHJldHVybiBTdGFuZGFyZEFjdGlvbnMuQUNUSU9OX05PVElGWTtcbiAgICAgICAgfSBlbHNlIGlmIChwdXNoUnVsZVZlY3RvclN0YXRlID09PSBQdXNoUnVsZVZlY3RvclN0YXRlLkxPVUQpIHtcbiAgICAgICAgICAgIHJldHVybiBTdGFuZGFyZEFjdGlvbnMuQUNUSU9OX0hJR0hMSUdIVF9ERUZBVUxUX1NPVU5EO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgLyoqXG4gICAgICogQ29udmVydCBhIHB1c2hydWxlJ3MgYWN0aW9ucyB0byBhIFB1c2hSdWxlVmVjdG9yU3RhdGUuXG4gICAgICpcbiAgICAgKiBEZXRlcm1pbmVzIHdoZXRoZXIgYSBjb250ZW50IHJ1bGUgaXMgaW4gdGhlIFB1c2hSdWxlVmVjdG9yU3RhdGUuT05cbiAgICAgKiBjYXRlZ29yeSBvciBpbiBQdXNoUnVsZVZlY3RvclN0YXRlLkxPVUQsIHJlZ2FyZGxlc3Mgb2YgaXRzIGVuYWJsZWRcbiAgICAgKiBzdGF0ZS4gUmV0dXJucyBudWxsIGlmIGl0IGRvZXMgbm90IG1hdGNoIHRoZXNlIGNhdGVnb3JpZXMuXG4gICAgICovXG4gICAgc3RhdGljIGNvbnRlbnRSdWxlVmVjdG9yU3RhdGVLaW5kKHJ1bGUpIHtcbiAgICAgICAgY29uc3QgZGVjb2RlZCA9IE5vdGlmaWNhdGlvblV0aWxzLmRlY29kZUFjdGlvbnMocnVsZS5hY3Rpb25zKTtcblxuICAgICAgICBpZiAoIWRlY29kZWQpIHtcbiAgICAgICAgICAgIHJldHVybiBudWxsO1xuICAgICAgICB9XG5cbiAgICAgICAgLy8gQ291bnQgdHdlYWtzIHRvIGRldGVybWluZSBpZiBpdCBpcyBhIE9OIG9yIExPVUQgcnVsZVxuICAgICAgICBsZXQgdHdlYWtzID0gMDtcbiAgICAgICAgaWYgKGRlY29kZWQuc291bmQpIHtcbiAgICAgICAgICAgIHR3ZWFrcysrO1xuICAgICAgICB9XG4gICAgICAgIGlmIChkZWNvZGVkLmhpZ2hsaWdodCkge1xuICAgICAgICAgICAgdHdlYWtzKys7XG4gICAgICAgIH1cbiAgICAgICAgbGV0IHN0YXRlS2luZCA9IG51bGw7XG4gICAgICAgIHN3aXRjaCAodHdlYWtzKSB7XG4gICAgICAgICAgICBjYXNlIDA6XG4gICAgICAgICAgICAgICAgc3RhdGVLaW5kID0gUHVzaFJ1bGVWZWN0b3JTdGF0ZS5PTjtcbiAgICAgICAgICAgICAgICBicmVhaztcbiAgICAgICAgICAgIGNhc2UgMjpcbiAgICAgICAgICAgICAgICBzdGF0ZUtpbmQgPSBQdXNoUnVsZVZlY3RvclN0YXRlLkxPVUQ7XG4gICAgICAgICAgICAgICAgYnJlYWs7XG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIHN0YXRlS2luZDtcbiAgICB9XG59XG4iXX0=

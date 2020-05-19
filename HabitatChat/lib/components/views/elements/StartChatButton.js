@@ -1,0 +1,53 @@
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var sdk = _interopRequireWildcard(require("../../../index"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _languageHandler = require("../../../languageHandler");
+
+/*
+Copyright 2017 Vector Creations Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+const StartChatButton = function (props) {
+  const ActionButton = sdk.getComponent('elements.ActionButton');
+  return /*#__PURE__*/_react.default.createElement(ActionButton, {
+    action: "view_create_chat",
+    mouseOverAction: props.callout ? "callout_start_chat" : null,
+    label: (0, _languageHandler._t)("Start chat"),
+    iconPath: require("../../../../res/img/icons-people.svg"),
+    size: props.size,
+    tooltip: props.tooltip
+  });
+};
+
+StartChatButton.propTypes = {
+  size: _propTypes.default.string,
+  tooltip: _propTypes.default.bool
+};
+var _default = StartChatButton;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL1N0YXJ0Q2hhdEJ1dHRvbi5qcyJdLCJuYW1lcyI6WyJTdGFydENoYXRCdXR0b24iLCJwcm9wcyIsIkFjdGlvbkJ1dHRvbiIsInNkayIsImdldENvbXBvbmVudCIsImNhbGxvdXQiLCJyZXF1aXJlIiwic2l6ZSIsInRvb2x0aXAiLCJwcm9wVHlwZXMiLCJQcm9wVHlwZXMiLCJzdHJpbmciLCJib29sIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQWdCQTs7QUFDQTs7QUFDQTs7QUFDQTs7QUFuQkE7Ozs7Ozs7Ozs7Ozs7OztBQXFCQSxNQUFNQSxlQUFlLEdBQUcsVUFBU0MsS0FBVCxFQUFnQjtBQUNwQyxRQUFNQyxZQUFZLEdBQUdDLEdBQUcsQ0FBQ0MsWUFBSixDQUFpQix1QkFBakIsQ0FBckI7QUFDQSxzQkFDSSw2QkFBQyxZQUFEO0FBQWMsSUFBQSxNQUFNLEVBQUMsa0JBQXJCO0FBQ0ksSUFBQSxlQUFlLEVBQUVILEtBQUssQ0FBQ0ksT0FBTixHQUFnQixvQkFBaEIsR0FBdUMsSUFENUQ7QUFFSSxJQUFBLEtBQUssRUFBRSx5QkFBRyxZQUFILENBRlg7QUFHSSxJQUFBLFFBQVEsRUFBRUMsT0FBTyxDQUFDLHNDQUFELENBSHJCO0FBSUksSUFBQSxJQUFJLEVBQUVMLEtBQUssQ0FBQ00sSUFKaEI7QUFLSSxJQUFBLE9BQU8sRUFBRU4sS0FBSyxDQUFDTztBQUxuQixJQURKO0FBU0gsQ0FYRDs7QUFhQVIsZUFBZSxDQUFDUyxTQUFoQixHQUE0QjtBQUN4QkYsRUFBQUEsSUFBSSxFQUFFRyxtQkFBVUMsTUFEUTtBQUV4QkgsRUFBQUEsT0FBTyxFQUFFRSxtQkFBVUU7QUFGSyxDQUE1QjtlQUtlWixlIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE3IFZlY3RvciBDcmVhdGlvbnMgTHRkXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCAqIGFzIHNkayBmcm9tICcuLi8uLi8uLi9pbmRleCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHsgX3QgfSBmcm9tICcuLi8uLi8uLi9sYW5ndWFnZUhhbmRsZXInO1xuXG5jb25zdCBTdGFydENoYXRCdXR0b24gPSBmdW5jdGlvbihwcm9wcykge1xuICAgIGNvbnN0IEFjdGlvbkJ1dHRvbiA9IHNkay5nZXRDb21wb25lbnQoJ2VsZW1lbnRzLkFjdGlvbkJ1dHRvbicpO1xuICAgIHJldHVybiAoXG4gICAgICAgIDxBY3Rpb25CdXR0b24gYWN0aW9uPVwidmlld19jcmVhdGVfY2hhdFwiXG4gICAgICAgICAgICBtb3VzZU92ZXJBY3Rpb249e3Byb3BzLmNhbGxvdXQgPyBcImNhbGxvdXRfc3RhcnRfY2hhdFwiIDogbnVsbH1cbiAgICAgICAgICAgIGxhYmVsPXtfdChcIlN0YXJ0IGNoYXRcIil9XG4gICAgICAgICAgICBpY29uUGF0aD17cmVxdWlyZShcIi4uLy4uLy4uLy4uL3Jlcy9pbWcvaWNvbnMtcGVvcGxlLnN2Z1wiKX1cbiAgICAgICAgICAgIHNpemU9e3Byb3BzLnNpemV9XG4gICAgICAgICAgICB0b29sdGlwPXtwcm9wcy50b29sdGlwfVxuICAgICAgICAvPlxuICAgICk7XG59O1xuXG5TdGFydENoYXRCdXR0b24ucHJvcFR5cGVzID0ge1xuICAgIHNpemU6IFByb3BUeXBlcy5zdHJpbmcsXG4gICAgdG9vbHRpcDogUHJvcFR5cGVzLmJvb2wsXG59O1xuXG5leHBvcnQgZGVmYXVsdCBTdGFydENoYXRCdXR0b247XG4iXX0=

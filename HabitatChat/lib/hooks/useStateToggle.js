@@ -1,0 +1,38 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useStateToggle = void 0;
+
+var _react = require("react");
+
+/*
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+// Hook to simplify toggling of a boolean state value
+// Returns value, method to toggle boolean value and method to set the boolean value
+const useStateToggle = initialValue => {
+  const [value, setValue] = (0, _react.useState)(Boolean(initialValue));
+
+  const toggleValue = () => {
+    setValue(!value);
+  };
+
+  return [value, toggleValue, setValue];
+};
+
+exports.useStateToggle = useStateToggle;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9ob29rcy91c2VTdGF0ZVRvZ2dsZS5qcyJdLCJuYW1lcyI6WyJ1c2VTdGF0ZVRvZ2dsZSIsImluaXRpYWxWYWx1ZSIsInZhbHVlIiwic2V0VmFsdWUiLCJCb29sZWFuIiwidG9nZ2xlVmFsdWUiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFnQkE7O0FBaEJBOzs7Ozs7Ozs7Ozs7Ozs7QUFrQkE7QUFDQTtBQUNPLE1BQU1BLGNBQWMsR0FBSUMsWUFBRCxJQUFrQjtBQUM1QyxRQUFNLENBQUNDLEtBQUQsRUFBUUMsUUFBUixJQUFvQixxQkFBU0MsT0FBTyxDQUFDSCxZQUFELENBQWhCLENBQTFCOztBQUNBLFFBQU1JLFdBQVcsR0FBRyxNQUFNO0FBQ3RCRixJQUFBQSxRQUFRLENBQUMsQ0FBQ0QsS0FBRixDQUFSO0FBQ0gsR0FGRDs7QUFHQSxTQUFPLENBQUNBLEtBQUQsRUFBUUcsV0FBUixFQUFxQkYsUUFBckIsQ0FBUDtBQUNILENBTk0iLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTkgVGhlIE1hdHJpeC5vcmcgRm91bmRhdGlvbiBDLkkuQy5cblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5pbXBvcnQge3VzZVN0YXRlfSBmcm9tICdyZWFjdCc7XG5cbi8vIEhvb2sgdG8gc2ltcGxpZnkgdG9nZ2xpbmcgb2YgYSBib29sZWFuIHN0YXRlIHZhbHVlXG4vLyBSZXR1cm5zIHZhbHVlLCBtZXRob2QgdG8gdG9nZ2xlIGJvb2xlYW4gdmFsdWUgYW5kIG1ldGhvZCB0byBzZXQgdGhlIGJvb2xlYW4gdmFsdWVcbmV4cG9ydCBjb25zdCB1c2VTdGF0ZVRvZ2dsZSA9IChpbml0aWFsVmFsdWUpID0+IHtcbiAgICBjb25zdCBbdmFsdWUsIHNldFZhbHVlXSA9IHVzZVN0YXRlKEJvb2xlYW4oaW5pdGlhbFZhbHVlKSk7XG4gICAgY29uc3QgdG9nZ2xlVmFsdWUgPSAoKSA9PiB7XG4gICAgICAgIHNldFZhbHVlKCF2YWx1ZSk7XG4gICAgfTtcbiAgICByZXR1cm4gW3ZhbHVlLCB0b2dnbGVWYWx1ZSwgc2V0VmFsdWVdO1xufTtcbiJdfQ==

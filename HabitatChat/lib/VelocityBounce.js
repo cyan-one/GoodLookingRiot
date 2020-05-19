@@ -1,0 +1,22 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _velocityAnimate = _interopRequireDefault(require("velocity-animate"));
+
+// courtesy of https://github.com/julianshapiro/velocity/issues/283
+// We only use easeOutBounce (easeInBounce is just sort of nonsensical)
+function bounce(p) {
+  let pow2;
+  let bounce = 4;
+
+  while (p < ((pow2 = Math.pow(2, --bounce)) - 1) / 11) {// just sets pow2
+  }
+
+  return 1 / Math.pow(4, 3 - bounce) - 7.5625 * Math.pow((pow2 * 3 - 2) / 22 - p, 2);
+}
+
+_velocityAnimate.default.Easings.easeOutBounce = function (p) {
+  return 1 - bounce(1 - p);
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9WZWxvY2l0eUJvdW5jZS5qcyJdLCJuYW1lcyI6WyJib3VuY2UiLCJwIiwicG93MiIsIk1hdGgiLCJwb3ciLCJWZWxvY2l0eSIsIkVhc2luZ3MiLCJlYXNlT3V0Qm91bmNlIl0sIm1hcHBpbmdzIjoiOzs7O0FBQUE7O0FBRUE7QUFDQTtBQUNBLFNBQVNBLE1BQVQsQ0FBaUJDLENBQWpCLEVBQXFCO0FBQ2pCLE1BQUlDLElBQUo7QUFDQSxNQUFJRixNQUFNLEdBQUcsQ0FBYjs7QUFFQSxTQUFRQyxDQUFDLEdBQUcsQ0FBRSxDQUFFQyxJQUFJLEdBQUdDLElBQUksQ0FBQ0MsR0FBTCxDQUFVLENBQVYsRUFBYSxFQUFFSixNQUFmLENBQVQsSUFBcUMsQ0FBdkMsSUFBNkMsRUFBekQsRUFBOEQsQ0FDMUQ7QUFDSDs7QUFDRCxTQUFPLElBQUlHLElBQUksQ0FBQ0MsR0FBTCxDQUFVLENBQVYsRUFBYSxJQUFJSixNQUFqQixDQUFKLEdBQWdDLFNBQVNHLElBQUksQ0FBQ0MsR0FBTCxDQUFVLENBQUVGLElBQUksR0FBRyxDQUFQLEdBQVcsQ0FBYixJQUFtQixFQUFuQixHQUF3QkQsQ0FBbEMsRUFBcUMsQ0FBckMsQ0FBaEQ7QUFDSDs7QUFFREkseUJBQVNDLE9BQVQsQ0FBaUJDLGFBQWpCLEdBQWlDLFVBQVNOLENBQVQsRUFBWTtBQUN6QyxTQUFPLElBQUlELE1BQU0sQ0FBQyxJQUFJQyxDQUFMLENBQWpCO0FBQ0gsQ0FGRCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBWZWxvY2l0eSBmcm9tIFwidmVsb2NpdHktYW5pbWF0ZVwiO1xuXG4vLyBjb3VydGVzeSBvZiBodHRwczovL2dpdGh1Yi5jb20vanVsaWFuc2hhcGlyby92ZWxvY2l0eS9pc3N1ZXMvMjgzXG4vLyBXZSBvbmx5IHVzZSBlYXNlT3V0Qm91bmNlIChlYXNlSW5Cb3VuY2UgaXMganVzdCBzb3J0IG9mIG5vbnNlbnNpY2FsKVxuZnVuY3Rpb24gYm91bmNlKCBwICkge1xuICAgIGxldCBwb3cyO1xuICAgIGxldCBib3VuY2UgPSA0O1xuXG4gICAgd2hpbGUgKCBwIDwgKCAoIHBvdzIgPSBNYXRoLnBvdyggMiwgLS1ib3VuY2UgKSApIC0gMSApIC8gMTEgKSB7XG4gICAgICAgIC8vIGp1c3Qgc2V0cyBwb3cyXG4gICAgfVxuICAgIHJldHVybiAxIC8gTWF0aC5wb3coIDQsIDMgLSBib3VuY2UgKSAtIDcuNTYyNSAqIE1hdGgucG93KCAoIHBvdzIgKiAzIC0gMiApIC8gMjIgLSBwLCAyICk7XG59XG5cblZlbG9jaXR5LkVhc2luZ3MuZWFzZU91dEJvdW5jZSA9IGZ1bmN0aW9uKHApIHtcbiAgICByZXR1cm4gMSAtIGJvdW5jZSgxIC0gcCk7XG59O1xuIl19

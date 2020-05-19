@@ -1,0 +1,51 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _DateUtils = require("../../../DateUtils");
+
+/*
+Copyright 2015, 2016 OpenMarket Ltd
+Copyright 2018 Michael Telatynski <7t3chguy@gmail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class MessageTimestamp extends _react.default.Component {
+  render() {
+    const date = new Date(this.props.ts);
+    return /*#__PURE__*/_react.default.createElement("span", {
+      className: "mx_MessageTimestamp",
+      title: (0, _DateUtils.formatFullDate)(date, this.props.showTwelveHour),
+      "aria-hidden": true
+    }, (0, _DateUtils.formatTime)(date, this.props.showTwelveHour));
+  }
+
+}
+
+exports.default = MessageTimestamp;
+(0, _defineProperty2.default)(MessageTimestamp, "propTypes", {
+  ts: _propTypes.default.number.isRequired,
+  showTwelveHour: _propTypes.default.bool
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL21lc3NhZ2VzL01lc3NhZ2VUaW1lc3RhbXAuanMiXSwibmFtZXMiOlsiTWVzc2FnZVRpbWVzdGFtcCIsIlJlYWN0IiwiQ29tcG9uZW50IiwicmVuZGVyIiwiZGF0ZSIsIkRhdGUiLCJwcm9wcyIsInRzIiwic2hvd1R3ZWx2ZUhvdXIiLCJQcm9wVHlwZXMiLCJudW1iZXIiLCJpc1JlcXVpcmVkIiwiYm9vbCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFpQkE7O0FBQ0E7O0FBQ0E7O0FBbkJBOzs7Ozs7Ozs7Ozs7Ozs7O0FBcUJlLE1BQU1BLGdCQUFOLFNBQStCQyxlQUFNQyxTQUFyQyxDQUErQztBQU0xREMsRUFBQUEsTUFBTSxHQUFHO0FBQ0wsVUFBTUMsSUFBSSxHQUFHLElBQUlDLElBQUosQ0FBUyxLQUFLQyxLQUFMLENBQVdDLEVBQXBCLENBQWI7QUFDQSx3QkFDSTtBQUFNLE1BQUEsU0FBUyxFQUFDLHFCQUFoQjtBQUFzQyxNQUFBLEtBQUssRUFBRSwrQkFBZUgsSUFBZixFQUFxQixLQUFLRSxLQUFMLENBQVdFLGNBQWhDLENBQTdDO0FBQThGLHFCQUFhO0FBQTNHLE9BQ00sMkJBQVdKLElBQVgsRUFBaUIsS0FBS0UsS0FBTCxDQUFXRSxjQUE1QixDQUROLENBREo7QUFLSDs7QUFieUQ7Ozs4QkFBekNSLGdCLGVBQ0U7QUFDZk8sRUFBQUEsRUFBRSxFQUFFRSxtQkFBVUMsTUFBVixDQUFpQkMsVUFETjtBQUVmSCxFQUFBQSxjQUFjLEVBQUVDLG1CQUFVRztBQUZYLEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTUsIDIwMTYgT3Blbk1hcmtldCBMdGRcbkNvcHlyaWdodCAyMDE4IE1pY2hhZWwgVGVsYXR5bnNraSA8N3QzY2hndXlAZ21haWwuY29tPlxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHtmb3JtYXRGdWxsRGF0ZSwgZm9ybWF0VGltZX0gZnJvbSAnLi4vLi4vLi4vRGF0ZVV0aWxzJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgTWVzc2FnZVRpbWVzdGFtcCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gICAgc3RhdGljIHByb3BUeXBlcyA9IHtcbiAgICAgICAgdHM6IFByb3BUeXBlcy5udW1iZXIuaXNSZXF1aXJlZCxcbiAgICAgICAgc2hvd1R3ZWx2ZUhvdXI6IFByb3BUeXBlcy5ib29sLFxuICAgIH07XG5cbiAgICByZW5kZXIoKSB7XG4gICAgICAgIGNvbnN0IGRhdGUgPSBuZXcgRGF0ZSh0aGlzLnByb3BzLnRzKTtcbiAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cIm14X01lc3NhZ2VUaW1lc3RhbXBcIiB0aXRsZT17Zm9ybWF0RnVsbERhdGUoZGF0ZSwgdGhpcy5wcm9wcy5zaG93VHdlbHZlSG91cil9IGFyaWEtaGlkZGVuPXt0cnVlfT5cbiAgICAgICAgICAgICAgICB7IGZvcm1hdFRpbWUoZGF0ZSwgdGhpcy5wcm9wcy5zaG93VHdlbHZlSG91cikgfVxuICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICApO1xuICAgIH1cbn1cbiJdfQ==

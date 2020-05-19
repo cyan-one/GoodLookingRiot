@@ -1,0 +1,48 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = FormButton;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _AccessibleButton = _interopRequireDefault(require("./AccessibleButton"));
+
+/*
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+function FormButton(props) {
+  const {
+    className,
+    label,
+    kind
+  } = props,
+        restProps = (0, _objectWithoutProperties2.default)(props, ["className", "label", "kind"]);
+  const newClassName = (className || "") + " mx_FormButton";
+  const allProps = Object.assign({}, restProps, {
+    className: newClassName,
+    kind: kind || "primary",
+    children: [label]
+  });
+  return _react.default.createElement(_AccessibleButton.default, allProps);
+}
+
+FormButton.propTypes = _AccessibleButton.default.propTypes;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL0Zvcm1CdXR0b24uanMiXSwibmFtZXMiOlsiRm9ybUJ1dHRvbiIsInByb3BzIiwiY2xhc3NOYW1lIiwibGFiZWwiLCJraW5kIiwicmVzdFByb3BzIiwibmV3Q2xhc3NOYW1lIiwiYWxsUHJvcHMiLCJPYmplY3QiLCJhc3NpZ24iLCJjaGlsZHJlbiIsIlJlYWN0IiwiY3JlYXRlRWxlbWVudCIsIkFjY2Vzc2libGVCdXR0b24iLCJwcm9wVHlwZXMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBZ0JBOztBQUNBOztBQWpCQTs7Ozs7Ozs7Ozs7Ozs7O0FBbUJlLFNBQVNBLFVBQVQsQ0FBb0JDLEtBQXBCLEVBQTJCO0FBQ3RDLFFBQU07QUFBQ0MsSUFBQUEsU0FBRDtBQUFZQyxJQUFBQSxLQUFaO0FBQW1CQyxJQUFBQTtBQUFuQixNQUF5Q0gsS0FBL0M7QUFBQSxRQUFrQ0ksU0FBbEMsMENBQStDSixLQUEvQztBQUNBLFFBQU1LLFlBQVksR0FBRyxDQUFDSixTQUFTLElBQUksRUFBZCxJQUFvQixnQkFBekM7QUFDQSxRQUFNSyxRQUFRLEdBQUdDLE1BQU0sQ0FBQ0MsTUFBUCxDQUFjLEVBQWQsRUFBa0JKLFNBQWxCLEVBQ2I7QUFBQ0gsSUFBQUEsU0FBUyxFQUFFSSxZQUFaO0FBQTBCRixJQUFBQSxJQUFJLEVBQUVBLElBQUksSUFBSSxTQUF4QztBQUFtRE0sSUFBQUEsUUFBUSxFQUFFLENBQUNQLEtBQUQ7QUFBN0QsR0FEYSxDQUFqQjtBQUVBLFNBQU9RLGVBQU1DLGFBQU4sQ0FBb0JDLHlCQUFwQixFQUFzQ04sUUFBdEMsQ0FBUDtBQUNIOztBQUVEUCxVQUFVLENBQUNjLFNBQVgsR0FBdUJELDBCQUFpQkMsU0FBeEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTkgVGhlIE1hdHJpeC5vcmcgRm91bmRhdGlvbiBDLkkuQy5cblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG5odHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQWNjZXNzaWJsZUJ1dHRvbiBmcm9tIFwiLi9BY2Nlc3NpYmxlQnV0dG9uXCI7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEZvcm1CdXR0b24ocHJvcHMpIHtcbiAgICBjb25zdCB7Y2xhc3NOYW1lLCBsYWJlbCwga2luZCwgLi4ucmVzdFByb3BzfSA9IHByb3BzO1xuICAgIGNvbnN0IG5ld0NsYXNzTmFtZSA9IChjbGFzc05hbWUgfHwgXCJcIikgKyBcIiBteF9Gb3JtQnV0dG9uXCI7XG4gICAgY29uc3QgYWxsUHJvcHMgPSBPYmplY3QuYXNzaWduKHt9LCByZXN0UHJvcHMsXG4gICAgICAgIHtjbGFzc05hbWU6IG5ld0NsYXNzTmFtZSwga2luZDoga2luZCB8fCBcInByaW1hcnlcIiwgY2hpbGRyZW46IFtsYWJlbF19KTtcbiAgICByZXR1cm4gUmVhY3QuY3JlYXRlRWxlbWVudChBY2Nlc3NpYmxlQnV0dG9uLCBhbGxQcm9wcyk7XG59XG5cbkZvcm1CdXR0b24ucHJvcFR5cGVzID0gQWNjZXNzaWJsZUJ1dHRvbi5wcm9wVHlwZXM7XG4iXX0=

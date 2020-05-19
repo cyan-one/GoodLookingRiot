@@ -1,0 +1,36 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.focusCapturedRef = focusCapturedRef;
+
+/*
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * Automatically focuses the captured reference when receiving a non-null
+ * object. Useful in scenarios where componentDidMount does not have a
+ * useful reference to an element, but one needs to focus the element on
+ * first render. Example usage: ref={focusCapturedRef}
+ * @param {function} ref The React reference to focus on, if not null
+ */
+function focusCapturedRef(ref) {
+  if (ref) {
+    ref.focus();
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9BY2Nlc3NpYmlsaXR5LmpzIl0sIm5hbWVzIjpbImZvY3VzQ2FwdHVyZWRSZWYiLCJyZWYiLCJmb2N1cyJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7Ozs7O0FBZ0JBOzs7Ozs7O0FBT08sU0FBU0EsZ0JBQVQsQ0FBMEJDLEdBQTFCLEVBQStCO0FBQ2xDLE1BQUlBLEdBQUosRUFBUztBQUNMQSxJQUFBQSxHQUFHLENBQUNDLEtBQUo7QUFDSDtBQUNKIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE5IFRoZSBNYXRyaXgub3JnIEZvdW5kYXRpb24gQy5JLkMuXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuLyoqXG4gKiBBdXRvbWF0aWNhbGx5IGZvY3VzZXMgdGhlIGNhcHR1cmVkIHJlZmVyZW5jZSB3aGVuIHJlY2VpdmluZyBhIG5vbi1udWxsXG4gKiBvYmplY3QuIFVzZWZ1bCBpbiBzY2VuYXJpb3Mgd2hlcmUgY29tcG9uZW50RGlkTW91bnQgZG9lcyBub3QgaGF2ZSBhXG4gKiB1c2VmdWwgcmVmZXJlbmNlIHRvIGFuIGVsZW1lbnQsIGJ1dCBvbmUgbmVlZHMgdG8gZm9jdXMgdGhlIGVsZW1lbnQgb25cbiAqIGZpcnN0IHJlbmRlci4gRXhhbXBsZSB1c2FnZTogcmVmPXtmb2N1c0NhcHR1cmVkUmVmfVxuICogQHBhcmFtIHtmdW5jdGlvbn0gcmVmIFRoZSBSZWFjdCByZWZlcmVuY2UgdG8gZm9jdXMgb24sIGlmIG5vdCBudWxsXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBmb2N1c0NhcHR1cmVkUmVmKHJlZikge1xuICAgIGlmIChyZWYpIHtcbiAgICAgICAgcmVmLmZvY3VzKCk7XG4gICAgfVxufVxuIl19

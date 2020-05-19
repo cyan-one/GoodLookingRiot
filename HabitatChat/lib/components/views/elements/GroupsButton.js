@@ -1,0 +1,51 @@
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var sdk = _interopRequireWildcard(require("../../../index"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _languageHandler = require("../../../languageHandler");
+
+/*
+Copyright 2017 New Vector Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+const GroupsButton = function (props) {
+  const ActionButton = sdk.getComponent('elements.ActionButton');
+  return /*#__PURE__*/_react.default.createElement(ActionButton, {
+    className: "mx_GroupsButton",
+    action: "toggle_my_groups",
+    label: (0, _languageHandler._t)("Communities"),
+    size: props.size,
+    tooltip: true
+  });
+};
+
+GroupsButton.propTypes = {
+  size: _propTypes.default.string
+};
+var _default = GroupsButton;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL0dyb3Vwc0J1dHRvbi5qcyJdLCJuYW1lcyI6WyJHcm91cHNCdXR0b24iLCJwcm9wcyIsIkFjdGlvbkJ1dHRvbiIsInNkayIsImdldENvbXBvbmVudCIsInNpemUiLCJwcm9wVHlwZXMiLCJQcm9wVHlwZXMiLCJzdHJpbmciXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBZ0JBOztBQUNBOztBQUNBOztBQUNBOztBQW5CQTs7Ozs7Ozs7Ozs7Ozs7O0FBcUJBLE1BQU1BLFlBQVksR0FBRyxVQUFTQyxLQUFULEVBQWdCO0FBQ2pDLFFBQU1DLFlBQVksR0FBR0MsR0FBRyxDQUFDQyxZQUFKLENBQWlCLHVCQUFqQixDQUFyQjtBQUNBLHNCQUNJLDZCQUFDLFlBQUQ7QUFBYyxJQUFBLFNBQVMsRUFBQyxpQkFBeEI7QUFBMEMsSUFBQSxNQUFNLEVBQUMsa0JBQWpEO0FBQ0ksSUFBQSxLQUFLLEVBQUUseUJBQUcsYUFBSCxDQURYO0FBRUksSUFBQSxJQUFJLEVBQUVILEtBQUssQ0FBQ0ksSUFGaEI7QUFHSSxJQUFBLE9BQU8sRUFBRTtBQUhiLElBREo7QUFPSCxDQVREOztBQVdBTCxZQUFZLENBQUNNLFNBQWIsR0FBeUI7QUFDckJELEVBQUFBLElBQUksRUFBRUUsbUJBQVVDO0FBREssQ0FBekI7ZUFJZVIsWSIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxNyBOZXcgVmVjdG9yIEx0ZFxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgKiBhcyBzZGsgZnJvbSAnLi4vLi4vLi4vaW5kZXgnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCB7IF90IH0gZnJvbSAnLi4vLi4vLi4vbGFuZ3VhZ2VIYW5kbGVyJztcblxuY29uc3QgR3JvdXBzQnV0dG9uID0gZnVuY3Rpb24ocHJvcHMpIHtcbiAgICBjb25zdCBBY3Rpb25CdXR0b24gPSBzZGsuZ2V0Q29tcG9uZW50KCdlbGVtZW50cy5BY3Rpb25CdXR0b24nKTtcbiAgICByZXR1cm4gKFxuICAgICAgICA8QWN0aW9uQnV0dG9uIGNsYXNzTmFtZT1cIm14X0dyb3Vwc0J1dHRvblwiIGFjdGlvbj1cInRvZ2dsZV9teV9ncm91cHNcIlxuICAgICAgICAgICAgbGFiZWw9e190KFwiQ29tbXVuaXRpZXNcIil9XG4gICAgICAgICAgICBzaXplPXtwcm9wcy5zaXplfVxuICAgICAgICAgICAgdG9vbHRpcD17dHJ1ZX1cbiAgICAgICAgLz5cbiAgICApO1xufTtcblxuR3JvdXBzQnV0dG9uLnByb3BUeXBlcyA9IHtcbiAgICBzaXplOiBQcm9wVHlwZXMuc3RyaW5nLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgR3JvdXBzQnV0dG9uO1xuIl19

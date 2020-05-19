@@ -1,0 +1,61 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.abbreviateUrl = abbreviateUrl;
+exports.unabbreviateUrl = unabbreviateUrl;
+
+var _url = _interopRequireDefault(require("url"));
+
+/*
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * If a url has no path component, etc. abbreviate it to just the hostname
+ *
+ * @param {string} u The url to be abbreviated
+ * @returns {string} The abbreviated url
+ */
+function abbreviateUrl(u) {
+  if (!u) return '';
+
+  const parsedUrl = _url.default.parse(u); // if it's something we can't parse as a url then just return it
+
+
+  if (!parsedUrl) return u;
+
+  if (parsedUrl.path === '/') {
+    // we ignore query / hash parts: these aren't relevant for IS server URLs
+    return parsedUrl.host;
+  }
+
+  return u;
+}
+
+function unabbreviateUrl(u) {
+  if (!u) return '';
+  let longUrl = u;
+  if (!u.startsWith('https://')) longUrl = 'https://' + u;
+
+  const parsed = _url.default.parse(longUrl);
+
+  if (parsed.hostname === null) return u;
+  return longUrl;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9VcmxVdGlscy5qcyJdLCJuYW1lcyI6WyJhYmJyZXZpYXRlVXJsIiwidSIsInBhcnNlZFVybCIsInVybCIsInBhcnNlIiwicGF0aCIsImhvc3QiLCJ1bmFiYnJldmlhdGVVcmwiLCJsb25nVXJsIiwic3RhcnRzV2l0aCIsInBhcnNlZCIsImhvc3RuYW1lIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O0FBZ0JBOztBQWhCQTs7Ozs7Ozs7Ozs7Ozs7OztBQWtCQTs7Ozs7O0FBTU8sU0FBU0EsYUFBVCxDQUF1QkMsQ0FBdkIsRUFBMEI7QUFDN0IsTUFBSSxDQUFDQSxDQUFMLEVBQVEsT0FBTyxFQUFQOztBQUVSLFFBQU1DLFNBQVMsR0FBR0MsYUFBSUMsS0FBSixDQUFVSCxDQUFWLENBQWxCLENBSDZCLENBSTdCOzs7QUFDQSxNQUFJLENBQUNDLFNBQUwsRUFBZ0IsT0FBT0QsQ0FBUDs7QUFFaEIsTUFBSUMsU0FBUyxDQUFDRyxJQUFWLEtBQW1CLEdBQXZCLEVBQTRCO0FBQ3hCO0FBQ0EsV0FBT0gsU0FBUyxDQUFDSSxJQUFqQjtBQUNIOztBQUVELFNBQU9MLENBQVA7QUFDSDs7QUFFTSxTQUFTTSxlQUFULENBQXlCTixDQUF6QixFQUE0QjtBQUMvQixNQUFJLENBQUNBLENBQUwsRUFBUSxPQUFPLEVBQVA7QUFFUixNQUFJTyxPQUFPLEdBQUdQLENBQWQ7QUFDQSxNQUFJLENBQUNBLENBQUMsQ0FBQ1EsVUFBRixDQUFhLFVBQWIsQ0FBTCxFQUErQkQsT0FBTyxHQUFHLGFBQWFQLENBQXZCOztBQUMvQixRQUFNUyxNQUFNLEdBQUdQLGFBQUlDLEtBQUosQ0FBVUksT0FBVixDQUFmOztBQUNBLE1BQUlFLE1BQU0sQ0FBQ0MsUUFBUCxLQUFvQixJQUF4QixFQUE4QixPQUFPVixDQUFQO0FBRTlCLFNBQU9PLE9BQVA7QUFDSCIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBUaGUgTWF0cml4Lm9yZyBGb3VuZGF0aW9uIEMuSS5DLlxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCB1cmwgZnJvbSBcInVybFwiO1xuXG4vKipcbiAqIElmIGEgdXJsIGhhcyBubyBwYXRoIGNvbXBvbmVudCwgZXRjLiBhYmJyZXZpYXRlIGl0IHRvIGp1c3QgdGhlIGhvc3RuYW1lXG4gKlxuICogQHBhcmFtIHtzdHJpbmd9IHUgVGhlIHVybCB0byBiZSBhYmJyZXZpYXRlZFxuICogQHJldHVybnMge3N0cmluZ30gVGhlIGFiYnJldmlhdGVkIHVybFxuICovXG5leHBvcnQgZnVuY3Rpb24gYWJicmV2aWF0ZVVybCh1KSB7XG4gICAgaWYgKCF1KSByZXR1cm4gJyc7XG5cbiAgICBjb25zdCBwYXJzZWRVcmwgPSB1cmwucGFyc2UodSk7XG4gICAgLy8gaWYgaXQncyBzb21ldGhpbmcgd2UgY2FuJ3QgcGFyc2UgYXMgYSB1cmwgdGhlbiBqdXN0IHJldHVybiBpdFxuICAgIGlmICghcGFyc2VkVXJsKSByZXR1cm4gdTtcblxuICAgIGlmIChwYXJzZWRVcmwucGF0aCA9PT0gJy8nKSB7XG4gICAgICAgIC8vIHdlIGlnbm9yZSBxdWVyeSAvIGhhc2ggcGFydHM6IHRoZXNlIGFyZW4ndCByZWxldmFudCBmb3IgSVMgc2VydmVyIFVSTHNcbiAgICAgICAgcmV0dXJuIHBhcnNlZFVybC5ob3N0O1xuICAgIH1cblxuICAgIHJldHVybiB1O1xufVxuXG5leHBvcnQgZnVuY3Rpb24gdW5hYmJyZXZpYXRlVXJsKHUpIHtcbiAgICBpZiAoIXUpIHJldHVybiAnJztcblxuICAgIGxldCBsb25nVXJsID0gdTtcbiAgICBpZiAoIXUuc3RhcnRzV2l0aCgnaHR0cHM6Ly8nKSkgbG9uZ1VybCA9ICdodHRwczovLycgKyB1O1xuICAgIGNvbnN0IHBhcnNlZCA9IHVybC5wYXJzZShsb25nVXJsKTtcbiAgICBpZiAocGFyc2VkLmhvc3RuYW1lID09PSBudWxsKSByZXR1cm4gdTtcblxuICAgIHJldHVybiBsb25nVXJsO1xufVxuIl19

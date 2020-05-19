@@ -1,0 +1,77 @@
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _createReactClass = _interopRequireDefault(require("create-react-class"));
+
+var _languageHandler = require("../../languageHandler");
+
+var _MatrixClientPeg = require("../../MatrixClientPeg");
+
+var sdk = _interopRequireWildcard(require("../../index"));
+
+/*
+Copyright 2016 OpenMarket Ltd
+Copyright 2019 New Vector Ltd
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/*
+ * Component which shows the global notification list using a TimelinePanel
+ */
+const NotificationPanel = (0, _createReactClass.default)({
+  displayName: 'NotificationPanel',
+  propTypes: {},
+  render: function () {
+    // wrap a TimelinePanel with the jump-to-event bits turned off.
+    const TimelinePanel = sdk.getComponent("structures.TimelinePanel");
+    const Loader = sdk.getComponent("elements.Spinner");
+
+    const timelineSet = _MatrixClientPeg.MatrixClientPeg.get().getNotifTimelineSet();
+
+    if (timelineSet) {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "mx_NotificationPanel",
+        role: "tabpanel"
+      }, /*#__PURE__*/_react.default.createElement(TimelinePanel, {
+        key: "NotificationPanel_" + this.props.roomId,
+        manageReadReceipts: false,
+        manageReadMarkers: false,
+        timelineSet: timelineSet,
+        showUrlPreview: false,
+        tileShape: "notif",
+        empty: (0, _languageHandler._t)('You have no visible notifications')
+      }));
+    } else {
+      console.error("No notifTimelineSet available!");
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "mx_NotificationPanel",
+        role: "tabpanel"
+      }, /*#__PURE__*/_react.default.createElement(Loader, null));
+    }
+  }
+});
+var _default = NotificationPanel;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0cnVjdHVyZXMvTm90aWZpY2F0aW9uUGFuZWwuanMiXSwibmFtZXMiOlsiTm90aWZpY2F0aW9uUGFuZWwiLCJkaXNwbGF5TmFtZSIsInByb3BUeXBlcyIsInJlbmRlciIsIlRpbWVsaW5lUGFuZWwiLCJzZGsiLCJnZXRDb21wb25lbnQiLCJMb2FkZXIiLCJ0aW1lbGluZVNldCIsIk1hdHJpeENsaWVudFBlZyIsImdldCIsImdldE5vdGlmVGltZWxpbmVTZXQiLCJwcm9wcyIsInJvb21JZCIsImNvbnNvbGUiLCJlcnJvciJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFrQkE7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBdEJBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUF3QkE7OztBQUdBLE1BQU1BLGlCQUFpQixHQUFHLCtCQUFpQjtBQUN2Q0MsRUFBQUEsV0FBVyxFQUFFLG1CQUQwQjtBQUd2Q0MsRUFBQUEsU0FBUyxFQUFFLEVBSDRCO0FBTXZDQyxFQUFBQSxNQUFNLEVBQUUsWUFBVztBQUNmO0FBQ0EsVUFBTUMsYUFBYSxHQUFHQyxHQUFHLENBQUNDLFlBQUosQ0FBaUIsMEJBQWpCLENBQXRCO0FBQ0EsVUFBTUMsTUFBTSxHQUFHRixHQUFHLENBQUNDLFlBQUosQ0FBaUIsa0JBQWpCLENBQWY7O0FBRUEsVUFBTUUsV0FBVyxHQUFHQyxpQ0FBZ0JDLEdBQWhCLEdBQXNCQyxtQkFBdEIsRUFBcEI7O0FBQ0EsUUFBSUgsV0FBSixFQUFpQjtBQUNiLDBCQUNJO0FBQUssUUFBQSxTQUFTLEVBQUMsc0JBQWY7QUFBc0MsUUFBQSxJQUFJLEVBQUM7QUFBM0Msc0JBQ0ksNkJBQUMsYUFBRDtBQUFlLFFBQUEsR0FBRyxFQUFFLHVCQUF1QixLQUFLSSxLQUFMLENBQVdDLE1BQXREO0FBQ0ksUUFBQSxrQkFBa0IsRUFBRSxLQUR4QjtBQUVJLFFBQUEsaUJBQWlCLEVBQUUsS0FGdkI7QUFHSSxRQUFBLFdBQVcsRUFBRUwsV0FIakI7QUFJSSxRQUFBLGNBQWMsRUFBRSxLQUpwQjtBQUtJLFFBQUEsU0FBUyxFQUFDLE9BTGQ7QUFNSSxRQUFBLEtBQUssRUFBRSx5QkFBRyxtQ0FBSDtBQU5YLFFBREosQ0FESjtBQVlILEtBYkQsTUFhTztBQUNITSxNQUFBQSxPQUFPLENBQUNDLEtBQVIsQ0FBYyxnQ0FBZDtBQUNBLDBCQUNJO0FBQUssUUFBQSxTQUFTLEVBQUMsc0JBQWY7QUFBc0MsUUFBQSxJQUFJLEVBQUM7QUFBM0Msc0JBQ0ksNkJBQUMsTUFBRCxPQURKLENBREo7QUFLSDtBQUNKO0FBakNzQyxDQUFqQixDQUExQjtlQW9DZWYsaUIiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTYgT3Blbk1hcmtldCBMdGRcbkNvcHlyaWdodCAyMDE5IE5ldyBWZWN0b3IgTHRkXG5Db3B5cmlnaHQgMjAxOSBUaGUgTWF0cml4Lm9yZyBGb3VuZGF0aW9uIEMuSS5DLlxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgY3JlYXRlUmVhY3RDbGFzcyBmcm9tICdjcmVhdGUtcmVhY3QtY2xhc3MnO1xuaW1wb3J0IHsgX3QgfSBmcm9tICcuLi8uLi9sYW5ndWFnZUhhbmRsZXInO1xuaW1wb3J0IHtNYXRyaXhDbGllbnRQZWd9IGZyb20gXCIuLi8uLi9NYXRyaXhDbGllbnRQZWdcIjtcbmltcG9ydCAqIGFzIHNkayBmcm9tIFwiLi4vLi4vaW5kZXhcIjtcblxuLypcbiAqIENvbXBvbmVudCB3aGljaCBzaG93cyB0aGUgZ2xvYmFsIG5vdGlmaWNhdGlvbiBsaXN0IHVzaW5nIGEgVGltZWxpbmVQYW5lbFxuICovXG5jb25zdCBOb3RpZmljYXRpb25QYW5lbCA9IGNyZWF0ZVJlYWN0Q2xhc3Moe1xuICAgIGRpc3BsYXlOYW1lOiAnTm90aWZpY2F0aW9uUGFuZWwnLFxuXG4gICAgcHJvcFR5cGVzOiB7XG4gICAgfSxcblxuICAgIHJlbmRlcjogZnVuY3Rpb24oKSB7XG4gICAgICAgIC8vIHdyYXAgYSBUaW1lbGluZVBhbmVsIHdpdGggdGhlIGp1bXAtdG8tZXZlbnQgYml0cyB0dXJuZWQgb2ZmLlxuICAgICAgICBjb25zdCBUaW1lbGluZVBhbmVsID0gc2RrLmdldENvbXBvbmVudChcInN0cnVjdHVyZXMuVGltZWxpbmVQYW5lbFwiKTtcbiAgICAgICAgY29uc3QgTG9hZGVyID0gc2RrLmdldENvbXBvbmVudChcImVsZW1lbnRzLlNwaW5uZXJcIik7XG5cbiAgICAgICAgY29uc3QgdGltZWxpbmVTZXQgPSBNYXRyaXhDbGllbnRQZWcuZ2V0KCkuZ2V0Tm90aWZUaW1lbGluZVNldCgpO1xuICAgICAgICBpZiAodGltZWxpbmVTZXQpIHtcbiAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJteF9Ob3RpZmljYXRpb25QYW5lbFwiIHJvbGU9XCJ0YWJwYW5lbFwiPlxuICAgICAgICAgICAgICAgICAgICA8VGltZWxpbmVQYW5lbCBrZXk9e1wiTm90aWZpY2F0aW9uUGFuZWxfXCIgKyB0aGlzLnByb3BzLnJvb21JZH1cbiAgICAgICAgICAgICAgICAgICAgICAgIG1hbmFnZVJlYWRSZWNlaXB0cz17ZmFsc2V9XG4gICAgICAgICAgICAgICAgICAgICAgICBtYW5hZ2VSZWFkTWFya2Vycz17ZmFsc2V9XG4gICAgICAgICAgICAgICAgICAgICAgICB0aW1lbGluZVNldD17dGltZWxpbmVTZXR9XG4gICAgICAgICAgICAgICAgICAgICAgICBzaG93VXJsUHJldmlldz17ZmFsc2V9XG4gICAgICAgICAgICAgICAgICAgICAgICB0aWxlU2hhcGU9XCJub3RpZlwiXG4gICAgICAgICAgICAgICAgICAgICAgICBlbXB0eT17X3QoJ1lvdSBoYXZlIG5vIHZpc2libGUgbm90aWZpY2F0aW9ucycpfVxuICAgICAgICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgKTtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIGNvbnNvbGUuZXJyb3IoXCJObyBub3RpZlRpbWVsaW5lU2V0IGF2YWlsYWJsZSFcIik7XG4gICAgICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXhfTm90aWZpY2F0aW9uUGFuZWxcIiByb2xlPVwidGFicGFuZWxcIj5cbiAgICAgICAgICAgICAgICAgICAgPExvYWRlciAvPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgKTtcbiAgICAgICAgfVxuICAgIH0sXG59KTtcblxuZXhwb3J0IGRlZmF1bHQgTm90aWZpY2F0aW9uUGFuZWw7XG4iXX0=

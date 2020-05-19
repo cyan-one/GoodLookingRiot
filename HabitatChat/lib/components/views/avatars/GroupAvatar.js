@@ -1,0 +1,84 @@
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _createReactClass = _interopRequireDefault(require("create-react-class"));
+
+var sdk = _interopRequireWildcard(require("../../../index"));
+
+var _MatrixClientPeg = require("../../../MatrixClientPeg");
+
+/*
+Copyright 2017 Vector Creations Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+var _default = (0, _createReactClass.default)({
+  displayName: 'GroupAvatar',
+  propTypes: {
+    groupId: _propTypes.default.string,
+    groupName: _propTypes.default.string,
+    groupAvatarUrl: _propTypes.default.string,
+    width: _propTypes.default.number,
+    height: _propTypes.default.number,
+    resizeMethod: _propTypes.default.string,
+    onClick: _propTypes.default.func
+  },
+  getDefaultProps: function () {
+    return {
+      width: 36,
+      height: 36,
+      resizeMethod: 'crop'
+    };
+  },
+  getGroupAvatarUrl: function () {
+    return _MatrixClientPeg.MatrixClientPeg.get().mxcUrlToHttp(this.props.groupAvatarUrl, this.props.width, this.props.height, this.props.resizeMethod);
+  },
+  render: function () {
+    const BaseAvatar = sdk.getComponent("avatars.BaseAvatar"); // extract the props we use from props so we can pass any others through
+    // should consider adding this as a global rule in js-sdk?
+
+    /*eslint no-unused-vars: ["error", { "ignoreRestSiblings": true }]*/
+
+    const _this$props = this.props,
+          {
+      groupId,
+      groupAvatarUrl,
+      groupName
+    } = _this$props,
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props, ["groupId", "groupAvatarUrl", "groupName"]);
+    return /*#__PURE__*/_react.default.createElement(BaseAvatar, (0, _extends2.default)({
+      name: groupName || this.props.groupId[1],
+      idName: this.props.groupId,
+      url: this.getGroupAvatarUrl()
+    }, otherProps));
+  }
+});
+
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2F2YXRhcnMvR3JvdXBBdmF0YXIuanMiXSwibmFtZXMiOlsiZGlzcGxheU5hbWUiLCJwcm9wVHlwZXMiLCJncm91cElkIiwiUHJvcFR5cGVzIiwic3RyaW5nIiwiZ3JvdXBOYW1lIiwiZ3JvdXBBdmF0YXJVcmwiLCJ3aWR0aCIsIm51bWJlciIsImhlaWdodCIsInJlc2l6ZU1ldGhvZCIsIm9uQ2xpY2siLCJmdW5jIiwiZ2V0RGVmYXVsdFByb3BzIiwiZ2V0R3JvdXBBdmF0YXJVcmwiLCJNYXRyaXhDbGllbnRQZWciLCJnZXQiLCJteGNVcmxUb0h0dHAiLCJwcm9wcyIsInJlbmRlciIsIkJhc2VBdmF0YXIiLCJzZGsiLCJnZXRDb21wb25lbnQiLCJvdGhlclByb3BzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFnQkE7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBcEJBOzs7Ozs7Ozs7Ozs7Ozs7ZUFzQmUsK0JBQWlCO0FBQzVCQSxFQUFBQSxXQUFXLEVBQUUsYUFEZTtBQUc1QkMsRUFBQUEsU0FBUyxFQUFFO0FBQ1BDLElBQUFBLE9BQU8sRUFBRUMsbUJBQVVDLE1BRFo7QUFFUEMsSUFBQUEsU0FBUyxFQUFFRixtQkFBVUMsTUFGZDtBQUdQRSxJQUFBQSxjQUFjLEVBQUVILG1CQUFVQyxNQUhuQjtBQUlQRyxJQUFBQSxLQUFLLEVBQUVKLG1CQUFVSyxNQUpWO0FBS1BDLElBQUFBLE1BQU0sRUFBRU4sbUJBQVVLLE1BTFg7QUFNUEUsSUFBQUEsWUFBWSxFQUFFUCxtQkFBVUMsTUFOakI7QUFPUE8sSUFBQUEsT0FBTyxFQUFFUixtQkFBVVM7QUFQWixHQUhpQjtBQWE1QkMsRUFBQUEsZUFBZSxFQUFFLFlBQVc7QUFDeEIsV0FBTztBQUNITixNQUFBQSxLQUFLLEVBQUUsRUFESjtBQUVIRSxNQUFBQSxNQUFNLEVBQUUsRUFGTDtBQUdIQyxNQUFBQSxZQUFZLEVBQUU7QUFIWCxLQUFQO0FBS0gsR0FuQjJCO0FBcUI1QkksRUFBQUEsaUJBQWlCLEVBQUUsWUFBVztBQUMxQixXQUFPQyxpQ0FBZ0JDLEdBQWhCLEdBQXNCQyxZQUF0QixDQUNILEtBQUtDLEtBQUwsQ0FBV1osY0FEUixFQUVILEtBQUtZLEtBQUwsQ0FBV1gsS0FGUixFQUdILEtBQUtXLEtBQUwsQ0FBV1QsTUFIUixFQUlILEtBQUtTLEtBQUwsQ0FBV1IsWUFKUixDQUFQO0FBTUgsR0E1QjJCO0FBOEI1QlMsRUFBQUEsTUFBTSxFQUFFLFlBQVc7QUFDZixVQUFNQyxVQUFVLEdBQUdDLEdBQUcsQ0FBQ0MsWUFBSixDQUFpQixvQkFBakIsQ0FBbkIsQ0FEZSxDQUVmO0FBQ0E7O0FBQ0E7O0FBQ0Esd0JBQTRELEtBQUtKLEtBQWpFO0FBQUEsVUFBTTtBQUFDaEIsTUFBQUEsT0FBRDtBQUFVSSxNQUFBQSxjQUFWO0FBQTBCRCxNQUFBQTtBQUExQixLQUFOO0FBQUEsVUFBOENrQixVQUE5QztBQUVBLHdCQUNJLDZCQUFDLFVBQUQ7QUFDSSxNQUFBLElBQUksRUFBRWxCLFNBQVMsSUFBSSxLQUFLYSxLQUFMLENBQVdoQixPQUFYLENBQW1CLENBQW5CLENBRHZCO0FBRUksTUFBQSxNQUFNLEVBQUUsS0FBS2dCLEtBQUwsQ0FBV2hCLE9BRnZCO0FBR0ksTUFBQSxHQUFHLEVBQUUsS0FBS1ksaUJBQUw7QUFIVCxPQUlRUyxVQUpSLEVBREo7QUFRSDtBQTdDMkIsQ0FBakIsQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxNyBWZWN0b3IgQ3JlYXRpb25zIEx0ZFxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IGNyZWF0ZVJlYWN0Q2xhc3MgZnJvbSAnY3JlYXRlLXJlYWN0LWNsYXNzJztcbmltcG9ydCAqIGFzIHNkayBmcm9tICcuLi8uLi8uLi9pbmRleCc7XG5pbXBvcnQge01hdHJpeENsaWVudFBlZ30gZnJvbSAnLi4vLi4vLi4vTWF0cml4Q2xpZW50UGVnJztcblxuZXhwb3J0IGRlZmF1bHQgY3JlYXRlUmVhY3RDbGFzcyh7XG4gICAgZGlzcGxheU5hbWU6ICdHcm91cEF2YXRhcicsXG5cbiAgICBwcm9wVHlwZXM6IHtcbiAgICAgICAgZ3JvdXBJZDogUHJvcFR5cGVzLnN0cmluZyxcbiAgICAgICAgZ3JvdXBOYW1lOiBQcm9wVHlwZXMuc3RyaW5nLFxuICAgICAgICBncm91cEF2YXRhclVybDogUHJvcFR5cGVzLnN0cmluZyxcbiAgICAgICAgd2lkdGg6IFByb3BUeXBlcy5udW1iZXIsXG4gICAgICAgIGhlaWdodDogUHJvcFR5cGVzLm51bWJlcixcbiAgICAgICAgcmVzaXplTWV0aG9kOiBQcm9wVHlwZXMuc3RyaW5nLFxuICAgICAgICBvbkNsaWNrOiBQcm9wVHlwZXMuZnVuYyxcbiAgICB9LFxuXG4gICAgZ2V0RGVmYXVsdFByb3BzOiBmdW5jdGlvbigpIHtcbiAgICAgICAgcmV0dXJuIHtcbiAgICAgICAgICAgIHdpZHRoOiAzNixcbiAgICAgICAgICAgIGhlaWdodDogMzYsXG4gICAgICAgICAgICByZXNpemVNZXRob2Q6ICdjcm9wJyxcbiAgICAgICAgfTtcbiAgICB9LFxuXG4gICAgZ2V0R3JvdXBBdmF0YXJVcmw6IGZ1bmN0aW9uKCkge1xuICAgICAgICByZXR1cm4gTWF0cml4Q2xpZW50UGVnLmdldCgpLm14Y1VybFRvSHR0cChcbiAgICAgICAgICAgIHRoaXMucHJvcHMuZ3JvdXBBdmF0YXJVcmwsXG4gICAgICAgICAgICB0aGlzLnByb3BzLndpZHRoLFxuICAgICAgICAgICAgdGhpcy5wcm9wcy5oZWlnaHQsXG4gICAgICAgICAgICB0aGlzLnByb3BzLnJlc2l6ZU1ldGhvZCxcbiAgICAgICAgKTtcbiAgICB9LFxuXG4gICAgcmVuZGVyOiBmdW5jdGlvbigpIHtcbiAgICAgICAgY29uc3QgQmFzZUF2YXRhciA9IHNkay5nZXRDb21wb25lbnQoXCJhdmF0YXJzLkJhc2VBdmF0YXJcIik7XG4gICAgICAgIC8vIGV4dHJhY3QgdGhlIHByb3BzIHdlIHVzZSBmcm9tIHByb3BzIHNvIHdlIGNhbiBwYXNzIGFueSBvdGhlcnMgdGhyb3VnaFxuICAgICAgICAvLyBzaG91bGQgY29uc2lkZXIgYWRkaW5nIHRoaXMgYXMgYSBnbG9iYWwgcnVsZSBpbiBqcy1zZGs/XG4gICAgICAgIC8qZXNsaW50IG5vLXVudXNlZC12YXJzOiBbXCJlcnJvclwiLCB7IFwiaWdub3JlUmVzdFNpYmxpbmdzXCI6IHRydWUgfV0qL1xuICAgICAgICBjb25zdCB7Z3JvdXBJZCwgZ3JvdXBBdmF0YXJVcmwsIGdyb3VwTmFtZSwgLi4ub3RoZXJQcm9wc30gPSB0aGlzLnByb3BzO1xuXG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICA8QmFzZUF2YXRhclxuICAgICAgICAgICAgICAgIG5hbWU9e2dyb3VwTmFtZSB8fCB0aGlzLnByb3BzLmdyb3VwSWRbMV19XG4gICAgICAgICAgICAgICAgaWROYW1lPXt0aGlzLnByb3BzLmdyb3VwSWR9XG4gICAgICAgICAgICAgICAgdXJsPXt0aGlzLmdldEdyb3VwQXZhdGFyVXJsKCl9XG4gICAgICAgICAgICAgICAgey4uLm90aGVyUHJvcHN9XG4gICAgICAgICAgICAvPlxuICAgICAgICApO1xuICAgIH0sXG59KTtcbiJdfQ==

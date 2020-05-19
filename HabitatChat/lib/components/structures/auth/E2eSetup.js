@@ -1,0 +1,64 @@
+"use strict";
+
+var _interopRequireWildcard3 = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _interopRequireWildcard2 = _interopRequireDefault(require("@babel/runtime/helpers/interopRequireWildcard"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _AsyncWrapper = _interopRequireDefault(require("../../../AsyncWrapper"));
+
+var sdk = _interopRequireWildcard3(require("../../../index"));
+
+/*
+Copyright 2020 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class E2eSetup extends _react.default.Component {
+  constructor() {
+    super(); // awkwardly indented because https://github.com/eslint/eslint/issues/11310
+
+    this._createStorageDialogPromise = Promise.resolve().then(() => (0, _interopRequireWildcard2.default)(require("../../../async-components/views/dialogs/secretstorage/CreateSecretStorageDialog")));
+  }
+
+  render() {
+    const AuthPage = sdk.getComponent("auth.AuthPage");
+    const CompleteSecurityBody = sdk.getComponent("auth.CompleteSecurityBody");
+    return /*#__PURE__*/_react.default.createElement(AuthPage, null, /*#__PURE__*/_react.default.createElement(CompleteSecurityBody, null, /*#__PURE__*/_react.default.createElement(_AsyncWrapper.default, {
+      prom: this._createStorageDialogPromise,
+      hasCancel: false,
+      onFinished: this.props.onFinished,
+      accountPassword: this.props.accountPassword
+    })));
+  }
+
+}
+
+exports.default = E2eSetup;
+(0, _defineProperty2.default)(E2eSetup, "propTypes", {
+  onFinished: _propTypes.default.func.isRequired,
+  accountPassword: _propTypes.default.string
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0cnVjdHVyZXMvYXV0aC9FMmVTZXR1cC5qcyJdLCJuYW1lcyI6WyJFMmVTZXR1cCIsIlJlYWN0IiwiQ29tcG9uZW50IiwiY29uc3RydWN0b3IiLCJfY3JlYXRlU3RvcmFnZURpYWxvZ1Byb21pc2UiLCJyZW5kZXIiLCJBdXRoUGFnZSIsInNkayIsImdldENvbXBvbmVudCIsIkNvbXBsZXRlU2VjdXJpdHlCb2R5IiwicHJvcHMiLCJvbkZpbmlzaGVkIiwiYWNjb3VudFBhc3N3b3JkIiwiUHJvcFR5cGVzIiwiZnVuYyIsImlzUmVxdWlyZWQiLCJzdHJpbmciXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQWdCQTs7QUFDQTs7QUFDQTs7QUFDQTs7QUFuQkE7Ozs7Ozs7Ozs7Ozs7OztBQXFCZSxNQUFNQSxRQUFOLFNBQXVCQyxlQUFNQyxTQUE3QixDQUF1QztBQU1sREMsRUFBQUEsV0FBVyxHQUFHO0FBQ1YsWUFEVSxDQUVWOztBQUNBLFNBQUtDLDJCQUFMLDhFQUNXLGlGQURYO0FBRUg7O0FBRURDLEVBQUFBLE1BQU0sR0FBRztBQUNMLFVBQU1DLFFBQVEsR0FBR0MsR0FBRyxDQUFDQyxZQUFKLENBQWlCLGVBQWpCLENBQWpCO0FBQ0EsVUFBTUMsb0JBQW9CLEdBQUdGLEdBQUcsQ0FBQ0MsWUFBSixDQUFpQiwyQkFBakIsQ0FBN0I7QUFDQSx3QkFDSSw2QkFBQyxRQUFELHFCQUNJLDZCQUFDLG9CQUFELHFCQUNJLDZCQUFDLHFCQUFEO0FBQWMsTUFBQSxJQUFJLEVBQUUsS0FBS0osMkJBQXpCO0FBQ0ksTUFBQSxTQUFTLEVBQUUsS0FEZjtBQUVJLE1BQUEsVUFBVSxFQUFFLEtBQUtNLEtBQUwsQ0FBV0MsVUFGM0I7QUFHSSxNQUFBLGVBQWUsRUFBRSxLQUFLRCxLQUFMLENBQVdFO0FBSGhDLE1BREosQ0FESixDQURKO0FBV0g7O0FBM0JpRDs7OzhCQUFqQ1osUSxlQUNFO0FBQ2ZXLEVBQUFBLFVBQVUsRUFBRUUsbUJBQVVDLElBQVYsQ0FBZUMsVUFEWjtBQUVmSCxFQUFBQSxlQUFlLEVBQUVDLG1CQUFVRztBQUZaLEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMjAgVGhlIE1hdHJpeC5vcmcgRm91bmRhdGlvbiBDLkkuQy5cblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBBc3luY1dyYXBwZXIgZnJvbSAnLi4vLi4vLi4vQXN5bmNXcmFwcGVyJztcbmltcG9ydCAqIGFzIHNkayBmcm9tICcuLi8uLi8uLi9pbmRleCc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEUyZVNldHVwIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgICBzdGF0aWMgcHJvcFR5cGVzID0ge1xuICAgICAgICBvbkZpbmlzaGVkOiBQcm9wVHlwZXMuZnVuYy5pc1JlcXVpcmVkLFxuICAgICAgICBhY2NvdW50UGFzc3dvcmQ6IFByb3BUeXBlcy5zdHJpbmcsXG4gICAgfTtcblxuICAgIGNvbnN0cnVjdG9yKCkge1xuICAgICAgICBzdXBlcigpO1xuICAgICAgICAvLyBhd2t3YXJkbHkgaW5kZW50ZWQgYmVjYXVzZSBodHRwczovL2dpdGh1Yi5jb20vZXNsaW50L2VzbGludC9pc3N1ZXMvMTEzMTBcbiAgICAgICAgdGhpcy5fY3JlYXRlU3RvcmFnZURpYWxvZ1Byb21pc2UgPVxuICAgICAgICAgICAgaW1wb3J0KFwiLi4vLi4vLi4vYXN5bmMtY29tcG9uZW50cy92aWV3cy9kaWFsb2dzL3NlY3JldHN0b3JhZ2UvQ3JlYXRlU2VjcmV0U3RvcmFnZURpYWxvZ1wiKTtcbiAgICB9XG5cbiAgICByZW5kZXIoKSB7XG4gICAgICAgIGNvbnN0IEF1dGhQYWdlID0gc2RrLmdldENvbXBvbmVudChcImF1dGguQXV0aFBhZ2VcIik7XG4gICAgICAgIGNvbnN0IENvbXBsZXRlU2VjdXJpdHlCb2R5ID0gc2RrLmdldENvbXBvbmVudChcImF1dGguQ29tcGxldGVTZWN1cml0eUJvZHlcIik7XG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICA8QXV0aFBhZ2U+XG4gICAgICAgICAgICAgICAgPENvbXBsZXRlU2VjdXJpdHlCb2R5PlxuICAgICAgICAgICAgICAgICAgICA8QXN5bmNXcmFwcGVyIHByb209e3RoaXMuX2NyZWF0ZVN0b3JhZ2VEaWFsb2dQcm9taXNlfVxuICAgICAgICAgICAgICAgICAgICAgICAgaGFzQ2FuY2VsPXtmYWxzZX1cbiAgICAgICAgICAgICAgICAgICAgICAgIG9uRmluaXNoZWQ9e3RoaXMucHJvcHMub25GaW5pc2hlZH1cbiAgICAgICAgICAgICAgICAgICAgICAgIGFjY291bnRQYXNzd29yZD17dGhpcy5wcm9wcy5hY2NvdW50UGFzc3dvcmR9XG4gICAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgPC9Db21wbGV0ZVNlY3VyaXR5Qm9keT5cbiAgICAgICAgICAgIDwvQXV0aFBhZ2U+XG4gICAgICAgICk7XG4gICAgfVxufVxuIl19

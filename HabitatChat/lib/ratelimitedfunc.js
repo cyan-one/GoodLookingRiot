@@ -1,0 +1,57 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ratelimitedfunc;
+
+var _lodash = require("lodash");
+
+/*
+Copyright 2016 OpenMarket Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * 'debounces' a function to only execute every n milliseconds.
+ * Useful when react-sdk gets many, many events but only wants
+ * to update the interface once for all of them.
+ *
+ * Note that the function must not take arguments, since the args
+ * could be different for each invocation of the function.
+ *
+ * The returned function has a 'cancelPendingCall' property which can be called
+ * on unmount or similar to cancel any pending update.
+ */
+function ratelimitedfunc(fn, time) {
+  const throttledFn = (0, _lodash.throttle)(fn, time, {
+    leading: true,
+    trailing: true
+  });
+  const _bind = throttledFn.bind;
+
+  throttledFn.bind = function () {
+    const boundFn = _bind.apply(throttledFn, arguments);
+
+    boundFn.cancelPendingCall = throttledFn.cancelPendingCall;
+    return boundFn;
+  };
+
+  throttledFn.cancelPendingCall = function () {
+    throttledFn.cancel();
+  };
+
+  return throttledFn;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9yYXRlbGltaXRlZGZ1bmMuanMiXSwibmFtZXMiOlsicmF0ZWxpbWl0ZWRmdW5jIiwiZm4iLCJ0aW1lIiwidGhyb3R0bGVkRm4iLCJsZWFkaW5nIiwidHJhaWxpbmciLCJfYmluZCIsImJpbmQiLCJib3VuZEZuIiwiYXBwbHkiLCJhcmd1bWVudHMiLCJjYW5jZWxQZW5kaW5nQ2FsbCIsImNhbmNlbCJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQTRCQTs7QUE1QkE7Ozs7Ozs7Ozs7Ozs7Ozs7QUFnQkE7Ozs7Ozs7Ozs7O0FBY2UsU0FBU0EsZUFBVCxDQUF5QkMsRUFBekIsRUFBNkJDLElBQTdCLEVBQW1DO0FBQzlDLFFBQU1DLFdBQVcsR0FBRyxzQkFBU0YsRUFBVCxFQUFhQyxJQUFiLEVBQW1CO0FBQ25DRSxJQUFBQSxPQUFPLEVBQUUsSUFEMEI7QUFFbkNDLElBQUFBLFFBQVEsRUFBRTtBQUZ5QixHQUFuQixDQUFwQjtBQUlBLFFBQU1DLEtBQUssR0FBR0gsV0FBVyxDQUFDSSxJQUExQjs7QUFDQUosRUFBQUEsV0FBVyxDQUFDSSxJQUFaLEdBQW1CLFlBQVc7QUFDMUIsVUFBTUMsT0FBTyxHQUFHRixLQUFLLENBQUNHLEtBQU4sQ0FBWU4sV0FBWixFQUF5Qk8sU0FBekIsQ0FBaEI7O0FBQ0FGLElBQUFBLE9BQU8sQ0FBQ0csaUJBQVIsR0FBNEJSLFdBQVcsQ0FBQ1EsaUJBQXhDO0FBQ0EsV0FBT0gsT0FBUDtBQUNILEdBSkQ7O0FBTUFMLEVBQUFBLFdBQVcsQ0FBQ1EsaUJBQVosR0FBZ0MsWUFBVztBQUN2Q1IsSUFBQUEsV0FBVyxDQUFDUyxNQUFaO0FBQ0gsR0FGRDs7QUFHQSxTQUFPVCxXQUFQO0FBQ0giLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTYgT3Blbk1hcmtldCBMdGRcblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG4vKipcbiAqICdkZWJvdW5jZXMnIGEgZnVuY3Rpb24gdG8gb25seSBleGVjdXRlIGV2ZXJ5IG4gbWlsbGlzZWNvbmRzLlxuICogVXNlZnVsIHdoZW4gcmVhY3Qtc2RrIGdldHMgbWFueSwgbWFueSBldmVudHMgYnV0IG9ubHkgd2FudHNcbiAqIHRvIHVwZGF0ZSB0aGUgaW50ZXJmYWNlIG9uY2UgZm9yIGFsbCBvZiB0aGVtLlxuICpcbiAqIE5vdGUgdGhhdCB0aGUgZnVuY3Rpb24gbXVzdCBub3QgdGFrZSBhcmd1bWVudHMsIHNpbmNlIHRoZSBhcmdzXG4gKiBjb3VsZCBiZSBkaWZmZXJlbnQgZm9yIGVhY2ggaW52b2NhdGlvbiBvZiB0aGUgZnVuY3Rpb24uXG4gKlxuICogVGhlIHJldHVybmVkIGZ1bmN0aW9uIGhhcyBhICdjYW5jZWxQZW5kaW5nQ2FsbCcgcHJvcGVydHkgd2hpY2ggY2FuIGJlIGNhbGxlZFxuICogb24gdW5tb3VudCBvciBzaW1pbGFyIHRvIGNhbmNlbCBhbnkgcGVuZGluZyB1cGRhdGUuXG4gKi9cblxuaW1wb3J0IHsgdGhyb3R0bGUgfSBmcm9tIFwibG9kYXNoXCI7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIHJhdGVsaW1pdGVkZnVuYyhmbiwgdGltZSkge1xuICAgIGNvbnN0IHRocm90dGxlZEZuID0gdGhyb3R0bGUoZm4sIHRpbWUsIHtcbiAgICAgICAgbGVhZGluZzogdHJ1ZSxcbiAgICAgICAgdHJhaWxpbmc6IHRydWUsXG4gICAgfSk7XG4gICAgY29uc3QgX2JpbmQgPSB0aHJvdHRsZWRGbi5iaW5kO1xuICAgIHRocm90dGxlZEZuLmJpbmQgPSBmdW5jdGlvbigpIHtcbiAgICAgICAgY29uc3QgYm91bmRGbiA9IF9iaW5kLmFwcGx5KHRocm90dGxlZEZuLCBhcmd1bWVudHMpO1xuICAgICAgICBib3VuZEZuLmNhbmNlbFBlbmRpbmdDYWxsID0gdGhyb3R0bGVkRm4uY2FuY2VsUGVuZGluZ0NhbGw7XG4gICAgICAgIHJldHVybiBib3VuZEZuO1xuICAgIH07XG5cbiAgICB0aHJvdHRsZWRGbi5jYW5jZWxQZW5kaW5nQ2FsbCA9IGZ1bmN0aW9uKCkge1xuICAgICAgICB0aHJvdHRsZWRGbi5jYW5jZWwoKTtcbiAgICB9O1xuICAgIHJldHVybiB0aHJvdHRsZWRGbjtcbn1cbiJdfQ==

@@ -1,0 +1,110 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _createReactClass = _interopRequireDefault(require("create-react-class"));
+
+var _languageHandler = require("../../../languageHandler");
+
+/*
+Copyright 2016 OpenMarket Ltd
+Copyright 2017 New Vector Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+var _default = (0, _createReactClass.default)({
+  displayName: 'TruncatedList',
+  propTypes: {
+    // The number of elements to show before truncating. If negative, no truncation is done.
+    truncateAt: _propTypes.default.number,
+    // The className to apply to the wrapping div
+    className: _propTypes.default.string,
+    // A function that returns the children to be rendered into the element.
+    // function getChildren(start: number, end: number): Array<React.Node>
+    // The start element is included, the end is not (as in `slice`).
+    // If omitted, the React child elements will be used. This parameter can be used
+    // to avoid creating unnecessary React elements.
+    getChildren: _propTypes.default.func,
+    // A function that should return the total number of child element available.
+    // Required if getChildren is supplied.
+    getChildCount: _propTypes.default.func,
+    // A function which will be invoked when an overflow element is required.
+    // This will be inserted after the children.
+    createOverflowElement: _propTypes.default.func
+  },
+  getDefaultProps: function () {
+    return {
+      truncateAt: 2,
+      createOverflowElement: function (overflowCount, totalCount) {
+        return /*#__PURE__*/_react.default.createElement("div", null, (0, _languageHandler._t)("And %(count)s more...", {
+          count: overflowCount
+        }));
+      }
+    };
+  },
+  _getChildren: function (start, end) {
+    if (this.props.getChildren && this.props.getChildCount) {
+      return this.props.getChildren(start, end);
+    } else {
+      // XXX: I'm not sure why anything would pass null into this, it seems
+      // like a bizzare case to handle, but I'm preserving the behaviour.
+      // (see commit 38d5c7d5c5d5a34dc16ef5d46278315f5c57f542)
+      return _react.default.Children.toArray(this.props.children).filter(c => {
+        return c != null;
+      }).slice(start, end);
+    }
+  },
+  _getChildCount: function () {
+    if (this.props.getChildren && this.props.getChildCount) {
+      return this.props.getChildCount();
+    } else {
+      return _react.default.Children.toArray(this.props.children).filter(c => {
+        return c != null;
+      }).length;
+    }
+  },
+  render: function () {
+    let overflowNode = null;
+
+    const totalChildren = this._getChildCount();
+
+    let upperBound = totalChildren;
+
+    if (this.props.truncateAt >= 0) {
+      const overflowCount = totalChildren - this.props.truncateAt;
+
+      if (overflowCount > 1) {
+        overflowNode = this.props.createOverflowElement(overflowCount, totalChildren);
+        upperBound = this.props.truncateAt;
+      }
+    }
+
+    const childNodes = this._getChildren(0, upperBound);
+
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: this.props.className
+    }, childNodes, overflowNode);
+  }
+});
+
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL1RydW5jYXRlZExpc3QuanMiXSwibmFtZXMiOlsiZGlzcGxheU5hbWUiLCJwcm9wVHlwZXMiLCJ0cnVuY2F0ZUF0IiwiUHJvcFR5cGVzIiwibnVtYmVyIiwiY2xhc3NOYW1lIiwic3RyaW5nIiwiZ2V0Q2hpbGRyZW4iLCJmdW5jIiwiZ2V0Q2hpbGRDb3VudCIsImNyZWF0ZU92ZXJmbG93RWxlbWVudCIsImdldERlZmF1bHRQcm9wcyIsIm92ZXJmbG93Q291bnQiLCJ0b3RhbENvdW50IiwiY291bnQiLCJfZ2V0Q2hpbGRyZW4iLCJzdGFydCIsImVuZCIsInByb3BzIiwiUmVhY3QiLCJDaGlsZHJlbiIsInRvQXJyYXkiLCJjaGlsZHJlbiIsImZpbHRlciIsImMiLCJzbGljZSIsIl9nZXRDaGlsZENvdW50IiwibGVuZ3RoIiwicmVuZGVyIiwib3ZlcmZsb3dOb2RlIiwidG90YWxDaGlsZHJlbiIsInVwcGVyQm91bmQiLCJjaGlsZE5vZGVzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFpQkE7O0FBQ0E7O0FBQ0E7O0FBQ0E7O0FBcEJBOzs7Ozs7Ozs7Ozs7Ozs7O2VBc0JlLCtCQUFpQjtBQUM1QkEsRUFBQUEsV0FBVyxFQUFFLGVBRGU7QUFHNUJDLEVBQUFBLFNBQVMsRUFBRTtBQUNQO0FBQ0FDLElBQUFBLFVBQVUsRUFBRUMsbUJBQVVDLE1BRmY7QUFHUDtBQUNBQyxJQUFBQSxTQUFTLEVBQUVGLG1CQUFVRyxNQUpkO0FBS1A7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBQyxJQUFBQSxXQUFXLEVBQUVKLG1CQUFVSyxJQVZoQjtBQVdQO0FBQ0E7QUFDQUMsSUFBQUEsYUFBYSxFQUFFTixtQkFBVUssSUFibEI7QUFjUDtBQUNBO0FBQ0FFLElBQUFBLHFCQUFxQixFQUFFUCxtQkFBVUs7QUFoQjFCLEdBSGlCO0FBc0I1QkcsRUFBQUEsZUFBZSxFQUFFLFlBQVc7QUFDeEIsV0FBTztBQUNIVCxNQUFBQSxVQUFVLEVBQUUsQ0FEVDtBQUVIUSxNQUFBQSxxQkFBcUIsRUFBRSxVQUFTRSxhQUFULEVBQXdCQyxVQUF4QixFQUFvQztBQUN2RCw0QkFDSSwwQ0FBTyx5QkFBRyx1QkFBSCxFQUE0QjtBQUFDQyxVQUFBQSxLQUFLLEVBQUVGO0FBQVIsU0FBNUIsQ0FBUCxDQURKO0FBR0g7QUFORSxLQUFQO0FBUUgsR0EvQjJCO0FBaUM1QkcsRUFBQUEsWUFBWSxFQUFFLFVBQVNDLEtBQVQsRUFBZ0JDLEdBQWhCLEVBQXFCO0FBQy9CLFFBQUksS0FBS0MsS0FBTCxDQUFXWCxXQUFYLElBQTBCLEtBQUtXLEtBQUwsQ0FBV1QsYUFBekMsRUFBd0Q7QUFDcEQsYUFBTyxLQUFLUyxLQUFMLENBQVdYLFdBQVgsQ0FBdUJTLEtBQXZCLEVBQThCQyxHQUE5QixDQUFQO0FBQ0gsS0FGRCxNQUVPO0FBQ0g7QUFDQTtBQUNBO0FBQ0EsYUFBT0UsZUFBTUMsUUFBTixDQUFlQyxPQUFmLENBQXVCLEtBQUtILEtBQUwsQ0FBV0ksUUFBbEMsRUFBNENDLE1BQTVDLENBQW9EQyxDQUFELElBQU87QUFDN0QsZUFBT0EsQ0FBQyxJQUFJLElBQVo7QUFDSCxPQUZNLEVBRUpDLEtBRkksQ0FFRVQsS0FGRixFQUVTQyxHQUZULENBQVA7QUFHSDtBQUNKLEdBNUMyQjtBQThDNUJTLEVBQUFBLGNBQWMsRUFBRSxZQUFXO0FBQ3ZCLFFBQUksS0FBS1IsS0FBTCxDQUFXWCxXQUFYLElBQTBCLEtBQUtXLEtBQUwsQ0FBV1QsYUFBekMsRUFBd0Q7QUFDcEQsYUFBTyxLQUFLUyxLQUFMLENBQVdULGFBQVgsRUFBUDtBQUNILEtBRkQsTUFFTztBQUNILGFBQU9VLGVBQU1DLFFBQU4sQ0FBZUMsT0FBZixDQUF1QixLQUFLSCxLQUFMLENBQVdJLFFBQWxDLEVBQTRDQyxNQUE1QyxDQUFvREMsQ0FBRCxJQUFPO0FBQzdELGVBQU9BLENBQUMsSUFBSSxJQUFaO0FBQ0gsT0FGTSxFQUVKRyxNQUZIO0FBR0g7QUFDSixHQXREMkI7QUF3RDVCQyxFQUFBQSxNQUFNLEVBQUUsWUFBVztBQUNmLFFBQUlDLFlBQVksR0FBRyxJQUFuQjs7QUFFQSxVQUFNQyxhQUFhLEdBQUcsS0FBS0osY0FBTCxFQUF0Qjs7QUFDQSxRQUFJSyxVQUFVLEdBQUdELGFBQWpCOztBQUNBLFFBQUksS0FBS1osS0FBTCxDQUFXaEIsVUFBWCxJQUF5QixDQUE3QixFQUFnQztBQUM1QixZQUFNVSxhQUFhLEdBQUdrQixhQUFhLEdBQUcsS0FBS1osS0FBTCxDQUFXaEIsVUFBakQ7O0FBQ0EsVUFBSVUsYUFBYSxHQUFHLENBQXBCLEVBQXVCO0FBQ25CaUIsUUFBQUEsWUFBWSxHQUFHLEtBQUtYLEtBQUwsQ0FBV1IscUJBQVgsQ0FDWEUsYUFEVyxFQUNJa0IsYUFESixDQUFmO0FBR0FDLFFBQUFBLFVBQVUsR0FBRyxLQUFLYixLQUFMLENBQVdoQixVQUF4QjtBQUNIO0FBQ0o7O0FBQ0QsVUFBTThCLFVBQVUsR0FBRyxLQUFLakIsWUFBTCxDQUFrQixDQUFsQixFQUFxQmdCLFVBQXJCLENBQW5COztBQUVBLHdCQUNJO0FBQUssTUFBQSxTQUFTLEVBQUUsS0FBS2IsS0FBTCxDQUFXYjtBQUEzQixPQUNNMkIsVUFETixFQUVNSCxZQUZOLENBREo7QUFNSDtBQTlFMkIsQ0FBakIsQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxNiBPcGVuTWFya2V0IEx0ZFxuQ29weXJpZ2h0IDIwMTcgTmV3IFZlY3RvciBMdGRcblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBjcmVhdGVSZWFjdENsYXNzIGZyb20gJ2NyZWF0ZS1yZWFjdC1jbGFzcyc7XG5pbXBvcnQgeyBfdCB9IGZyb20gJy4uLy4uLy4uL2xhbmd1YWdlSGFuZGxlcic7XG5cbmV4cG9ydCBkZWZhdWx0IGNyZWF0ZVJlYWN0Q2xhc3Moe1xuICAgIGRpc3BsYXlOYW1lOiAnVHJ1bmNhdGVkTGlzdCcsXG5cbiAgICBwcm9wVHlwZXM6IHtcbiAgICAgICAgLy8gVGhlIG51bWJlciBvZiBlbGVtZW50cyB0byBzaG93IGJlZm9yZSB0cnVuY2F0aW5nLiBJZiBuZWdhdGl2ZSwgbm8gdHJ1bmNhdGlvbiBpcyBkb25lLlxuICAgICAgICB0cnVuY2F0ZUF0OiBQcm9wVHlwZXMubnVtYmVyLFxuICAgICAgICAvLyBUaGUgY2xhc3NOYW1lIHRvIGFwcGx5IHRvIHRoZSB3cmFwcGluZyBkaXZcbiAgICAgICAgY2xhc3NOYW1lOiBQcm9wVHlwZXMuc3RyaW5nLFxuICAgICAgICAvLyBBIGZ1bmN0aW9uIHRoYXQgcmV0dXJucyB0aGUgY2hpbGRyZW4gdG8gYmUgcmVuZGVyZWQgaW50byB0aGUgZWxlbWVudC5cbiAgICAgICAgLy8gZnVuY3Rpb24gZ2V0Q2hpbGRyZW4oc3RhcnQ6IG51bWJlciwgZW5kOiBudW1iZXIpOiBBcnJheTxSZWFjdC5Ob2RlPlxuICAgICAgICAvLyBUaGUgc3RhcnQgZWxlbWVudCBpcyBpbmNsdWRlZCwgdGhlIGVuZCBpcyBub3QgKGFzIGluIGBzbGljZWApLlxuICAgICAgICAvLyBJZiBvbWl0dGVkLCB0aGUgUmVhY3QgY2hpbGQgZWxlbWVudHMgd2lsbCBiZSB1c2VkLiBUaGlzIHBhcmFtZXRlciBjYW4gYmUgdXNlZFxuICAgICAgICAvLyB0byBhdm9pZCBjcmVhdGluZyB1bm5lY2Vzc2FyeSBSZWFjdCBlbGVtZW50cy5cbiAgICAgICAgZ2V0Q2hpbGRyZW46IFByb3BUeXBlcy5mdW5jLFxuICAgICAgICAvLyBBIGZ1bmN0aW9uIHRoYXQgc2hvdWxkIHJldHVybiB0aGUgdG90YWwgbnVtYmVyIG9mIGNoaWxkIGVsZW1lbnQgYXZhaWxhYmxlLlxuICAgICAgICAvLyBSZXF1aXJlZCBpZiBnZXRDaGlsZHJlbiBpcyBzdXBwbGllZC5cbiAgICAgICAgZ2V0Q2hpbGRDb3VudDogUHJvcFR5cGVzLmZ1bmMsXG4gICAgICAgIC8vIEEgZnVuY3Rpb24gd2hpY2ggd2lsbCBiZSBpbnZva2VkIHdoZW4gYW4gb3ZlcmZsb3cgZWxlbWVudCBpcyByZXF1aXJlZC5cbiAgICAgICAgLy8gVGhpcyB3aWxsIGJlIGluc2VydGVkIGFmdGVyIHRoZSBjaGlsZHJlbi5cbiAgICAgICAgY3JlYXRlT3ZlcmZsb3dFbGVtZW50OiBQcm9wVHlwZXMuZnVuYyxcbiAgICB9LFxuXG4gICAgZ2V0RGVmYXVsdFByb3BzOiBmdW5jdGlvbigpIHtcbiAgICAgICAgcmV0dXJuIHtcbiAgICAgICAgICAgIHRydW5jYXRlQXQ6IDIsXG4gICAgICAgICAgICBjcmVhdGVPdmVyZmxvd0VsZW1lbnQ6IGZ1bmN0aW9uKG92ZXJmbG93Q291bnQsIHRvdGFsQ291bnQpIHtcbiAgICAgICAgICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgICAgICAgICA8ZGl2PnsgX3QoXCJBbmQgJShjb3VudClzIG1vcmUuLi5cIiwge2NvdW50OiBvdmVyZmxvd0NvdW50fSkgfTwvZGl2PlxuICAgICAgICAgICAgICAgICk7XG4gICAgICAgICAgICB9LFxuICAgICAgICB9O1xuICAgIH0sXG5cbiAgICBfZ2V0Q2hpbGRyZW46IGZ1bmN0aW9uKHN0YXJ0LCBlbmQpIHtcbiAgICAgICAgaWYgKHRoaXMucHJvcHMuZ2V0Q2hpbGRyZW4gJiYgdGhpcy5wcm9wcy5nZXRDaGlsZENvdW50KSB7XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5wcm9wcy5nZXRDaGlsZHJlbihzdGFydCwgZW5kKTtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIC8vIFhYWDogSSdtIG5vdCBzdXJlIHdoeSBhbnl0aGluZyB3b3VsZCBwYXNzIG51bGwgaW50byB0aGlzLCBpdCBzZWVtc1xuICAgICAgICAgICAgLy8gbGlrZSBhIGJpenphcmUgY2FzZSB0byBoYW5kbGUsIGJ1dCBJJ20gcHJlc2VydmluZyB0aGUgYmVoYXZpb3VyLlxuICAgICAgICAgICAgLy8gKHNlZSBjb21taXQgMzhkNWM3ZDVjNWQ1YTM0ZGMxNmVmNWQ0NjI3ODMxNWY1YzU3ZjU0MilcbiAgICAgICAgICAgIHJldHVybiBSZWFjdC5DaGlsZHJlbi50b0FycmF5KHRoaXMucHJvcHMuY2hpbGRyZW4pLmZpbHRlcigoYykgPT4ge1xuICAgICAgICAgICAgICAgIHJldHVybiBjICE9IG51bGw7XG4gICAgICAgICAgICB9KS5zbGljZShzdGFydCwgZW5kKTtcbiAgICAgICAgfVxuICAgIH0sXG5cbiAgICBfZ2V0Q2hpbGRDb3VudDogZnVuY3Rpb24oKSB7XG4gICAgICAgIGlmICh0aGlzLnByb3BzLmdldENoaWxkcmVuICYmIHRoaXMucHJvcHMuZ2V0Q2hpbGRDb3VudCkge1xuICAgICAgICAgICAgcmV0dXJuIHRoaXMucHJvcHMuZ2V0Q2hpbGRDb3VudCgpO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgICAgcmV0dXJuIFJlYWN0LkNoaWxkcmVuLnRvQXJyYXkodGhpcy5wcm9wcy5jaGlsZHJlbikuZmlsdGVyKChjKSA9PiB7XG4gICAgICAgICAgICAgICAgcmV0dXJuIGMgIT0gbnVsbDtcbiAgICAgICAgICAgIH0pLmxlbmd0aDtcbiAgICAgICAgfVxuICAgIH0sXG5cbiAgICByZW5kZXI6IGZ1bmN0aW9uKCkge1xuICAgICAgICBsZXQgb3ZlcmZsb3dOb2RlID0gbnVsbDtcblxuICAgICAgICBjb25zdCB0b3RhbENoaWxkcmVuID0gdGhpcy5fZ2V0Q2hpbGRDb3VudCgpO1xuICAgICAgICBsZXQgdXBwZXJCb3VuZCA9IHRvdGFsQ2hpbGRyZW47XG4gICAgICAgIGlmICh0aGlzLnByb3BzLnRydW5jYXRlQXQgPj0gMCkge1xuICAgICAgICAgICAgY29uc3Qgb3ZlcmZsb3dDb3VudCA9IHRvdGFsQ2hpbGRyZW4gLSB0aGlzLnByb3BzLnRydW5jYXRlQXQ7XG4gICAgICAgICAgICBpZiAob3ZlcmZsb3dDb3VudCA+IDEpIHtcbiAgICAgICAgICAgICAgICBvdmVyZmxvd05vZGUgPSB0aGlzLnByb3BzLmNyZWF0ZU92ZXJmbG93RWxlbWVudChcbiAgICAgICAgICAgICAgICAgICAgb3ZlcmZsb3dDb3VudCwgdG90YWxDaGlsZHJlbixcbiAgICAgICAgICAgICAgICApO1xuICAgICAgICAgICAgICAgIHVwcGVyQm91bmQgPSB0aGlzLnByb3BzLnRydW5jYXRlQXQ7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICAgY29uc3QgY2hpbGROb2RlcyA9IHRoaXMuX2dldENoaWxkcmVuKDAsIHVwcGVyQm91bmQpO1xuXG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17dGhpcy5wcm9wcy5jbGFzc05hbWV9PlxuICAgICAgICAgICAgICAgIHsgY2hpbGROb2RlcyB9XG4gICAgICAgICAgICAgICAgeyBvdmVyZmxvd05vZGUgfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICk7XG4gICAgfSxcbn0pO1xuIl19

@@ -1,0 +1,138 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = AccessibleButton;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _Keyboard = require("../../../Keyboard");
+
+/*
+ Copyright 2016 Jani Mustonen
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+/**
+ * AccessibleButton is a generic wrapper for any element that should be treated
+ * as a button.  Identifies the element as a button, setting proper tab
+ * indexing and keyboard activation behavior.
+ *
+ * @param {Object} props  react element properties
+ * @returns {Object} rendered react
+ */
+function AccessibleButton(props) {
+  const {
+    element,
+    onClick,
+    children,
+    kind,
+    disabled
+  } = props,
+        restProps = (0, _objectWithoutProperties2.default)(props, ["element", "onClick", "children", "kind", "disabled"]);
+
+  if (!disabled) {
+    restProps.onClick = onClick; // We need to consume enter onKeyDown and space onKeyUp
+    // otherwise we are risking also activating other keyboard focusable elements
+    // that might receive focus as a result of the AccessibleButtonClick action
+    // It's because we are using html buttons at a few places e.g. inside dialogs
+    // And divs which we report as role button to assistive technologies.
+    // Browsers handle space and enter keypresses differently and we are only adjusting to the
+    // inconsistencies here
+
+    restProps.onKeyDown = function (e) {
+      if (e.key === _Keyboard.Key.ENTER) {
+        e.stopPropagation();
+        e.preventDefault();
+        return onClick(e);
+      }
+
+      if (e.key === _Keyboard.Key.SPACE) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+
+    restProps.onKeyUp = function (e) {
+      if (e.key === _Keyboard.Key.SPACE) {
+        e.stopPropagation();
+        e.preventDefault();
+        return onClick(e);
+      }
+
+      if (e.key === _Keyboard.Key.ENTER) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+  } // Pass through the ref - used for keyboard shortcut access to some buttons
+
+
+  restProps.ref = restProps.inputRef;
+  delete restProps.inputRef;
+  restProps.className = (restProps.className ? restProps.className + " " : "") + "mx_AccessibleButton";
+
+  if (kind) {
+    // We apply a hasKind class to maintain backwards compatibility with
+    // buttons which might not know about kind and break
+    restProps.className += " mx_AccessibleButton_hasKind mx_AccessibleButton_kind_" + kind;
+  }
+
+  if (disabled) {
+    restProps.className += " mx_AccessibleButton_disabled";
+    restProps["aria-disabled"] = true;
+  }
+
+  return _react.default.createElement(element, restProps, children);
+}
+/**
+ * children: React's magic prop. Represents all children given to the element.
+ * element:  (optional) The base element type. "div" by default.
+ * onClick:  (required) Event handler for button activation. Should be
+ *           implemented exactly like a normal onClick handler.
+ */
+
+
+AccessibleButton.propTypes = {
+  children: _propTypes.default.node,
+  inputRef: _propTypes.default.oneOfType([// Either a function
+  _propTypes.default.func, // Or the instance of a DOM native element
+  _propTypes.default.shape({
+    current: _propTypes.default.instanceOf(Element)
+  })]),
+  element: _propTypes.default.string,
+  onClick: _propTypes.default.func.isRequired,
+  // The kind of button, similar to how Bootstrap works.
+  // See available classes for AccessibleButton for options.
+  kind: _propTypes.default.string,
+  // The ARIA role
+  role: _propTypes.default.string,
+  // The tabIndex
+  tabIndex: _propTypes.default.oneOfType([_propTypes.default.number, _propTypes.default.string]),
+  disabled: _propTypes.default.bool
+};
+AccessibleButton.defaultProps = {
+  element: 'div',
+  role: 'button',
+  tabIndex: "0"
+};
+AccessibleButton.displayName = "AccessibleButton";
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL0FjY2Vzc2libGVCdXR0b24uanMiXSwibmFtZXMiOlsiQWNjZXNzaWJsZUJ1dHRvbiIsInByb3BzIiwiZWxlbWVudCIsIm9uQ2xpY2siLCJjaGlsZHJlbiIsImtpbmQiLCJkaXNhYmxlZCIsInJlc3RQcm9wcyIsIm9uS2V5RG93biIsImUiLCJrZXkiLCJLZXkiLCJFTlRFUiIsInN0b3BQcm9wYWdhdGlvbiIsInByZXZlbnREZWZhdWx0IiwiU1BBQ0UiLCJvbktleVVwIiwicmVmIiwiaW5wdXRSZWYiLCJjbGFzc05hbWUiLCJSZWFjdCIsImNyZWF0ZUVsZW1lbnQiLCJwcm9wVHlwZXMiLCJQcm9wVHlwZXMiLCJub2RlIiwib25lT2ZUeXBlIiwiZnVuYyIsInNoYXBlIiwiY3VycmVudCIsImluc3RhbmNlT2YiLCJFbGVtZW50Iiwic3RyaW5nIiwiaXNSZXF1aXJlZCIsInJvbGUiLCJ0YWJJbmRleCIsIm51bWJlciIsImJvb2wiLCJkZWZhdWx0UHJvcHMiLCJkaXNwbGF5TmFtZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFnQkE7O0FBQ0E7O0FBRUE7O0FBbkJBOzs7Ozs7Ozs7Ozs7Ozs7O0FBcUJBOzs7Ozs7OztBQVFlLFNBQVNBLGdCQUFULENBQTBCQyxLQUExQixFQUFpQztBQUM1QyxRQUFNO0FBQUNDLElBQUFBLE9BQUQ7QUFBVUMsSUFBQUEsT0FBVjtBQUFtQkMsSUFBQUEsUUFBbkI7QUFBNkJDLElBQUFBLElBQTdCO0FBQW1DQyxJQUFBQTtBQUFuQyxNQUE2REwsS0FBbkU7QUFBQSxRQUFzRE0sU0FBdEQsMENBQW1FTixLQUFuRTs7QUFFQSxNQUFJLENBQUNLLFFBQUwsRUFBZTtBQUNYQyxJQUFBQSxTQUFTLENBQUNKLE9BQVYsR0FBb0JBLE9BQXBCLENBRFcsQ0FFWDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFDQUksSUFBQUEsU0FBUyxDQUFDQyxTQUFW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QUFoQztBQU1BbEMsZ0JBQWdCLENBQUNzQyxXQUFqQixHQUErQixrQkFBL0IiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuIENvcHlyaWdodCAyMDE2IEphbmkgTXVzdG9uZW5cblxuIExpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG4geW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuIFlvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cbiBVbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG4gZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuIFdJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuIFNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbiBsaW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiAqL1xuXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcblxuaW1wb3J0IHtLZXl9IGZyb20gJy4uLy4uLy4uL0tleWJvYXJkJztcblxuLyoqXG4gKiBBY2Nlc3NpYmxlQnV0dG9uIGlzIGEgZ2VuZXJpYyB3cmFwcGVyIGZvciBhbnkgZWxlbWVudCB0aGF0IHNob3VsZCBiZSB0cmVhdGVkXG4gKiBhcyBhIGJ1dHRvbi4gIElkZW50aWZpZXMgdGhlIGVsZW1lbnQgYXMgYSBidXR0b24sIHNldHRpbmcgcHJvcGVyIHRhYlxuICogaW5kZXhpbmcgYW5kIGtleWJvYXJkIGFjdGl2YXRpb24gYmVoYXZpb3IuXG4gKlxuICogQHBhcmFtIHtPYmplY3R9IHByb3BzICByZWFjdCBlbGVtZW50IHByb3BlcnRpZXNcbiAqIEByZXR1cm5zIHtPYmplY3R9IHJlbmRlcmVkIHJlYWN0XG4gKi9cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEFjY2Vzc2libGVCdXR0b24ocHJvcHMpIHtcbiAgICBjb25zdCB7ZWxlbWVudCwgb25DbGljaywgY2hpbGRyZW4sIGtpbmQsIGRpc2FibGVkLCAuLi5yZXN0UHJvcHN9ID0gcHJvcHM7XG5cbiAgICBpZiAoIWRpc2FibGVkKSB7XG4gICAgICAgIHJlc3RQcm9wcy5vbkNsaWNrID0gb25DbGljaztcbiAgICAgICAgLy8gV2UgbmVlZCB0byBjb25zdW1lIGVudGVyIG9uS2V5RG93biBhbmQgc3BhY2Ugb25LZXlVcFxuICAgICAgICAvLyBvdGhlcndpc2Ugd2UgYXJlIHJpc2tpbmcgYWxzbyBhY3RpdmF0aW5nIG90aGVyIGtleWJvYXJkIGZvY3VzYWJsZSBlbGVtZW50c1xuICAgICAgICAvLyB0aGF0IG1pZ2h0IHJlY2VpdmUgZm9jdXMgYXMgYSByZXN1bHQgb2YgdGhlIEFjY2Vzc2libGVCdXR0b25DbGljayBhY3Rpb25cbiAgICAgICAgLy8gSXQncyBiZWNhdXNlIHdlIGFyZSB1c2luZyBodG1sIGJ1dHRvbnMgYXQgYSBmZXcgcGxhY2VzIGUuZy4gaW5zaWRlIGRpYWxvZ3NcbiAgICAgICAgLy8gQW5kIGRpdnMgd2hpY2ggd2UgcmVwb3J0IGFzIHJvbGUgYnV0dG9uIHRvIGFzc2lzdGl2ZSB0ZWNobm9sb2dpZXMuXG4gICAgICAgIC8vIEJyb3dzZXJzIGhhbmRsZSBzcGFjZSBhbmQgZW50ZXIga2V5cHJlc3NlcyBkaWZmZXJlbnRseSBhbmQgd2UgYXJlIG9ubHkgYWRqdXN0aW5nIHRvIHRoZVxuICAgICAgICAvLyBpbmNvbnNpc3RlbmNpZXMgaGVyZVxuICAgICAgICByZXN0UHJvcHMub25LZXlEb3duID0gZnVuY3Rpb24oZSkge1xuICAgICAgICAgICAgaWYgKGUua2V5ID09PSBLZXkuRU5URVIpIHtcbiAgICAgICAgICAgICAgICBlLnN0b3BQcm9wYWdhdGlvbigpO1xuICAgICAgICAgICAgICAgIGUucHJldmVudERlZmF1bHQoKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gb25DbGljayhlKTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGlmIChlLmtleSA9PT0gS2V5LlNQQUNFKSB7XG4gICAgICAgICAgICAgICAgZS5zdG9wUHJvcGFnYXRpb24oKTtcbiAgICAgICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgICAgICAgICB9XG4gICAgICAgIH07XG4gICAgICAgIHJlc3RQcm9wcy5vbktleVVwID0gZnVuY3Rpb24oZSkge1xuICAgICAgICAgICAgaWYgKGUua2V5ID09PSBLZXkuU1BBQ0UpIHtcbiAgICAgICAgICAgICAgICBlLnN0b3BQcm9wYWdhdGlvbigpO1xuICAgICAgICAgICAgICAgIGUucHJldmVudERlZmF1bHQoKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gb25DbGljayhlKTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGlmIChlLmtleSA9PT0gS2V5LkVOVEVSKSB7XG4gICAgICAgICAgICAgICAgZS5zdG9wUHJvcGFnYXRpb24oKTtcbiAgICAgICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgICAgICAgICB9XG4gICAgICAgIH07XG4gICAgfVxuXG4gICAgLy8gUGFzcyB0aHJvdWdoIHRoZSByZWYgLSB1c2VkIGZvciBrZXlib2FyZCBzaG9ydGN1dCBhY2Nlc3MgdG8gc29tZSBidXR0b25zXG4gICAgcmVzdFByb3BzLnJlZiA9IHJlc3RQcm9wcy5pbnB1dFJlZjtcbiAgICBkZWxldGUgcmVzdFByb3BzLmlucHV0UmVmO1xuXG4gICAgcmVzdFByb3BzLmNsYXNzTmFtZSA9IChyZXN0UHJvcHMuY2xhc3NOYW1lID8gcmVzdFByb3BzLmNsYXNzTmFtZSArIFwiIFwiIDogXCJcIikgKyBcIm14X0FjY2Vzc2libGVCdXR0b25cIjtcblxuICAgIGlmIChraW5kKSB7XG4gICAgICAgIC8vIFdlIGFwcGx5IGEgaGFzS2luZCBjbGFzcyB0byBtYWludGFpbiBiYWNrd2FyZHMgY29tcGF0aWJpbGl0eSB3aXRoXG4gICAgICAgIC8vIGJ1dHRvbnMgd2hpY2ggbWlnaHQgbm90IGtub3cgYWJvdXQga2luZCBhbmQgYnJlYWtcbiAgICAgICAgcmVzdFByb3BzLmNsYXNzTmFtZSArPSBcIiBteF9BY2Nlc3NpYmxlQnV0dG9uX2hhc0tpbmQgbXhfQWNjZXNzaWJsZUJ1dHRvbl9raW5kX1wiICsga2luZDtcbiAgICB9XG5cbiAgICBpZiAoZGlzYWJsZWQpIHtcbiAgICAgICAgcmVzdFByb3BzLmNsYXNzTmFtZSArPSBcIiBteF9BY2Nlc3NpYmxlQnV0dG9uX2Rpc2FibGVkXCI7XG4gICAgICAgIHJlc3RQcm9wc1tcImFyaWEtZGlzYWJsZWRcIl0gPSB0cnVlO1xuICAgIH1cblxuICAgIHJldHVybiBSZWFjdC5jcmVhdGVFbGVtZW50KGVsZW1lbnQsIHJlc3RQcm9wcywgY2hpbGRyZW4pO1xufVxuXG4vKipcbiAqIGNoaWxkcmVuOiBSZWFjdCdzIG1hZ2ljIHByb3AuIFJlcHJlc2VudHMgYWxsIGNoaWxkcmVuIGdpdmVuIHRvIHRoZSBlbGVtZW50LlxuICogZWxlbWVudDogIChvcHRpb25hbCkgVGhlIGJhc2UgZWxlbWVudCB0eXBlLiBcImRpdlwiIGJ5IGRlZmF1bHQuXG4gKiBvbkNsaWNrOiAgKHJlcXVpcmVkKSBFdmVudCBoYW5kbGVyIGZvciBidXR0b24gYWN0aXZhdGlvbi4gU2hvdWxkIGJlXG4gKiAgICAgICAgICAgaW1wbGVtZW50ZWQgZXhhY3RseSBsaWtlIGEgbm9ybWFsIG9uQ2xpY2sgaGFuZGxlci5cbiAqL1xuQWNjZXNzaWJsZUJ1dHRvbi5wcm9wVHlwZXMgPSB7XG4gICAgY2hpbGRyZW46IFByb3BUeXBlcy5ub2RlLFxuICAgIGlucHV0UmVmOiBQcm9wVHlwZXMub25lT2ZUeXBlKFtcbiAgICAgICAgLy8gRWl0aGVyIGEgZnVuY3Rpb25cbiAgICAgICAgUHJvcFR5cGVzLmZ1bmMsXG4gICAgICAgIC8vIE9yIHRoZSBpbnN0YW5jZSBvZiBhIERPTSBuYXRpdmUgZWxlbWVudFxuICAgICAgICBQcm9wVHlwZXMuc2hhcGUoeyBjdXJyZW50OiBQcm9wVHlwZXMuaW5zdGFuY2VPZihFbGVtZW50KSB9KSxcbiAgICBdKSxcbiAgICBlbGVtZW50OiBQcm9wVHlwZXMuc3RyaW5nLFxuICAgIG9uQ2xpY2s6IFByb3BUeXBlcy5mdW5jLmlzUmVxdWlyZWQsXG5cbiAgICAvLyBUaGUga2luZCBvZiBidXR0b24sIHNpbWlsYXIgdG8gaG93IEJvb3RzdHJhcCB3b3Jrcy5cbiAgICAvLyBTZWUgYXZhaWxhYmxlIGNsYXNzZXMgZm9yIEFjY2Vzc2libGVCdXR0b24gZm9yIG9wdGlvbnMuXG4gICAga2luZDogUHJvcFR5cGVzLnN0cmluZyxcbiAgICAvLyBUaGUgQVJJQSByb2xlXG4gICAgcm9sZTogUHJvcFR5cGVzLnN0cmluZyxcbiAgICAvLyBUaGUgdGFiSW5kZXhcbiAgICB0YWJJbmRleDogUHJvcFR5cGVzLm9uZU9mVHlwZShbUHJvcFR5cGVzLm51bWJlciwgUHJvcFR5cGVzLnN0cmluZ10pLFxuXG4gICAgZGlzYWJsZWQ6IFByb3BUeXBlcy5ib29sLFxufTtcblxuQWNjZXNzaWJsZUJ1dHRvbi5kZWZhdWx0UHJvcHMgPSB7XG4gICAgZWxlbWVudDogJ2RpdicsXG4gICAgcm9sZTogJ2J1dHRvbicsXG4gICAgdGFiSW5kZXg6IFwiMFwiLFxufTtcblxuQWNjZXNzaWJsZUJ1dHRvbi5kaXNwbGF5TmFtZSA9IFwiQWNjZXNzaWJsZUJ1dHRvblwiO1xuIl19

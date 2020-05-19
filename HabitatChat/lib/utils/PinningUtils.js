@@ -1,0 +1,39 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/*
+Copyright 2017 Travis Ralston
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class PinningUtils {
+  /**
+   * Determines if the given event may be pinned.
+   * @param {MatrixEvent} event The event to check.
+   * @return {boolean} True if the event may be pinned, false otherwise.
+   */
+  static isPinnable(event) {
+    if (!event) return false;
+    if (event.getType() !== "m.room.message") return false;
+    if (event.isRedacted()) return false;
+    return true;
+  }
+
+}
+
+exports.default = PinningUtils;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9QaW5uaW5nVXRpbHMuanMiXSwibmFtZXMiOlsiUGlubmluZ1V0aWxzIiwiaXNQaW5uYWJsZSIsImV2ZW50IiwiZ2V0VHlwZSIsImlzUmVkYWN0ZWQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTs7Ozs7Ozs7Ozs7Ozs7O0FBZ0JlLE1BQU1BLFlBQU4sQ0FBbUI7QUFDOUI7Ozs7O0FBS0EsU0FBT0MsVUFBUCxDQUFrQkMsS0FBbEIsRUFBeUI7QUFDckIsUUFBSSxDQUFDQSxLQUFMLEVBQVksT0FBTyxLQUFQO0FBQ1osUUFBSUEsS0FBSyxDQUFDQyxPQUFOLE9BQW9CLGdCQUF4QixFQUEwQyxPQUFPLEtBQVA7QUFDMUMsUUFBSUQsS0FBSyxDQUFDRSxVQUFOLEVBQUosRUFBd0IsT0FBTyxLQUFQO0FBRXhCLFdBQU8sSUFBUDtBQUNIOztBQVo2QiIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxNyBUcmF2aXMgUmFsc3RvblxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFBpbm5pbmdVdGlscyB7XG4gICAgLyoqXG4gICAgICogRGV0ZXJtaW5lcyBpZiB0aGUgZ2l2ZW4gZXZlbnQgbWF5IGJlIHBpbm5lZC5cbiAgICAgKiBAcGFyYW0ge01hdHJpeEV2ZW50fSBldmVudCBUaGUgZXZlbnQgdG8gY2hlY2suXG4gICAgICogQHJldHVybiB7Ym9vbGVhbn0gVHJ1ZSBpZiB0aGUgZXZlbnQgbWF5IGJlIHBpbm5lZCwgZmFsc2Ugb3RoZXJ3aXNlLlxuICAgICAqL1xuICAgIHN0YXRpYyBpc1Bpbm5hYmxlKGV2ZW50KSB7XG4gICAgICAgIGlmICghZXZlbnQpIHJldHVybiBmYWxzZTtcbiAgICAgICAgaWYgKGV2ZW50LmdldFR5cGUoKSAhPT0gXCJtLnJvb20ubWVzc2FnZVwiKSByZXR1cm4gZmFsc2U7XG4gICAgICAgIGlmIChldmVudC5pc1JlZGFjdGVkKCkpIHJldHVybiBmYWxzZTtcblxuICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9XG59XG4iXX0=

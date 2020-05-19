@@ -1,0 +1,42 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findReadReceiptFromUserId = findReadReceiptFromUserId;
+
+/*
+Copyright 2016 OpenMarket Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * Given MatrixEvent containing receipts, return the first
+ * read receipt from the given user ID, or null if no such
+ * receipt exists.
+ */
+function findReadReceiptFromUserId(receiptEvent, userId) {
+  const receiptKeys = Object.keys(receiptEvent.getContent());
+
+  for (let i = 0; i < receiptKeys.length; ++i) {
+    const rcpt = receiptEvent.getContent()[receiptKeys[i]];
+
+    if (rcpt['m.read'] && rcpt['m.read'][userId]) {
+      return rcpt;
+    }
+  }
+
+  return null;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9SZWNlaXB0LmpzIl0sIm5hbWVzIjpbImZpbmRSZWFkUmVjZWlwdEZyb21Vc2VySWQiLCJyZWNlaXB0RXZlbnQiLCJ1c2VySWQiLCJyZWNlaXB0S2V5cyIsIk9iamVjdCIsImtleXMiLCJnZXRDb250ZW50IiwiaSIsImxlbmd0aCIsInJjcHQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTs7Ozs7Ozs7Ozs7Ozs7OztBQWdCQTs7Ozs7QUFLTyxTQUFTQSx5QkFBVCxDQUFtQ0MsWUFBbkMsRUFBaURDLE1BQWpELEVBQXlEO0FBQzVELFFBQU1DLFdBQVcsR0FBR0MsTUFBTSxDQUFDQyxJQUFQLENBQVlKLFlBQVksQ0FBQ0ssVUFBYixFQUFaLENBQXBCOztBQUNBLE9BQUssSUFBSUMsQ0FBQyxHQUFHLENBQWIsRUFBZ0JBLENBQUMsR0FBR0osV0FBVyxDQUFDSyxNQUFoQyxFQUF3QyxFQUFFRCxDQUExQyxFQUE2QztBQUN6QyxVQUFNRSxJQUFJLEdBQUdSLFlBQVksQ0FBQ0ssVUFBYixHQUEwQkgsV0FBVyxDQUFDSSxDQUFELENBQXJDLENBQWI7O0FBQ0EsUUFBSUUsSUFBSSxDQUFDLFFBQUQsQ0FBSixJQUFrQkEsSUFBSSxDQUFDLFFBQUQsQ0FBSixDQUFlUCxNQUFmLENBQXRCLEVBQThDO0FBQzFDLGFBQU9PLElBQVA7QUFDSDtBQUNKOztBQUVELFNBQU8sSUFBUDtBQUNIIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE2IE9wZW5NYXJrZXQgTHRkXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuLyoqXG4gKiBHaXZlbiBNYXRyaXhFdmVudCBjb250YWluaW5nIHJlY2VpcHRzLCByZXR1cm4gdGhlIGZpcnN0XG4gKiByZWFkIHJlY2VpcHQgZnJvbSB0aGUgZ2l2ZW4gdXNlciBJRCwgb3IgbnVsbCBpZiBubyBzdWNoXG4gKiByZWNlaXB0IGV4aXN0cy5cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGZpbmRSZWFkUmVjZWlwdEZyb21Vc2VySWQocmVjZWlwdEV2ZW50LCB1c2VySWQpIHtcbiAgICBjb25zdCByZWNlaXB0S2V5cyA9IE9iamVjdC5rZXlzKHJlY2VpcHRFdmVudC5nZXRDb250ZW50KCkpO1xuICAgIGZvciAobGV0IGkgPSAwOyBpIDwgcmVjZWlwdEtleXMubGVuZ3RoOyArK2kpIHtcbiAgICAgICAgY29uc3QgcmNwdCA9IHJlY2VpcHRFdmVudC5nZXRDb250ZW50KClbcmVjZWlwdEtleXNbaV1dO1xuICAgICAgICBpZiAocmNwdFsnbS5yZWFkJ10gJiYgcmNwdFsnbS5yZWFkJ11bdXNlcklkXSkge1xuICAgICAgICAgICAgcmV0dXJuIHJjcHQ7XG4gICAgICAgIH1cbiAgICB9XG5cbiAgICByZXR1cm4gbnVsbDtcbn1cbiJdfQ==

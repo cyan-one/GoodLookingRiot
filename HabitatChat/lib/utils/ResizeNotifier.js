@@ -1,0 +1,70 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _events = require("events");
+
+var _lodash = require("lodash");
+
+/*
+Copyright 2019 New Vector Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * Fires when the middle panel has been resized.
+ * @event module:utils~ResizeNotifier#"middlePanelResized"
+ */
+class ResizeNotifier extends _events.EventEmitter {
+  constructor() {
+    super(); // with default options, will call fn once at first call, and then every x ms
+    // if there was another call in that timespan
+
+    this._throttledMiddlePanel = (0, _lodash.throttle)(() => this.emit("middlePanelResized"), 200);
+  }
+
+  notifyBannersChanged() {
+    this.emit("leftPanelResized");
+    this.emit("middlePanelResized");
+  } // can be called in quick succession
+
+
+  notifyLeftHandleResized() {
+    // don't emit event for own region
+    this._throttledMiddlePanel();
+  } // can be called in quick succession
+
+
+  notifyRightHandleResized() {
+    this._throttledMiddlePanel();
+  } // can be called in quick succession
+
+
+  notifyWindowResized() {
+    // no need to throttle this one,
+    // also it could make scrollbars appear for
+    // a split second when the room list manual layout is now
+    // taller than the available space
+    this.emit("leftPanelResized");
+
+    this._throttledMiddlePanel();
+  }
+
+}
+
+exports.default = ResizeNotifier;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9SZXNpemVOb3RpZmllci5qcyJdLCJuYW1lcyI6WyJSZXNpemVOb3RpZmllciIsIkV2ZW50RW1pdHRlciIsImNvbnN0cnVjdG9yIiwiX3Rocm90dGxlZE1pZGRsZVBhbmVsIiwiZW1pdCIsIm5vdGlmeUJhbm5lcnNDaGFuZ2VkIiwibm90aWZ5TGVmdEhhbmRsZVJlc2l6ZWQiLCJub3RpZnlSaWdodEhhbmRsZVJlc2l6ZWQiLCJub3RpZnlXaW5kb3dSZXNpemVkIl0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBb0JBOztBQUNBOztBQXJCQTs7Ozs7Ozs7Ozs7Ozs7OztBQWdCQTs7OztBQU9lLE1BQU1BLGNBQU4sU0FBNkJDLG9CQUE3QixDQUEwQztBQUNyREMsRUFBQUEsV0FBVyxHQUFHO0FBQ1YsWUFEVSxDQUVWO0FBQ0E7O0FBQ0EsU0FBS0MscUJBQUwsR0FBNkIsc0JBQVMsTUFBTSxLQUFLQyxJQUFMLENBQVUsb0JBQVYsQ0FBZixFQUFnRCxHQUFoRCxDQUE3QjtBQUNIOztBQUVEQyxFQUFBQSxvQkFBb0IsR0FBRztBQUNuQixTQUFLRCxJQUFMLENBQVUsa0JBQVY7QUFDQSxTQUFLQSxJQUFMLENBQVUsb0JBQVY7QUFDSCxHQVhvRCxDQWFyRDs7O0FBQ0FFLEVBQUFBLHVCQUF1QixHQUFHO0FBQ3RCO0FBQ0EsU0FBS0gscUJBQUw7QUFDSCxHQWpCb0QsQ0FtQnJEOzs7QUFDQUksRUFBQUEsd0JBQXdCLEdBQUc7QUFDdkIsU0FBS0oscUJBQUw7QUFDSCxHQXRCb0QsQ0F3QnJEOzs7QUFDQUssRUFBQUEsbUJBQW1CLEdBQUc7QUFDbEI7QUFDQTtBQUNBO0FBQ0E7QUFDQSxTQUFLSixJQUFMLENBQVUsa0JBQVY7O0FBRUEsU0FBS0QscUJBQUw7QUFDSDs7QUFqQ29EIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE5IE5ldyBWZWN0b3IgTHRkXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuLyoqXG4gKiBGaXJlcyB3aGVuIHRoZSBtaWRkbGUgcGFuZWwgaGFzIGJlZW4gcmVzaXplZC5cbiAqIEBldmVudCBtb2R1bGU6dXRpbHN+UmVzaXplTm90aWZpZXIjXCJtaWRkbGVQYW5lbFJlc2l6ZWRcIlxuICovXG5pbXBvcnQgeyBFdmVudEVtaXR0ZXIgfSBmcm9tIFwiZXZlbnRzXCI7XG5pbXBvcnQgeyB0aHJvdHRsZSB9IGZyb20gXCJsb2Rhc2hcIjtcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgUmVzaXplTm90aWZpZXIgZXh0ZW5kcyBFdmVudEVtaXR0ZXIge1xuICAgIGNvbnN0cnVjdG9yKCkge1xuICAgICAgICBzdXBlcigpO1xuICAgICAgICAvLyB3aXRoIGRlZmF1bHQgb3B0aW9ucywgd2lsbCBjYWxsIGZuIG9uY2UgYXQgZmlyc3QgY2FsbCwgYW5kIHRoZW4gZXZlcnkgeCBtc1xuICAgICAgICAvLyBpZiB0aGVyZSB3YXMgYW5vdGhlciBjYWxsIGluIHRoYXQgdGltZXNwYW5cbiAgICAgICAgdGhpcy5fdGhyb3R0bGVkTWlkZGxlUGFuZWwgPSB0aHJvdHRsZSgoKSA9PiB0aGlzLmVtaXQoXCJtaWRkbGVQYW5lbFJlc2l6ZWRcIiksIDIwMCk7XG4gICAgfVxuXG4gICAgbm90aWZ5QmFubmVyc0NoYW5nZWQoKSB7XG4gICAgICAgIHRoaXMuZW1pdChcImxlZnRQYW5lbFJlc2l6ZWRcIik7XG4gICAgICAgIHRoaXMuZW1pdChcIm1pZGRsZVBhbmVsUmVzaXplZFwiKTtcbiAgICB9XG5cbiAgICAvLyBjYW4gYmUgY2FsbGVkIGluIHF1aWNrIHN1Y2Nlc3Npb25cbiAgICBub3RpZnlMZWZ0SGFuZGxlUmVzaXplZCgpIHtcbiAgICAgICAgLy8gZG9uJ3QgZW1pdCBldmVudCBmb3Igb3duIHJlZ2lvblxuICAgICAgICB0aGlzLl90aHJvdHRsZWRNaWRkbGVQYW5lbCgpO1xuICAgIH1cblxuICAgIC8vIGNhbiBiZSBjYWxsZWQgaW4gcXVpY2sgc3VjY2Vzc2lvblxuICAgIG5vdGlmeVJpZ2h0SGFuZGxlUmVzaXplZCgpIHtcbiAgICAgICAgdGhpcy5fdGhyb3R0bGVkTWlkZGxlUGFuZWwoKTtcbiAgICB9XG5cbiAgICAvLyBjYW4gYmUgY2FsbGVkIGluIHF1aWNrIHN1Y2Nlc3Npb25cbiAgICBub3RpZnlXaW5kb3dSZXNpemVkKCkge1xuICAgICAgICAvLyBubyBuZWVkIHRvIHRocm90dGxlIHRoaXMgb25lLFxuICAgICAgICAvLyBhbHNvIGl0IGNvdWxkIG1ha2Ugc2Nyb2xsYmFycyBhcHBlYXIgZm9yXG4gICAgICAgIC8vIGEgc3BsaXQgc2Vjb25kIHdoZW4gdGhlIHJvb20gbGlzdCBtYW51YWwgbGF5b3V0IGlzIG5vd1xuICAgICAgICAvLyB0YWxsZXIgdGhhbiB0aGUgYXZhaWxhYmxlIHNwYWNlXG4gICAgICAgIHRoaXMuZW1pdChcImxlZnRQYW5lbFJlc2l6ZWRcIik7XG5cbiAgICAgICAgdGhpcy5fdGhyb3R0bGVkTWlkZGxlUGFuZWwoKTtcbiAgICB9XG59XG5cbiJdfQ==

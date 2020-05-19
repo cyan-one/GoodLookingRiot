@@ -1,0 +1,69 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _item = _interopRequireDefault(require("../item"));
+
+var _sizer = _interopRequireDefault(require("../sizer"));
+
+/*
+Copyright 2019 New Vector Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+distributors translate a moving cursor into
+CSS/DOM changes by calling the sizer
+
+they have two methods:
+    `resize` receives then new item size
+    `resizeFromContainerOffset` receives resize handle location
+        within the container bounding box. For internal use.
+        This method usually ends up calling `resize` once the start offset is subtracted.
+*/
+class FixedDistributor {
+  static createItem(resizeHandle, resizer, sizer) {
+    return new _item.default(resizeHandle, resizer, sizer);
+  }
+
+  static createSizer(containerElement, vertical, reverse) {
+    return new _sizer.default(containerElement, vertical, reverse);
+  }
+
+  constructor(item) {
+    this.item = item;
+    this.beforeOffset = item.offset();
+  }
+
+  resize(size) {
+    this.item.setSize(size);
+  }
+
+  resizeFromContainerOffset(offset) {
+    this.resize(offset - this.beforeOffset);
+  }
+
+  start() {}
+
+  finish() {}
+
+}
+
+exports.default = FixedDistributor;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9yZXNpemVyL2Rpc3RyaWJ1dG9ycy9maXhlZC5qcyJdLCJuYW1lcyI6WyJGaXhlZERpc3RyaWJ1dG9yIiwiY3JlYXRlSXRlbSIsInJlc2l6ZUhhbmRsZSIsInJlc2l6ZXIiLCJzaXplciIsIlJlc2l6ZUl0ZW0iLCJjcmVhdGVTaXplciIsImNvbnRhaW5lckVsZW1lbnQiLCJ2ZXJ0aWNhbCIsInJldmVyc2UiLCJTaXplciIsImNvbnN0cnVjdG9yIiwiaXRlbSIsImJlZm9yZU9mZnNldCIsIm9mZnNldCIsInJlc2l6ZSIsInNpemUiLCJzZXRTaXplIiwicmVzaXplRnJvbUNvbnRhaW5lck9mZnNldCIsInN0YXJ0IiwiZmluaXNoIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFnQkE7O0FBQ0E7O0FBakJBOzs7Ozs7Ozs7Ozs7Ozs7O0FBbUJBOzs7Ozs7Ozs7O0FBVWUsTUFBTUEsZ0JBQU4sQ0FBdUI7QUFDbEMsU0FBT0MsVUFBUCxDQUFrQkMsWUFBbEIsRUFBZ0NDLE9BQWhDLEVBQXlDQyxLQUF6QyxFQUFnRDtBQUM1QyxXQUFPLElBQUlDLGFBQUosQ0FBZUgsWUFBZixFQUE2QkMsT0FBN0IsRUFBc0NDLEtBQXRDLENBQVA7QUFDSDs7QUFFRCxTQUFPRSxXQUFQLENBQW1CQyxnQkFBbkIsRUFBcUNDLFFBQXJDLEVBQStDQyxPQUEvQyxFQUF3RDtBQUNwRCxXQUFPLElBQUlDLGNBQUosQ0FBVUgsZ0JBQVYsRUFBNEJDLFFBQTVCLEVBQXNDQyxPQUF0QyxDQUFQO0FBQ0g7O0FBRURFLEVBQUFBLFdBQVcsQ0FBQ0MsSUFBRCxFQUFPO0FBQ2QsU0FBS0EsSUFBTCxHQUFZQSxJQUFaO0FBQ0EsU0FBS0MsWUFBTCxHQUFvQkQsSUFBSSxDQUFDRSxNQUFMLEVBQXBCO0FBQ0g7O0FBRURDLEVBQUFBLE1BQU0sQ0FBQ0MsSUFBRCxFQUFPO0FBQ1QsU0FBS0osSUFBTCxDQUFVSyxPQUFWLENBQWtCRCxJQUFsQjtBQUNIOztBQUVERSxFQUFBQSx5QkFBeUIsQ0FBQ0osTUFBRCxFQUFTO0FBQzlCLFNBQUtDLE1BQUwsQ0FBWUQsTUFBTSxHQUFHLEtBQUtELFlBQTFCO0FBQ0g7O0FBRURNLEVBQUFBLEtBQUssR0FBRyxDQUFFOztBQUVWQyxFQUFBQSxNQUFNLEdBQUcsQ0FBRTs7QUF4QnVCIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE5IE5ldyBWZWN0b3IgTHRkXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXRcblxuICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuKi9cblxuaW1wb3J0IFJlc2l6ZUl0ZW0gZnJvbSBcIi4uL2l0ZW1cIjtcbmltcG9ydCBTaXplciBmcm9tIFwiLi4vc2l6ZXJcIjtcblxuLyoqXG5kaXN0cmlidXRvcnMgdHJhbnNsYXRlIGEgbW92aW5nIGN1cnNvciBpbnRvXG5DU1MvRE9NIGNoYW5nZXMgYnkgY2FsbGluZyB0aGUgc2l6ZXJcblxudGhleSBoYXZlIHR3byBtZXRob2RzOlxuICAgIGByZXNpemVgIHJlY2VpdmVzIHRoZW4gbmV3IGl0ZW0gc2l6ZVxuICAgIGByZXNpemVGcm9tQ29udGFpbmVyT2Zmc2V0YCByZWNlaXZlcyByZXNpemUgaGFuZGxlIGxvY2F0aW9uXG4gICAgICAgIHdpdGhpbiB0aGUgY29udGFpbmVyIGJvdW5kaW5nIGJveC4gRm9yIGludGVybmFsIHVzZS5cbiAgICAgICAgVGhpcyBtZXRob2QgdXN1YWxseSBlbmRzIHVwIGNhbGxpbmcgYHJlc2l6ZWAgb25jZSB0aGUgc3RhcnQgb2Zmc2V0IGlzIHN1YnRyYWN0ZWQuXG4qL1xuZXhwb3J0IGRlZmF1bHQgY2xhc3MgRml4ZWREaXN0cmlidXRvciB7XG4gICAgc3RhdGljIGNyZWF0ZUl0ZW0ocmVzaXplSGFuZGxlLCByZXNpemVyLCBzaXplcikge1xuICAgICAgICByZXR1cm4gbmV3IFJlc2l6ZUl0ZW0ocmVzaXplSGFuZGxlLCByZXNpemVyLCBzaXplcik7XG4gICAgfVxuXG4gICAgc3RhdGljIGNyZWF0ZVNpemVyKGNvbnRhaW5lckVsZW1lbnQsIHZlcnRpY2FsLCByZXZlcnNlKSB7XG4gICAgICAgIHJldHVybiBuZXcgU2l6ZXIoY29udGFpbmVyRWxlbWVudCwgdmVydGljYWwsIHJldmVyc2UpO1xuICAgIH1cblxuICAgIGNvbnN0cnVjdG9yKGl0ZW0pIHtcbiAgICAgICAgdGhpcy5pdGVtID0gaXRlbTtcbiAgICAgICAgdGhpcy5iZWZvcmVPZmZzZXQgPSBpdGVtLm9mZnNldCgpO1xuICAgIH1cblxuICAgIHJlc2l6ZShzaXplKSB7XG4gICAgICAgIHRoaXMuaXRlbS5zZXRTaXplKHNpemUpO1xuICAgIH1cblxuICAgIHJlc2l6ZUZyb21Db250YWluZXJPZmZzZXQob2Zmc2V0KSB7XG4gICAgICAgIHRoaXMucmVzaXplKG9mZnNldCAtIHRoaXMuYmVmb3JlT2Zmc2V0KTtcbiAgICB9XG5cbiAgICBzdGFydCgpIHt9XG5cbiAgICBmaW5pc2goKSB7fVxufVxuIl19

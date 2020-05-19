@@ -1,0 +1,62 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+/*
+Copyright 2019 Tulir Asokan <tulir@maunium.net>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class Emoji extends _react.default.PureComponent {
+  render() {
+    const {
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+      emoji,
+      selectedEmojis
+    } = this.props;
+    const isSelected = selectedEmojis && selectedEmojis.has(emoji.unicode);
+    return /*#__PURE__*/_react.default.createElement("li", {
+      onClick: () => onClick(emoji),
+      onMouseEnter: () => onMouseEnter(emoji),
+      onMouseLeave: () => onMouseLeave(emoji),
+      className: "mx_EmojiPicker_item_wrapper"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "mx_EmojiPicker_item ".concat(isSelected ? 'mx_EmojiPicker_item_selected' : '')
+    }, emoji.unicode));
+  }
+
+}
+
+(0, _defineProperty2.default)(Emoji, "propTypes", {
+  onClick: _propTypes.default.func,
+  onMouseEnter: _propTypes.default.func,
+  onMouseLeave: _propTypes.default.func,
+  emoji: _propTypes.default.object.isRequired,
+  selectedEmojis: _propTypes.default.instanceOf(Set)
+});
+var _default = Emoji;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2Vtb2ppcGlja2VyL0Vtb2ppLmpzIl0sIm5hbWVzIjpbIkVtb2ppIiwiUmVhY3QiLCJQdXJlQ29tcG9uZW50IiwicmVuZGVyIiwib25DbGljayIsIm9uTW91c2VFbnRlciIsIm9uTW91c2VMZWF2ZSIsImVtb2ppIiwic2VsZWN0ZWRFbW9qaXMiLCJwcm9wcyIsImlzU2VsZWN0ZWQiLCJoYXMiLCJ1bmljb2RlIiwiUHJvcFR5cGVzIiwiZnVuYyIsIm9iamVjdCIsImlzUmVxdWlyZWQiLCJpbnN0YW5jZU9mIiwiU2V0Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQWdCQTs7QUFDQTs7QUFqQkE7Ozs7Ozs7Ozs7Ozs7OztBQW1CQSxNQUFNQSxLQUFOLFNBQW9CQyxlQUFNQyxhQUExQixDQUF3QztBQVNwQ0MsRUFBQUEsTUFBTSxHQUFHO0FBQ0wsVUFBTTtBQUFFQyxNQUFBQSxPQUFGO0FBQVdDLE1BQUFBLFlBQVg7QUFBeUJDLE1BQUFBLFlBQXpCO0FBQXVDQyxNQUFBQSxLQUF2QztBQUE4Q0MsTUFBQUE7QUFBOUMsUUFBaUUsS0FBS0MsS0FBNUU7QUFDQSxVQUFNQyxVQUFVLEdBQUdGLGNBQWMsSUFBSUEsY0FBYyxDQUFDRyxHQUFmLENBQW1CSixLQUFLLENBQUNLLE9BQXpCLENBQXJDO0FBQ0Esd0JBQ0k7QUFBSSxNQUFBLE9BQU8sRUFBRSxNQUFNUixPQUFPLENBQUNHLEtBQUQsQ0FBMUI7QUFDSSxNQUFBLFlBQVksRUFBRSxNQUFNRixZQUFZLENBQUNFLEtBQUQsQ0FEcEM7QUFFSSxNQUFBLFlBQVksRUFBRSxNQUFNRCxZQUFZLENBQUNDLEtBQUQsQ0FGcEM7QUFHSSxNQUFBLFNBQVMsRUFBQztBQUhkLG9CQUlJO0FBQUssTUFBQSxTQUFTLGdDQUF5QkcsVUFBVSxHQUFHLDhCQUFILEdBQW9DLEVBQXZFO0FBQWQsT0FDS0gsS0FBSyxDQUFDSyxPQURYLENBSkosQ0FESjtBQVVIOztBQXRCbUM7OzhCQUFsQ1osSyxlQUNpQjtBQUNmSSxFQUFBQSxPQUFPLEVBQUVTLG1CQUFVQyxJQURKO0FBRWZULEVBQUFBLFlBQVksRUFBRVEsbUJBQVVDLElBRlQ7QUFHZlIsRUFBQUEsWUFBWSxFQUFFTyxtQkFBVUMsSUFIVDtBQUlmUCxFQUFBQSxLQUFLLEVBQUVNLG1CQUFVRSxNQUFWLENBQWlCQyxVQUpUO0FBS2ZSLEVBQUFBLGNBQWMsRUFBRUssbUJBQVVJLFVBQVYsQ0FBcUJDLEdBQXJCO0FBTEQsQztlQXdCUmxCLEsiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTkgVHVsaXIgQXNva2FuIDx0dWxpckBtYXVuaXVtLm5ldD5cblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcblxuY2xhc3MgRW1vamkgZXh0ZW5kcyBSZWFjdC5QdXJlQ29tcG9uZW50IHtcbiAgICBzdGF0aWMgcHJvcFR5cGVzID0ge1xuICAgICAgICBvbkNsaWNrOiBQcm9wVHlwZXMuZnVuYyxcbiAgICAgICAgb25Nb3VzZUVudGVyOiBQcm9wVHlwZXMuZnVuYyxcbiAgICAgICAgb25Nb3VzZUxlYXZlOiBQcm9wVHlwZXMuZnVuYyxcbiAgICAgICAgZW1vamk6IFByb3BUeXBlcy5vYmplY3QuaXNSZXF1aXJlZCxcbiAgICAgICAgc2VsZWN0ZWRFbW9qaXM6IFByb3BUeXBlcy5pbnN0YW5jZU9mKFNldCksXG4gICAgfTtcblxuICAgIHJlbmRlcigpIHtcbiAgICAgICAgY29uc3QgeyBvbkNsaWNrLCBvbk1vdXNlRW50ZXIsIG9uTW91c2VMZWF2ZSwgZW1vamksIHNlbGVjdGVkRW1vamlzIH0gPSB0aGlzLnByb3BzO1xuICAgICAgICBjb25zdCBpc1NlbGVjdGVkID0gc2VsZWN0ZWRFbW9qaXMgJiYgc2VsZWN0ZWRFbW9qaXMuaGFzKGVtb2ppLnVuaWNvZGUpO1xuICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgPGxpIG9uQ2xpY2s9eygpID0+IG9uQ2xpY2soZW1vamkpfVxuICAgICAgICAgICAgICAgIG9uTW91c2VFbnRlcj17KCkgPT4gb25Nb3VzZUVudGVyKGVtb2ppKX1cbiAgICAgICAgICAgICAgICBvbk1vdXNlTGVhdmU9eygpID0+IG9uTW91c2VMZWF2ZShlbW9qaSl9XG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwibXhfRW1vamlQaWNrZXJfaXRlbV93cmFwcGVyXCI+XG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2BteF9FbW9qaVBpY2tlcl9pdGVtICR7aXNTZWxlY3RlZCA/ICdteF9FbW9qaVBpY2tlcl9pdGVtX3NlbGVjdGVkJyA6ICcnfWB9PlxuICAgICAgICAgICAgICAgICAgICB7ZW1vamkudW5pY29kZX1cbiAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICk7XG4gICAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBFbW9qaTtcbiJdfQ==

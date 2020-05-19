@@ -1,0 +1,49 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/*
+Copyright 2018 New Vector Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * Represents mapping of widget instance to URLs for trusted postMessage communication.
+ */
+class WidgetMessageEndpoint {
+  /**
+   * Mapping of widget instance to URL for trusted postMessage communication.
+   * @param  {string} widgetId    Unique widget identifier
+   * @param  {string} endpointUrl Widget wurl origin.
+   */
+  constructor(widgetId, endpointUrl) {
+    if (!widgetId) {
+      throw new Error("No widgetId specified in widgetMessageEndpoint constructor");
+    }
+
+    if (!endpointUrl) {
+      throw new Error("No endpoint specified in widgetMessageEndpoint constructor");
+    }
+
+    this.widgetId = widgetId;
+    this.endpointUrl = endpointUrl;
+  }
+
+}
+
+exports.default = WidgetMessageEndpoint;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9XaWRnZXRNZXNzYWdpbmdFbmRwb2ludC5qcyJdLCJuYW1lcyI6WyJXaWRnZXRNZXNzYWdlRW5kcG9pbnQiLCJjb25zdHJ1Y3RvciIsIndpZGdldElkIiwiZW5kcG9pbnRVcmwiLCJFcnJvciJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7Ozs7O0FBaUJBOzs7QUFHZSxNQUFNQSxxQkFBTixDQUE0QjtBQUN2Qzs7Ozs7QUFLQUMsRUFBQUEsV0FBVyxDQUFDQyxRQUFELEVBQVdDLFdBQVgsRUFBd0I7QUFDL0IsUUFBSSxDQUFDRCxRQUFMLEVBQWU7QUFDWCxZQUFNLElBQUlFLEtBQUosQ0FBVSw0REFBVixDQUFOO0FBQ0g7O0FBQ0QsUUFBSSxDQUFDRCxXQUFMLEVBQWtCO0FBQ2QsWUFBTSxJQUFJQyxLQUFKLENBQVUsNERBQVYsQ0FBTjtBQUNIOztBQUNELFNBQUtGLFFBQUwsR0FBZ0JBLFFBQWhCO0FBQ0EsU0FBS0MsV0FBTCxHQUFtQkEsV0FBbkI7QUFDSDs7QUFmc0MiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMTggTmV3IFZlY3RvciBMdGRcblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5cbi8qKlxuICogUmVwcmVzZW50cyBtYXBwaW5nIG9mIHdpZGdldCBpbnN0YW5jZSB0byBVUkxzIGZvciB0cnVzdGVkIHBvc3RNZXNzYWdlIGNvbW11bmljYXRpb24uXG4gKi9cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFdpZGdldE1lc3NhZ2VFbmRwb2ludCB7XG4gICAgLyoqXG4gICAgICogTWFwcGluZyBvZiB3aWRnZXQgaW5zdGFuY2UgdG8gVVJMIGZvciB0cnVzdGVkIHBvc3RNZXNzYWdlIGNvbW11bmljYXRpb24uXG4gICAgICogQHBhcmFtICB7c3RyaW5nfSB3aWRnZXRJZCAgICBVbmlxdWUgd2lkZ2V0IGlkZW50aWZpZXJcbiAgICAgKiBAcGFyYW0gIHtzdHJpbmd9IGVuZHBvaW50VXJsIFdpZGdldCB3dXJsIG9yaWdpbi5cbiAgICAgKi9cbiAgICBjb25zdHJ1Y3Rvcih3aWRnZXRJZCwgZW5kcG9pbnRVcmwpIHtcbiAgICAgICAgaWYgKCF3aWRnZXRJZCkge1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKFwiTm8gd2lkZ2V0SWQgc3BlY2lmaWVkIGluIHdpZGdldE1lc3NhZ2VFbmRwb2ludCBjb25zdHJ1Y3RvclwiKTtcbiAgICAgICAgfVxuICAgICAgICBpZiAoIWVuZHBvaW50VXJsKSB7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoXCJObyBlbmRwb2ludCBzcGVjaWZpZWQgaW4gd2lkZ2V0TWVzc2FnZUVuZHBvaW50IGNvbnN0cnVjdG9yXCIpO1xuICAgICAgICB9XG4gICAgICAgIHRoaXMud2lkZ2V0SWQgPSB3aWRnZXRJZDtcbiAgICAgICAgdGhpcy5lbmRwb2ludFVybCA9IGVuZHBvaW50VXJsO1xuICAgIH1cbn1cbiJdfQ==

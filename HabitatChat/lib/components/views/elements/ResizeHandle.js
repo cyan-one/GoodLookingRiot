@@ -1,0 +1,42 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+// eslint-disable-line no-unused-vars
+//see src/resizer for the actual resizing code, this is just the DOM for the resize handle
+const ResizeHandle = props => {
+  const classNames = ['mx_ResizeHandle'];
+
+  if (props.vertical) {
+    classNames.push('mx_ResizeHandle_vertical');
+  } else {
+    classNames.push('mx_ResizeHandle_horizontal');
+  }
+
+  if (props.reverse) {
+    classNames.push('mx_ResizeHandle_reverse');
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: classNames.join(' '),
+    "data-id": props.id
+  }, /*#__PURE__*/_react.default.createElement("div", null));
+};
+
+ResizeHandle.propTypes = {
+  vertical: _propTypes.default.bool,
+  reverse: _propTypes.default.bool,
+  id: _propTypes.default.string
+};
+var _default = ResizeHandle;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2VsZW1lbnRzL1Jlc2l6ZUhhbmRsZS5qcyJdLCJuYW1lcyI6WyJSZXNpemVIYW5kbGUiLCJwcm9wcyIsImNsYXNzTmFtZXMiLCJ2ZXJ0aWNhbCIsInB1c2giLCJyZXZlcnNlIiwiam9pbiIsImlkIiwicHJvcFR5cGVzIiwiUHJvcFR5cGVzIiwiYm9vbCIsInN0cmluZyJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBQ0E7O0FBQ0E7O0FBRDJCO0FBRzNCO0FBQ0EsTUFBTUEsWUFBWSxHQUFJQyxLQUFELElBQVc7QUFDNUIsUUFBTUMsVUFBVSxHQUFHLENBQUMsaUJBQUQsQ0FBbkI7O0FBQ0EsTUFBSUQsS0FBSyxDQUFDRSxRQUFWLEVBQW9CO0FBQ2hCRCxJQUFBQSxVQUFVLENBQUNFLElBQVgsQ0FBZ0IsMEJBQWhCO0FBQ0gsR0FGRCxNQUVPO0FBQ0hGLElBQUFBLFVBQVUsQ0FBQ0UsSUFBWCxDQUFnQiw0QkFBaEI7QUFDSDs7QUFDRCxNQUFJSCxLQUFLLENBQUNJLE9BQVYsRUFBbUI7QUFDZkgsSUFBQUEsVUFBVSxDQUFDRSxJQUFYLENBQWdCLHlCQUFoQjtBQUNIOztBQUNELHNCQUNJO0FBQUssSUFBQSxTQUFTLEVBQUVGLFVBQVUsQ0FBQ0ksSUFBWCxDQUFnQixHQUFoQixDQUFoQjtBQUFzQyxlQUFTTCxLQUFLLENBQUNNO0FBQXJELGtCQUF5RCx5Q0FBekQsQ0FESjtBQUdILENBYkQ7O0FBZUFQLFlBQVksQ0FBQ1EsU0FBYixHQUF5QjtBQUNyQkwsRUFBQUEsUUFBUSxFQUFFTSxtQkFBVUMsSUFEQztBQUVyQkwsRUFBQUEsT0FBTyxFQUFFSSxtQkFBVUMsSUFGRTtBQUdyQkgsRUFBQUEsRUFBRSxFQUFFRSxtQkFBVUU7QUFITyxDQUF6QjtlQU1lWCxZIiwic291cmNlc0NvbnRlbnQiOlsiXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnOyAvLyBlc2xpbnQtZGlzYWJsZS1saW5lIG5vLXVudXNlZC12YXJzXG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuXG4vL3NlZSBzcmMvcmVzaXplciBmb3IgdGhlIGFjdHVhbCByZXNpemluZyBjb2RlLCB0aGlzIGlzIGp1c3QgdGhlIERPTSBmb3IgdGhlIHJlc2l6ZSBoYW5kbGVcbmNvbnN0IFJlc2l6ZUhhbmRsZSA9IChwcm9wcykgPT4ge1xuICAgIGNvbnN0IGNsYXNzTmFtZXMgPSBbJ214X1Jlc2l6ZUhhbmRsZSddO1xuICAgIGlmIChwcm9wcy52ZXJ0aWNhbCkge1xuICAgICAgICBjbGFzc05hbWVzLnB1c2goJ214X1Jlc2l6ZUhhbmRsZV92ZXJ0aWNhbCcpO1xuICAgIH0gZWxzZSB7XG4gICAgICAgIGNsYXNzTmFtZXMucHVzaCgnbXhfUmVzaXplSGFuZGxlX2hvcml6b250YWwnKTtcbiAgICB9XG4gICAgaWYgKHByb3BzLnJldmVyc2UpIHtcbiAgICAgICAgY2xhc3NOYW1lcy5wdXNoKCdteF9SZXNpemVIYW5kbGVfcmV2ZXJzZScpO1xuICAgIH1cbiAgICByZXR1cm4gKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17Y2xhc3NOYW1lcy5qb2luKCcgJyl9IGRhdGEtaWQ9e3Byb3BzLmlkfT48ZGl2IC8+PC9kaXY+XG4gICAgKTtcbn07XG5cblJlc2l6ZUhhbmRsZS5wcm9wVHlwZXMgPSB7XG4gICAgdmVydGljYWw6IFByb3BUeXBlcy5ib29sLFxuICAgIHJldmVyc2U6IFByb3BUeXBlcy5ib29sLFxuICAgIGlkOiBQcm9wVHlwZXMuc3RyaW5nLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgUmVzaXplSGFuZGxlO1xuIl19

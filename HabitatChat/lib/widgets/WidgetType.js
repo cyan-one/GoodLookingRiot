@@ -1,0 +1,65 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.WidgetType = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+/*
+Copyright 2020 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class WidgetType {
+  constructor(preferred
+  /*: string*/
+  , legacy
+  /*: string*/
+  ) {
+    this.preferred = preferred;
+    this.legacy = legacy;
+  }
+
+  matches(type
+  /*: string*/
+  )
+  /*: boolean*/
+  {
+    return type === this.preferred || type === this.legacy;
+  }
+
+  static fromString(type
+  /*: string*/
+  )
+  /*: WidgetType*/
+  {
+    // First try and match it against something we're already aware of
+    const known = Object.values(WidgetType).filter(v => v instanceof WidgetType);
+    const knownMatch = known.find(w => w.matches(type));
+    if (knownMatch) return knownMatch; // If that fails, invent a new widget type
+
+    return new WidgetType(type, type);
+  }
+
+}
+
+exports.WidgetType = WidgetType;
+(0, _defineProperty2.default)(WidgetType, "JITSI", new WidgetType("m.jitsi", "jitsi"));
+(0, _defineProperty2.default)(WidgetType, "STICKERPICKER", new WidgetType("m.stickerpicker", "m.stickerpicker"));
+(0, _defineProperty2.default)(WidgetType, "INTEGRATION_MANAGER", new WidgetType("m.integration_manager", "m.integration_manager"));
+(0, _defineProperty2.default)(WidgetType, "CUSTOM", new WidgetType("m.custom", "m.custom"));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy93aWRnZXRzL1dpZGdldFR5cGUudHMiXSwibmFtZXMiOlsiV2lkZ2V0VHlwZSIsImNvbnN0cnVjdG9yIiwicHJlZmVycmVkIiwibGVnYWN5IiwibWF0Y2hlcyIsInR5cGUiLCJmcm9tU3RyaW5nIiwia25vd24iLCJPYmplY3QiLCJ2YWx1ZXMiLCJmaWx0ZXIiLCJ2Iiwia25vd25NYXRjaCIsImZpbmQiLCJ3Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBOzs7Ozs7Ozs7Ozs7Ozs7QUFnQk8sTUFBTUEsVUFBTixDQUFpQjtBQU1wQkMsRUFBQUEsV0FBVyxDQUFpQkM7QUFBakI7QUFBQSxJQUFvREM7QUFBcEQ7QUFBQSxJQUFvRTtBQUFBLFNBQW5ERCxTQUFtRCxHQUFuREEsU0FBbUQ7QUFBQSxTQUFoQkMsTUFBZ0IsR0FBaEJBLE1BQWdCO0FBQzlFOztBQUVNQyxFQUFBQSxPQUFQLENBQWVDO0FBQWY7QUFBQTtBQUFBO0FBQXNDO0FBQ2xDLFdBQU9BLElBQUksS0FBSyxLQUFLSCxTQUFkLElBQTJCRyxJQUFJLEtBQUssS0FBS0YsTUFBaEQ7QUFDSDs7QUFFRCxTQUFPRyxVQUFQLENBQWtCRDtBQUFsQjtBQUFBO0FBQUE7QUFBNEM7QUFDeEM7QUFDQSxVQUFNRSxLQUFLLEdBQUdDLE1BQU0sQ0FBQ0MsTUFBUCxDQUFjVCxVQUFkLEVBQTBCVSxNQUExQixDQUFpQ0MsQ0FBQyxJQUFJQSxDQUFDLFlBQVlYLFVBQW5ELENBQWQ7QUFDQSxVQUFNWSxVQUFVLEdBQUdMLEtBQUssQ0FBQ00sSUFBTixDQUFXQyxDQUFDLElBQUlBLENBQUMsQ0FBQ1YsT0FBRixDQUFVQyxJQUFWLENBQWhCLENBQW5CO0FBQ0EsUUFBSU8sVUFBSixFQUFnQixPQUFPQSxVQUFQLENBSndCLENBTXhDOztBQUNBLFdBQU8sSUFBSVosVUFBSixDQUFlSyxJQUFmLEVBQXFCQSxJQUFyQixDQUFQO0FBQ0g7O0FBckJtQjs7OzhCQUFYTCxVLFdBQ3NCLElBQUlBLFVBQUosQ0FBZSxTQUFmLEVBQTBCLE9BQTFCLEM7OEJBRHRCQSxVLG1CQUU4QixJQUFJQSxVQUFKLENBQWUsaUJBQWYsRUFBa0MsaUJBQWxDLEM7OEJBRjlCQSxVLHlCQUdvQyxJQUFJQSxVQUFKLENBQWUsdUJBQWYsRUFBd0MsdUJBQXhDLEM7OEJBSHBDQSxVLFlBSXVCLElBQUlBLFVBQUosQ0FBZSxVQUFmLEVBQTJCLFVBQTNCLEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuQ29weXJpZ2h0IDIwMjAgVGhlIE1hdHJpeC5vcmcgRm91bmRhdGlvbiBDLkkuQy5cblxuTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlIFwiTGljZW5zZVwiKTtcbnlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS5cbllvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdFxuXG4gICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wXG5cblVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmVcbmRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuIFwiQVMgSVNcIiBCQVNJUyxcbldJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLlxuU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZFxubGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuXG4qL1xuXG5leHBvcnQgY2xhc3MgV2lkZ2V0VHlwZSB7XG4gICAgcHVibGljIHN0YXRpYyByZWFkb25seSBKSVRTSSA9IG5ldyBXaWRnZXRUeXBlKFwibS5qaXRzaVwiLCBcImppdHNpXCIpO1xuICAgIHB1YmxpYyBzdGF0aWMgcmVhZG9ubHkgU1RJQ0tFUlBJQ0tFUiA9IG5ldyBXaWRnZXRUeXBlKFwibS5zdGlja2VycGlja2VyXCIsIFwibS5zdGlja2VycGlja2VyXCIpO1xuICAgIHB1YmxpYyBzdGF0aWMgcmVhZG9ubHkgSU5URUdSQVRJT05fTUFOQUdFUiA9IG5ldyBXaWRnZXRUeXBlKFwibS5pbnRlZ3JhdGlvbl9tYW5hZ2VyXCIsIFwibS5pbnRlZ3JhdGlvbl9tYW5hZ2VyXCIpO1xuICAgIHB1YmxpYyBzdGF0aWMgcmVhZG9ubHkgQ1VTVE9NID0gbmV3IFdpZGdldFR5cGUoXCJtLmN1c3RvbVwiLCBcIm0uY3VzdG9tXCIpO1xuXG4gICAgY29uc3RydWN0b3IocHVibGljIHJlYWRvbmx5IHByZWZlcnJlZDogc3RyaW5nLCBwdWJsaWMgcmVhZG9ubHkgbGVnYWN5OiBzdHJpbmcpIHtcbiAgICB9XG5cbiAgICBwdWJsaWMgbWF0Y2hlcyh0eXBlOiBzdHJpbmcpOiBib29sZWFuIHtcbiAgICAgICAgcmV0dXJuIHR5cGUgPT09IHRoaXMucHJlZmVycmVkIHx8IHR5cGUgPT09IHRoaXMubGVnYWN5O1xuICAgIH1cblxuICAgIHN0YXRpYyBmcm9tU3RyaW5nKHR5cGU6IHN0cmluZyk6IFdpZGdldFR5cGUge1xuICAgICAgICAvLyBGaXJzdCB0cnkgYW5kIG1hdGNoIGl0IGFnYWluc3Qgc29tZXRoaW5nIHdlJ3JlIGFscmVhZHkgYXdhcmUgb2ZcbiAgICAgICAgY29uc3Qga25vd24gPSBPYmplY3QudmFsdWVzKFdpZGdldFR5cGUpLmZpbHRlcih2ID0+IHYgaW5zdGFuY2VvZiBXaWRnZXRUeXBlKTtcbiAgICAgICAgY29uc3Qga25vd25NYXRjaCA9IGtub3duLmZpbmQodyA9PiB3Lm1hdGNoZXModHlwZSkpO1xuICAgICAgICBpZiAoa25vd25NYXRjaCkgcmV0dXJuIGtub3duTWF0Y2g7XG5cbiAgICAgICAgLy8gSWYgdGhhdCBmYWlscywgaW52ZW50IGEgbmV3IHdpZGdldCB0eXBlXG4gICAgICAgIHJldHVybiBuZXcgV2lkZ2V0VHlwZSh0eXBlLCB0eXBlKTtcbiAgICB9XG59XG4iXX0=

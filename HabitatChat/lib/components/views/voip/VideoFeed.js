@@ -1,0 +1,73 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _createReactClass = _interopRequireDefault(require("create-react-class"));
+
+/*
+Copyright 2015, 2016 OpenMarket Ltd
+Copyright 2019 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+var _default = (0, _createReactClass.default)({
+  displayName: 'VideoFeed',
+  propTypes: {
+    // maxHeight style attribute for the video element
+    maxHeight: _propTypes.default.number,
+    // a callback which is called when the video element is resized
+    // due to a change in video metadata
+    onResize: _propTypes.default.func
+  },
+
+  // TODO: [REACT-WARNING] Replace component with real class, use constructor for refs
+  UNSAFE_componentWillMount() {
+    this._vid = (0, _react.createRef)();
+  },
+
+  componentDidMount() {
+    this._vid.current.addEventListener('resize', this.onResize);
+  },
+
+  componentWillUnmount() {
+    this._vid.current.removeEventListener('resize', this.onResize);
+  },
+
+  onResize: function (e) {
+    if (this.props.onResize) {
+      this.props.onResize(e);
+    }
+  },
+  render: function () {
+    return /*#__PURE__*/_react.default.createElement("video", {
+      ref: this._vid,
+      style: {
+        maxHeight: this.props.maxHeight
+      }
+    });
+  }
+});
+
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL3ZvaXAvVmlkZW9GZWVkLmpzIl0sIm5hbWVzIjpbImRpc3BsYXlOYW1lIiwicHJvcFR5cGVzIiwibWF4SGVpZ2h0IiwiUHJvcFR5cGVzIiwibnVtYmVyIiwib25SZXNpemUiLCJmdW5jIiwiVU5TQUZFX2NvbXBvbmVudFdpbGxNb3VudCIsIl92aWQiLCJjb21wb25lbnREaWRNb3VudCIsImN1cnJlbnQiLCJhZGRFdmVudExpc3RlbmVyIiwiY29tcG9uZW50V2lsbFVubW91bnQiLCJyZW1vdmVFdmVudExpc3RlbmVyIiwiZSIsInByb3BzIiwicmVuZGVyIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQWlCQTs7QUFDQTs7QUFDQTs7QUFuQkE7Ozs7Ozs7Ozs7Ozs7Ozs7ZUFxQmUsK0JBQWlCO0FBQzVCQSxFQUFBQSxXQUFXLEVBQUUsV0FEZTtBQUc1QkMsRUFBQUEsU0FBUyxFQUFFO0FBQ1A7QUFDQUMsSUFBQUEsU0FBUyxFQUFFQyxtQkFBVUMsTUFGZDtBQUlQO0FBQ0E7QUFDQUMsSUFBQUEsUUFBUSxFQUFFRixtQkFBVUc7QUFOYixHQUhpQjs7QUFZNUI7QUFDQUMsRUFBQUEseUJBQXlCLEdBQUc7QUFDeEIsU0FBS0MsSUFBTCxHQUFZLHVCQUFaO0FBQ0gsR0FmMkI7O0FBaUI1QkMsRUFBQUEsaUJBQWlCLEdBQUc7QUFDaEIsU0FBS0QsSUFBTCxDQUFVRSxPQUFWLENBQWtCQyxnQkFBbEIsQ0FBbUMsUUFBbkMsRUFBNkMsS0FBS04sUUFBbEQ7QUFDSCxHQW5CMkI7O0FBcUI1Qk8sRUFBQUEsb0JBQW9CLEdBQUc7QUFDbkIsU0FBS0osSUFBTCxDQUFVRSxPQUFWLENBQWtCRyxtQkFBbEIsQ0FBc0MsUUFBdEMsRUFBZ0QsS0FBS1IsUUFBckQ7QUFDSCxHQXZCMkI7O0FBeUI1QkEsRUFBQUEsUUFBUSxFQUFFLFVBQVNTLENBQVQsRUFBWTtBQUNsQixRQUFJLEtBQUtDLEtBQUwsQ0FBV1YsUUFBZixFQUF5QjtBQUNyQixXQUFLVSxLQUFMLENBQVdWLFFBQVgsQ0FBb0JTLENBQXBCO0FBQ0g7QUFDSixHQTdCMkI7QUErQjVCRSxFQUFBQSxNQUFNLEVBQUUsWUFBVztBQUNmLHdCQUNJO0FBQU8sTUFBQSxHQUFHLEVBQUUsS0FBS1IsSUFBakI7QUFBdUIsTUFBQSxLQUFLLEVBQUU7QUFBQ04sUUFBQUEsU0FBUyxFQUFFLEtBQUthLEtBQUwsQ0FBV2I7QUFBdkI7QUFBOUIsTUFESjtBQUlIO0FBcEMyQixDQUFqQixDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbkNvcHlyaWdodCAyMDE1LCAyMDE2IE9wZW5NYXJrZXQgTHRkXG5Db3B5cmlnaHQgMjAxOSBUaGUgTWF0cml4Lm9yZyBGb3VuZGF0aW9uIEMuSS5DLlxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCwge2NyZWF0ZVJlZn0gZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBjcmVhdGVSZWFjdENsYXNzIGZyb20gJ2NyZWF0ZS1yZWFjdC1jbGFzcyc7XG5cbmV4cG9ydCBkZWZhdWx0IGNyZWF0ZVJlYWN0Q2xhc3Moe1xuICAgIGRpc3BsYXlOYW1lOiAnVmlkZW9GZWVkJyxcblxuICAgIHByb3BUeXBlczoge1xuICAgICAgICAvLyBtYXhIZWlnaHQgc3R5bGUgYXR0cmlidXRlIGZvciB0aGUgdmlkZW8gZWxlbWVudFxuICAgICAgICBtYXhIZWlnaHQ6IFByb3BUeXBlcy5udW1iZXIsXG5cbiAgICAgICAgLy8gYSBjYWxsYmFjayB3aGljaCBpcyBjYWxsZWQgd2hlbiB0aGUgdmlkZW8gZWxlbWVudCBpcyByZXNpemVkXG4gICAgICAgIC8vIGR1ZSB0byBhIGNoYW5nZSBpbiB2aWRlbyBtZXRhZGF0YVxuICAgICAgICBvblJlc2l6ZTogUHJvcFR5cGVzLmZ1bmMsXG4gICAgfSxcblxuICAgIC8vIFRPRE86IFtSRUFDVC1XQVJOSU5HXSBSZXBsYWNlIGNvbXBvbmVudCB3aXRoIHJlYWwgY2xhc3MsIHVzZSBjb25zdHJ1Y3RvciBmb3IgcmVmc1xuICAgIFVOU0FGRV9jb21wb25lbnRXaWxsTW91bnQoKSB7XG4gICAgICAgIHRoaXMuX3ZpZCA9IGNyZWF0ZVJlZigpO1xuICAgIH0sXG5cbiAgICBjb21wb25lbnREaWRNb3VudCgpIHtcbiAgICAgICAgdGhpcy5fdmlkLmN1cnJlbnQuYWRkRXZlbnRMaXN0ZW5lcigncmVzaXplJywgdGhpcy5vblJlc2l6ZSk7XG4gICAgfSxcblxuICAgIGNvbXBvbmVudFdpbGxVbm1vdW50KCkge1xuICAgICAgICB0aGlzLl92aWQuY3VycmVudC5yZW1vdmVFdmVudExpc3RlbmVyKCdyZXNpemUnLCB0aGlzLm9uUmVzaXplKTtcbiAgICB9LFxuXG4gICAgb25SZXNpemU6IGZ1bmN0aW9uKGUpIHtcbiAgICAgICAgaWYgKHRoaXMucHJvcHMub25SZXNpemUpIHtcbiAgICAgICAgICAgIHRoaXMucHJvcHMub25SZXNpemUoZSk7XG4gICAgICAgIH1cbiAgICB9LFxuXG4gICAgcmVuZGVyOiBmdW5jdGlvbigpIHtcbiAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgIDx2aWRlbyByZWY9e3RoaXMuX3ZpZH0gc3R5bGU9e3ttYXhIZWlnaHQ6IHRoaXMucHJvcHMubWF4SGVpZ2h0fX0+XG4gICAgICAgICAgICA8L3ZpZGVvPlxuICAgICAgICApO1xuICAgIH0sXG59KTtcblxuIl19

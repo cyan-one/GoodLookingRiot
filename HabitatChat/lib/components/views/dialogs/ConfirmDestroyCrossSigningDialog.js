@@ -1,0 +1,73 @@
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _languageHandler = require("../../../languageHandler");
+
+var sdk = _interopRequireWildcard(require("../../../index"));
+
+/*
+Copyright 2020 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+class ConfirmDestroyCrossSigningDialog extends _react.default.Component {
+  constructor(...args) {
+    super(...args);
+    (0, _defineProperty2.default)(this, "_onConfirm", () => {
+      this.props.onFinished(true);
+    });
+    (0, _defineProperty2.default)(this, "_onDecline", () => {
+      this.props.onFinished(false);
+    });
+  }
+
+  render() {
+    const BaseDialog = sdk.getComponent('views.dialogs.BaseDialog');
+    const DialogButtons = sdk.getComponent('views.elements.DialogButtons');
+    return /*#__PURE__*/_react.default.createElement(BaseDialog, {
+      className: "mx_ConfirmDestroyCrossSigningDialog",
+      hasCancel: true,
+      onFinished: this.props.onFinished,
+      title: (0, _languageHandler._t)("Destroy cross-signing keys?")
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "mx_ConfirmDestroyCrossSigningDialog_content"
+    }, /*#__PURE__*/_react.default.createElement("p", null, (0, _languageHandler._t)("Deleting cross-signing keys is permanent. " + "Anyone you have verified with will see security alerts. " + "You almost certainly don't want to do this, unless " + "you've lost every device you can cross-sign from."))), /*#__PURE__*/_react.default.createElement(DialogButtons, {
+      primaryButton: (0, _languageHandler._t)("Clear cross-signing keys"),
+      onPrimaryButtonClick: this._onConfirm,
+      primaryButtonClass: "danger",
+      cancelButton: (0, _languageHandler._t)("Cancel"),
+      onCancel: this._onDecline
+    }));
+  }
+
+}
+
+exports.default = ConfirmDestroyCrossSigningDialog;
+(0, _defineProperty2.default)(ConfirmDestroyCrossSigningDialog, "propTypes", {
+  onFinished: _propTypes.default.func.isRequired
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3ZpZXdzL2RpYWxvZ3MvQ29uZmlybURlc3Ryb3lDcm9zc1NpZ25pbmdEaWFsb2cuanMiXSwibmFtZXMiOlsiQ29uZmlybURlc3Ryb3lDcm9zc1NpZ25pbmdEaWFsb2ciLCJSZWFjdCIsIkNvbXBvbmVudCIsInByb3BzIiwib25GaW5pc2hlZCIsInJlbmRlciIsIkJhc2VEaWFsb2ciLCJzZGsiLCJnZXRDb21wb25lbnQiLCJEaWFsb2dCdXR0b25zIiwiX29uQ29uZmlybSIsIl9vbkRlY2xpbmUiLCJQcm9wVHlwZXMiLCJmdW5jIiwiaXNSZXF1aXJlZCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OztBQWdCQTs7QUFDQTs7QUFDQTs7QUFDQTs7QUFuQkE7Ozs7Ozs7Ozs7Ozs7OztBQXFCZSxNQUFNQSxnQ0FBTixTQUErQ0MsZUFBTUMsU0FBckQsQ0FBK0Q7QUFBQTtBQUFBO0FBQUEsc0RBSzdELE1BQU07QUFDZixXQUFLQyxLQUFMLENBQVdDLFVBQVgsQ0FBc0IsSUFBdEI7QUFDSCxLQVB5RTtBQUFBLHNEQVM3RCxNQUFNO0FBQ2YsV0FBS0QsS0FBTCxDQUFXQyxVQUFYLENBQXNCLEtBQXRCO0FBQ0gsS0FYeUU7QUFBQTs7QUFhMUVDLEVBQUFBLE1BQU0sR0FBRztBQUNMLFVBQU1DLFVBQVUsR0FBR0MsR0FBRyxDQUFDQyxZQUFKLENBQWlCLDBCQUFqQixDQUFuQjtBQUNBLFVBQU1DLGFBQWEsR0FBR0YsR0FBRyxDQUFDQyxZQUFKLENBQWlCLDhCQUFqQixDQUF0QjtBQUVBLHdCQUNJLDZCQUFDLFVBQUQ7QUFDUSxNQUFBLFNBQVMsRUFBQyxxQ0FEbEI7QUFFUSxNQUFBLFNBQVMsRUFBRSxJQUZuQjtBQUdRLE1BQUEsVUFBVSxFQUFFLEtBQUtMLEtBQUwsQ0FBV0MsVUFIL0I7QUFJUSxNQUFBLEtBQUssRUFBRSx5QkFBRyw2QkFBSDtBQUpmLG9CQUtJO0FBQUssTUFBQSxTQUFTLEVBQUM7QUFBZixvQkFDSSx3Q0FDSyx5QkFDRywrQ0FDQSwwREFEQSxHQUVBLHFEQUZBLEdBR0EsbURBSkgsQ0FETCxDQURKLENBTEosZUFlSSw2QkFBQyxhQUFEO0FBQ0ksTUFBQSxhQUFhLEVBQUUseUJBQUcsMEJBQUgsQ0FEbkI7QUFFSSxNQUFBLG9CQUFvQixFQUFFLEtBQUtNLFVBRi9CO0FBR0ksTUFBQSxrQkFBa0IsRUFBQyxRQUh2QjtBQUlJLE1BQUEsWUFBWSxFQUFFLHlCQUFHLFFBQUgsQ0FKbEI7QUFLSSxNQUFBLFFBQVEsRUFBRSxLQUFLQztBQUxuQixNQWZKLENBREo7QUF5Qkg7O0FBMUN5RTs7OzhCQUF6RFgsZ0MsZUFDRTtBQUNmSSxFQUFBQSxVQUFVLEVBQUVRLG1CQUFVQyxJQUFWLENBQWVDO0FBRFosQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAyMCBUaGUgTWF0cml4Lm9yZyBGb3VuZGF0aW9uIEMuSS5DLlxuXG5MaWNlbnNlZCB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wICh0aGUgXCJMaWNlbnNlXCIpO1xueW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoIHRoZSBMaWNlbnNlLlxuWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0XG5cbiAgICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjBcblxuVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZVxuZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gXCJBUyBJU1wiIEJBU0lTLFxuV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuXG5TZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kXG5saW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS5cbiovXG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHtfdH0gZnJvbSBcIi4uLy4uLy4uL2xhbmd1YWdlSGFuZGxlclwiO1xuaW1wb3J0ICogYXMgc2RrIGZyb20gXCIuLi8uLi8uLi9pbmRleFwiO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBDb25maXJtRGVzdHJveUNyb3NzU2lnbmluZ0RpYWxvZyBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gICAgc3RhdGljIHByb3BUeXBlcyA9IHtcbiAgICAgICAgb25GaW5pc2hlZDogUHJvcFR5cGVzLmZ1bmMuaXNSZXF1aXJlZCxcbiAgICB9O1xuXG4gICAgX29uQ29uZmlybSA9ICgpID0+IHtcbiAgICAgICAgdGhpcy5wcm9wcy5vbkZpbmlzaGVkKHRydWUpO1xuICAgIH07XG5cbiAgICBfb25EZWNsaW5lID0gKCkgPT4ge1xuICAgICAgICB0aGlzLnByb3BzLm9uRmluaXNoZWQoZmFsc2UpO1xuICAgIH07XG5cbiAgICByZW5kZXIoKSB7XG4gICAgICAgIGNvbnN0IEJhc2VEaWFsb2cgPSBzZGsuZ2V0Q29tcG9uZW50KCd2aWV3cy5kaWFsb2dzLkJhc2VEaWFsb2cnKTtcbiAgICAgICAgY29uc3QgRGlhbG9nQnV0dG9ucyA9IHNkay5nZXRDb21wb25lbnQoJ3ZpZXdzLmVsZW1lbnRzLkRpYWxvZ0J1dHRvbnMnKTtcblxuICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgPEJhc2VEaWFsb2dcbiAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSdteF9Db25maXJtRGVzdHJveUNyb3NzU2lnbmluZ0RpYWxvZydcbiAgICAgICAgICAgICAgICAgICAgaGFzQ2FuY2VsPXt0cnVlfVxuICAgICAgICAgICAgICAgICAgICBvbkZpbmlzaGVkPXt0aGlzLnByb3BzLm9uRmluaXNoZWR9XG4gICAgICAgICAgICAgICAgICAgIHRpdGxlPXtfdChcIkRlc3Ryb3kgY3Jvc3Mtc2lnbmluZyBrZXlzP1wiKX0+XG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J214X0NvbmZpcm1EZXN0cm95Q3Jvc3NTaWduaW5nRGlhbG9nX2NvbnRlbnQnPlxuICAgICAgICAgICAgICAgICAgICA8cD5cbiAgICAgICAgICAgICAgICAgICAgICAgIHtfdChcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIkRlbGV0aW5nIGNyb3NzLXNpZ25pbmcga2V5cyBpcyBwZXJtYW5lbnQuIFwiICtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIkFueW9uZSB5b3UgaGF2ZSB2ZXJpZmllZCB3aXRoIHdpbGwgc2VlIHNlY3VyaXR5IGFsZXJ0cy4gXCIgK1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiWW91IGFsbW9zdCBjZXJ0YWlubHkgZG9uJ3Qgd2FudCB0byBkbyB0aGlzLCB1bmxlc3MgXCIgK1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwieW91J3ZlIGxvc3QgZXZlcnkgZGV2aWNlIHlvdSBjYW4gY3Jvc3Mtc2lnbiBmcm9tLlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgKX1cbiAgICAgICAgICAgICAgICAgICAgPC9wPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgIDxEaWFsb2dCdXR0b25zXG4gICAgICAgICAgICAgICAgICAgIHByaW1hcnlCdXR0b249e190KFwiQ2xlYXIgY3Jvc3Mtc2lnbmluZyBrZXlzXCIpfVxuICAgICAgICAgICAgICAgICAgICBvblByaW1hcnlCdXR0b25DbGljaz17dGhpcy5fb25Db25maXJtfVxuICAgICAgICAgICAgICAgICAgICBwcmltYXJ5QnV0dG9uQ2xhc3M9XCJkYW5nZXJcIlxuICAgICAgICAgICAgICAgICAgICBjYW5jZWxCdXR0b249e190KFwiQ2FuY2VsXCIpfVxuICAgICAgICAgICAgICAgICAgICBvbkNhbmNlbD17dGhpcy5fb25EZWNsaW5lfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICA8L0Jhc2VEaWFsb2c+XG4gICAgICAgICk7XG4gICAgfVxufVxuIl19
