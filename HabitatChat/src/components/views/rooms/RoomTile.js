@@ -33,8 +33,6 @@ import RoomViewStore from '../../../stores/RoomViewStore';
 import SettingsStore from "../../../settings/SettingsStore";
 import {_t} from "../../../languageHandler";
 import {RovingTabIndexWrapper} from "../../../accessibility/RovingTabIndex";
-import E2EIcon from './E2EIcon';
-import InviteOnlyIcon from './InviteOnlyIcon';
 // eslint-disable-next-line camelcase
 import rate_limited_func from '../../../ratelimitedfunc';
 import { shieldStatusForRoom } from '../../../utils/ShieldUtils';
@@ -479,8 +477,6 @@ export default createReactClass({
             );
         }
 
-        const RoomAvatar = sdk.getComponent('avatars.RoomAvatar');
-
         let ariaLabel = name;
 
         let dmOnline;
@@ -514,18 +510,6 @@ export default createReactClass({
             );
         }
 
-        let privateIcon = null;
-        if (SettingsStore.getValue("feature_cross_signing")) {
-            if (this.state.joinRule == "invite" && !dmUserId) {
-                privateIcon = <InviteOnlyIcon collapsedPanel={this.props.collapsed} />;
-            }
-        }
-
-        let e2eIcon = null;
-        if (this.state.e2eStatus) {
-            e2eIcon = <E2EIcon status={this.state.e2eStatus} className="mx_RoomTile_e2eIcon" />;
-        }
-
         return <React.Fragment>
             <RovingTabIndexWrapper inputRef={this._roomTile}>
                 {({onFocus, isActive, ref}) =>
@@ -544,11 +528,9 @@ export default createReactClass({
                     >
                         <div className={avatarClasses}>
                             <div className="mx_RoomTile_avatar_container">
-                                <RoomAvatar room={this.props.room} width={24} height={24} />
-                                { e2eIcon }
+                                <h3>&#35;</h3>
                             </div>
                         </div>
-                        { privateIcon }
                         <div className="mx_RoomTile_nameContainer">
                             <div className="mx_RoomTile_labelContainer">
                                 { label }

@@ -249,21 +249,6 @@ export default createReactClass({
                     ? _t("were kicked %(count)s times", { count: repeats })
                     : _t("was kicked %(count)s times", { count: repeats });
                 break;
-            case "changed_name":
-                res = (userCount > 1)
-                    ? _t("%(severalUsers)schanged their name %(count)s times", { severalUsers: "", count: repeats })
-                    : _t("%(oneUser)schanged their name %(count)s times", { oneUser: "", count: repeats });
-                break;
-            case "changed_avatar":
-                res = (userCount > 1)
-                    ? _t("%(severalUsers)schanged their avatar %(count)s times", { severalUsers: "", count: repeats })
-                    : _t("%(oneUser)schanged their avatar %(count)s times", { oneUser: "", count: repeats });
-                break;
-            case "no_change":
-                res = (userCount > 1)
-                    ? _t("%(severalUsers)smade no changes %(count)s times", { severalUsers: "", count: repeats })
-                    : _t("%(oneUser)smade no changes %(count)s times", { oneUser: "", count: repeats });
-                break;
         }
 
         return res;
@@ -292,13 +277,6 @@ export default createReactClass({
             case 'ban': return 'banned';
             case 'join':
                 if (e.mxEvent.getPrevContent().membership === 'join') {
-                    if (e.mxEvent.getContent().displayname !==
-                        e.mxEvent.getPrevContent().displayname) {
-                        return 'changed_name';
-                    } else if (e.mxEvent.getContent().avatar_url !==
-                        e.mxEvent.getPrevContent().avatar_url) {
-                        return 'changed_avatar';
-                    }
                     // console.log("MELS ignoring duplicate membership join event");
                     return 'no_change';
                 } else {

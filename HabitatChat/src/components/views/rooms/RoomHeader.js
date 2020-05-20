@@ -30,7 +30,6 @@ import AccessibleButton from '../elements/AccessibleButton';
 import ManageIntegsButton from '../elements/ManageIntegsButton';
 import {CancelButton} from './SimpleRoomHeader';
 import SettingsStore from "../../../settings/SettingsStore";
-import RoomHeaderButtons from '../right_panel/RoomHeaderButtons';
 import DMRoomMap from '../../../utils/DMRoomMap';
 import E2EIcon from './E2EIcon';
 import InviteOnlyIcon from './InviteOnlyIcon';
@@ -316,13 +315,12 @@ export default createReactClass({
         return (
             <div className="mx_RoomHeader light-panel">
                 <div className="mx_RoomHeader_wrapper" aria-owns="mx_RightPanel">
-                    <div className="mx_RoomHeader_avatar">{ roomAvatar }{ e2eIcon }</div>
+                    <div className="mx_RoomHeader_avatar"><h2>&#35;</h2></div>
                     { privateIcon }
                     { name }
                     { topicElement }
                     { cancelButton }
                     { rightRow }
-                    <RoomHeaderButtons />
                 </div>
             </div>
         );

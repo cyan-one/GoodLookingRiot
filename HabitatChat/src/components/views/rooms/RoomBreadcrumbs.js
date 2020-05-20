@@ -372,7 +372,7 @@ export default class RoomBreadcrumbs extends React.Component {
                     onMouseLeave={() => this._onMouseLeave(r.room)}
                     aria-label={_t("Room %(name)s", {name: r.room.name})}
                 >
-                    <RoomAvatar room={r.room} width={32} height={32} />
+                    &#35;
                     {badge}
                     {tooltip}
                 </AccessibleButton>

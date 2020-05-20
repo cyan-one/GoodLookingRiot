@@ -26,7 +26,7 @@ import * as VectorConferenceHandler from '../../VectorConferenceHandler';
 import SettingsStore from '../../settings/SettingsStore';
 import {_t} from "../../languageHandler";
 import Analytics from "../../Analytics";
-
+import RoomHeaderButtons from '../views/right_panel/RoomHeaderButtons';
 
 const LeftPanel = createReactClass({
     displayName: 'LeftPanel',
@@ -282,7 +282,7 @@ const LeftPanel = createReactClass({
                     <CallPreview ConferenceHandler={VectorConferenceHandler} />
                     <div className="mx_LeftPanel_exploreAndFilterRow" onKeyDown={this._onKeyDown} onFocus={this._onFocus} onBlur={this._onBlur}>
                         { exploreButton }
-                        { searchBox }
+                        <RoomHeaderButtons />
                     </div>
                     <RoomList
                         onKeyDown={this._onKeyDown}

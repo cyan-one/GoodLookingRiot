@@ -23,7 +23,7 @@ $header-panel-bg-color: #f3f8fd;
 
 // typical text (dark-on-white in light skin)
 $primary-fg-color: #2e2f32;
-$primary-bg-color: #ffffff;
+$primary-bg-color: #f2f5f8;
 $muted-fg-color: #61708b; // Commonly used in headings and relevant alt text
 
 // used for dialog box text
@@ -33,7 +33,7 @@ $light-fg-color: #747474;
 $focus-bg-color: #dddddd;
 
 // button UI (white-on-green in light skin)
-$accent-fg-color: #ffffff;
+$accent-fg-color: #f2f5f8;
 $accent-color-50pct: rgba(3, 179, 129, 0.5);    //#03b381 in rgb
 $accent-color-darker: #92caad;
 $accent-color-alt: #238CF5;
@@ -65,7 +65,7 @@ $preview-bar-bg-color: #f7f7f7;
 $secondary-accent-color: #f2f5f8;
 $tertiary-accent-color: #d3efe1;
 
-$tagpanel-bg-color: #27303a;
+$tagpanel-bg-color: #f2f5f8;
 
 // used by RoomDirectory permissions
 $plinth-bg-color: $secondary-accent-color;

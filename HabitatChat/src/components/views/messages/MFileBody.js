@@ -365,8 +365,6 @@ export default createReactClass({
                     <span className="mx_MFileBody">
                         <div className="mx_MFileBody_download">
                             <a {...downloadProps}>
-                                <img src={tintedDownloadImageURL} width="12" height="14" ref={this._downloadImage} />
-                                { _t("Download %(text)s", { text: text }) }
                             </a>
                         </div>
                     </span>

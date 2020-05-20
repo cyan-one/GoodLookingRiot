@@ -469,9 +469,7 @@ export default createReactClass({
                 onMouseDown={(ev) => {ev.preventDefault();}}
             >
                 <td className="mx_RoomDirectory_roomAvatar">
-                    <BaseAvatar width={32} height={32} resizeMethod='crop'
-                        name={ name } idName={ name }
-                        url={ avatarUrl } />
+                    &#35;
                 </td>
                 <td className="mx_RoomDirectory_roomDescription">
                     <div className="mx_RoomDirectory_name">{ name }</div>&nbsp;

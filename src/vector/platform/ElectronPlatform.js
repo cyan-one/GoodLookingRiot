@@ -22,7 +22,6 @@ limitations under the License.
 
 import VectorBasePlatform, {updateCheckStatusEnum} from './VectorBasePlatform';
 import BaseEventIndexManager from 'matrix-react-sdk/src/indexing/BaseEventIndexManager';
-import dis from 'matrix-react-sdk/src/dispatcher/dispatcher';
 import { _t, _td } from 'matrix-react-sdk/src/languageHandler';
 import * as rageshake from 'matrix-react-sdk/src/rageshake/rageshake';
 import {MatrixClient} from "matrix-js-sdk";
@@ -33,7 +32,6 @@ import {Categories, Modifiers, registerShortcut} from "matrix-react-sdk/src/acce
 import {Key} from "matrix-react-sdk/src/Keyboard";
 import React from "react";
 import {randomString} from "matrix-js-sdk/src/randomstring";
-import {Action} from "matrix-react-sdk/src/dispatcher/actions";
 
 const ipcRenderer = window.ipcRenderer;
 const isMac = navigator.platform.toUpperCase().includes('MAC');

@@ -773,18 +773,18 @@ export default createReactClass({
                 incomingCall: incomingCallIfTaggedAs('m.favourite'),
             },
             {
+                list: this.state.lists['im.vector.fake.recent'],
+                label: _t('Rooms'),
+                incomingCall: incomingCallIfTaggedAs('im.vector.fake.recent'),
+                onAddRoom: () => {dis.dispatch({action: 'view_create_room'});},
+            },
+            {
                 list: this.state.lists[TAG_DM],
                 label: _t('Direct Messages'),
                 tagName: TAG_DM,
                 incomingCall: incomingCallIfTaggedAs(TAG_DM),
                 onAddRoom: () => {dis.dispatch({action: 'view_create_chat'});},
                 addRoomLabel: _t("Start chat"),
-            },
-            {
-                list: this.state.lists['im.vector.fake.recent'],
-                label: _t('Rooms'),
-                incomingCall: incomingCallIfTaggedAs('im.vector.fake.recent'),
-                onAddRoom: () => {dis.dispatch({action: 'view_create_room'});},
             },
         ];
         const tagSubLists = Object.keys(this.state.lists)

@@ -42,24 +42,21 @@ limitations under the License.
 
 .mx_RightPanel_headerButton {
     cursor: pointer;
-    flex: 0 0 auto;
     vertical-align: top;
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
-    border-bottom: 2px solid transparent;
-    height: 20px;
-    width: 20px;
+    padding: 9px;
+    padding-left: 13px;
+    height: 16px;
+    width: 16px;
     position: relative;
+    color: $notice-secondary-color;
+
 
     &::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        background-color: $rightpanel-button-color;
+        height: 16px;
+        width: 16px;
+        background-color: $notice-secondary-color;
         mask-repeat: no-repeat;
         mask-size: contain;
     }
@@ -89,8 +86,6 @@ limitations under the License.
     content: '';
     position: absolute;
     bottom: -6px;
-    left: 0;
-    right: 0;
     height: 2px;
     background-color: $button-bg-color;
 }

@@ -100,11 +100,7 @@ export default createReactClass({
 
         return <tr key={room.roomId} onClick={this.onClick} onMouseDown={this.props.onMouseDown}>
             <td className="mx_RoomDirectory_roomAvatar">
-                <BaseAvatar width={24} height={24} resizeMethod='crop'
-                    name={name} idName={name}
-                    url={getHttpUriForMxc(
-                            MatrixClientPeg.get().getHomeserverUrl(),
-                            room.avatarUrl, 24, 24, "crop")} />
+                &#35;
             </td>
             <td className="mx_RoomDirectory_roomDescription">
                 <div className="mx_RoomDirectory_name">{ name }</div>&nbsp;

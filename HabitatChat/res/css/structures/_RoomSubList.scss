@@ -84,18 +84,16 @@ limitations under the License.
 }
 
 .mx_RoomSubList_addRoom, .mx_RoomSubList_badge {
-    margin-left: 7px;
+    margin-left: 0px;
 }
 
 .mx_RoomSubList_addRoom {
-    background-color: $roomheader-addroom-bg-color;
-    border-radius: 10px; // 16/2 + 2 padding
     height: 16px;
     flex: 0 0 16px;
     position: relative;
 
     &::before {
-        background-color: $roomheader-addroom-fg-color;
+        background-color: $notice-secondary-color;
         mask: url('$(res)/img/icons-room-add.svg');
         mask-repeat: no-repeat;
         mask-position: center;

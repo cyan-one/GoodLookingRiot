@@ -1525,7 +1525,6 @@ const UserInfo = ({user, groupId, roomId, onClose, phase=RIGHT_PANEL_PHASES.Room
         <div className={classes.join(" ")} role="tabpanel">
             <AutoHideScrollbar className="mx_UserInfo_scrollContainer">
                 <UserInfoHeader member={member} e2eStatus={e2eStatus} onClose={onClose} />
-
                 { content }
             </AutoHideScrollbar>
         </div>
