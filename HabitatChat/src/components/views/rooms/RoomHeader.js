@@ -33,6 +33,7 @@ import SettingsStore from "../../../settings/SettingsStore";
 import DMRoomMap from '../../../utils/DMRoomMap';
 import E2EIcon from './E2EIcon';
 import InviteOnlyIcon from './InviteOnlyIcon';
+import RoomHeaderButtons from '../right_panel/RoomHeaderButtons';
 
 export default createReactClass({
     displayName: 'RoomHeader',
@@ -321,6 +322,7 @@ export default createReactClass({
                     { topicElement }
                     { cancelButton }
                     { rightRow }
+                    <RoomHeaderButtons />
                 </div>
             </div>
         );

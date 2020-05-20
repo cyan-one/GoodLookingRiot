@@ -60,7 +60,7 @@ limitations under the License.
 
 .mx_FilePanel .mx_EventTile .mx_MImageBody_size {
     flex: 1 0 0;
-    font-size: $font-11px;
+    font-size: $font-8px;
     text-align: right;
     white-space: nowrap;
 }
@@ -98,8 +98,8 @@ limitations under the License.
 /* Overrides for the wrappers around the body tile */
 
 .mx_FilePanel .mx_EventTile_line {
-    margin-right: 0px;
-    padding-left: 0px;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
 }
 
 .mx_FilePanel .mx_EventTile_selected .mx_EventTile_line {
