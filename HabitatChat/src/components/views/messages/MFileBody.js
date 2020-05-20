@@ -247,18 +247,6 @@ export default createReactClass({
                         decrypting = false;
                     });
                 };
-
-                // This button should actually Download because usercontent/ will try to click itself
-                // but it is not guaranteed between various browsers' settings.
-                return (
-                    <span className="mx_MFileBody">
-                        <div className="mx_MFileBody_download">
-                            <AccessibleButton onClick={decrypt}>
-                                { _t("Decrypt %(text)s", { text: text }) }
-                            </AccessibleButton>
-                        </div>
-                    </span>
-                );
             }
 
             // When the iframe loads we tell it to render a download link
@@ -365,6 +353,7 @@ export default createReactClass({
                     <span className="mx_MFileBody">
                         <div className="mx_MFileBody_download">
                             <a {...downloadProps}>
+                               
                             </a>
                         </div>
                     </span>

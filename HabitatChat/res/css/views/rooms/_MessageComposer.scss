@@ -17,10 +17,11 @@ limitations under the License.
 
 .mx_MessageComposer_wrapper {
     vertical-align: middle;
-    margin: auto;
-    border-top: 1px solid $primary-hairline-color;
+    margin-bottom: 15px;
     position: relative;
-    padding-left: 84px;
+    padding-left: 80px;
+    border: 1px solid $primary-hairline-color;
+    border-radius: 5px;
 }
 
 .mx_MessageComposer_replaced_wrapper {

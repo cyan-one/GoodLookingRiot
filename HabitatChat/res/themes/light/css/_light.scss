@@ -14,7 +14,7 @@ $monospace-font-family: Inconsolata, Twemoji, 'Apple Color Emoji', 'Segoe UI Emo
 
 // unified palette
 // try to use these colors when possible
-$accent-color: #03b381;
+$accent-color: #5c56f5;
 $accent-bg-color: rgba(3, 179, 129, 0.16);
 $notice-primary-color: #ff4b55;
 $notice-primary-bg-color: rgba(255, 75, 85, 0.16);
@@ -80,7 +80,7 @@ $selected-color: $secondary-accent-color;
 $event-selected-color: $header-panel-bg-color;
 
 // used for the hairline dividers in RoomView
-$primary-hairline-color: #e5e5e5;
+$primary-hairline-color: #dee4ec;
 
 // used for the border of input text fields
 $input-border-color: #e7e7e7;
@@ -179,14 +179,14 @@ $roomtile-notified-color: #212121;
 $roomtile-selected-bg-color: #fff;
 $roomtile-focused-bg-color: #fff;
 
-$username-variant1-color: #368bd6;
-$username-variant2-color: #ac3ba8;
-$username-variant3-color: #03b381;
-$username-variant4-color: #e64f7a;
-$username-variant5-color: #ff812d;
-$username-variant6-color: #2dc2c5;
-$username-variant7-color: #5c56f5;
-$username-variant8-color: #74d12c;
+$username-variant1-color: #333;
+$username-variant2-color: #333;
+$username-variant3-color: #333;
+$username-variant4-color: #333;
+$username-variant5-color: #333;
+$username-variant6-color: #333;
+$username-variant7-color: #333;
+$username-variant8-color: #333;
 
 $roomtile-transparent-focused-color: rgba(0, 0, 0, 0.1);
 
@@ -221,7 +221,7 @@ $event-redacted-fg-color: #e2e2e2;
 $event-redacted-border-color: #cccccc;
 
 // event timestamp
-$event-timestamp-color: #acacac;
+$event-timestamp-color: #8f8f8f;
 
 $copy-button-url: "$(res)/img/icon_copy_message.svg";
 

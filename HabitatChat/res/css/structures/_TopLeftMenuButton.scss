@@ -23,6 +23,8 @@ limitations under the License.
     min-width: 0;
     padding: 0 4px;
     overflow: hidden;
+    border-right: 1px solid $menu-border-color;
+    border-bottom: 1px solid $menu-border-color;
 }
 
 .mx_TopLeftMenuButton .mx_BaseAvatar {

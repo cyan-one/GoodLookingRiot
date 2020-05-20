@@ -1,17 +1,17 @@
 // unified palette
 // try to use these colors when possible
-$bg-color: #15171b;
-$base-color: #15171b;
+$bg-color: rgb(32, 36, 43);
+$base-color: rgb(32, 36, 43);
 $base-text-color: #edf3ff;
-$header-panel-bg-color: #15171b;
-$header-panel-border-color: #000000;
-$header-panel-text-primary-color: #a1b2d1;
+$header-panel-bg-color: rgb(32, 36, 43);
+$header-panel-border-color: rgb(35, 40, 48);
+$header-panel-text-primary-color: #61708b;
 $header-panel-text-secondary-color: #c8c8cd;
 $text-primary-color: #edf3ff;
 $text-secondary-color: #a1b2d1;
-$search-bg-color: #15171b;
+$search-bg-color: rgb(32, 36, 43);
 $search-placeholder-color: #61708b;
-$room-highlight-color: #343a46;
+$room-highlight-color: #343a46b0;
 
 // typical text (dark-on-white in light skin)
 $primary-fg-color: $text-primary-color;
@@ -108,6 +108,15 @@ $roomtile-selected-color: $text-primary-color;
 $roomtile-notified-color: $text-primary-color;
 $roomtile-selected-bg-color: $room-highlight-color;
 $roomtile-focused-bg-color: $room-highlight-color;
+
+$username-variant1-color: #edf3ff;
+$username-variant2-color: #edf3ff;
+$username-variant3-color: #edf3ff;
+$username-variant4-color: #edf3ff;
+$username-variant5-color: #edf3ff;
+$username-variant6-color: #edf3ff;
+$username-variant7-color: #edf3ff;
+$username-variant8-color: #edf3ff;
 
 $roomtile-transparent-focused-color: rgba(0, 0, 0, 0.1);
 

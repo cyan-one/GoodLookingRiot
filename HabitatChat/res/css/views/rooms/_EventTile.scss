@@ -18,7 +18,8 @@ limitations under the License.
 .mx_EventTile {
     max-width: 100%;
     clear: both;
-    padding-top: 18px;
+    padding-top: 14px;
+    margin-top: 5px;
     font-size: $font-14px;
     position: relative;
 }
@@ -110,7 +111,7 @@ limitations under the License.
 
 .mx_EventTile_line, .mx_EventTile_reply {
     position: relative;
-    padding-left: 65px; /* left gutter */
+    padding-left: 50px; /* left gutter */
     border-radius: 4px;
 }
 
@@ -292,7 +293,7 @@ limitations under the License.
     display: block;
     overflow-y: hidden;
     overflow-x: hidden;
-    margin-right: 34px;
+    margin-right: 14px;
 }
 
 /* De-zalgoing */

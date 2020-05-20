@@ -20,6 +20,8 @@ limitations under the License.
     flex: 1;
     min-height: 0;
     overflow-y: hidden;
+    border-right: 1px solid $menu-border-color;
+    border-top: 1px solid $menu-border-color;
 }
 
 .mx_RoomList .mx_ResizeHandle {

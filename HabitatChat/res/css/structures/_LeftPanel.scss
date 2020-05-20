@@ -129,6 +129,7 @@ limitations under the License.
 .mx_LeftPanel_exploreAndFilterRow {
     display: flex;
     flex-direction: column;
+    border-right: 1px solid $menu-border-color;
 
     .mx_SearchBox {
         flex: 1 1 0;

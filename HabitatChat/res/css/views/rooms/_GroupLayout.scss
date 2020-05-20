@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-$left-gutter: 65px;
+$left-gutter: 50px;
 
 .mx_GroupLayout {
 
@@ -42,7 +42,6 @@ $left-gutter: 65px;
         .mx_EventTile_line, .mx_EventTile_reply {
             padding-top: 3px;
             padding-bottom: 3px;
-            line-height: $font-22px;
         }
     }
 
