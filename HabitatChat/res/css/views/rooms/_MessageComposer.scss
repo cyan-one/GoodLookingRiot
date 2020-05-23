@@ -183,15 +183,15 @@ limitations under the License.
     position: relative;
     margin-right: 12px;
     cursor: pointer;
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
 
     &::before {
         content: '';
         position: absolute;
 
-        height: 20px;
-        width: 20px;
+        height: 16px;
+        width: 16px;
         background-color: $composer-button-color;
         mask-repeat: no-repeat;
         mask-size: contain;

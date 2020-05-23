@@ -34,6 +34,7 @@ limitations under the License.
     align-items: center;
     min-width: 0;
     padding: 0 10px 0 19px;
+    border-bottom: 1px solid $primary-hairline-color;
 }
 
 .mx_RoomHeader_spinner {
@@ -160,7 +161,7 @@ limitations under the License.
     flex: 1;
     color: $roomtopic-color;
     font-weight: 400;
-    font-size: $font-13px;
+    font-size: $font-11px;
     margin: 0 7px;
     margin-top: 4px; // to align baseline of topic with room name
     overflow: hidden;
